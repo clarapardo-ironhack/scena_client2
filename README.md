@@ -43,11 +43,11 @@
 ## COMPONENTS
 
 **BASICS**
-.
-+-- _homepage
-│+-- Section
 
-
+|--index
+|--js
+|  |--chronometer
+|  |--index
 
 
 
