@@ -44,20 +44,10 @@
 
 **BASICS**
 .
-+-- homepage
++-- _homepage
 │+-- Section
-│   │     +-- SearchBar
-│   ├──  Section
-│   │     ├── TinyCard
-│   │     └── LinkCard
-│   └── Section
-│         ├── TinyCard
-│         └── LinkCard
-├── login-page
-│   ├── Form
-│   └── Button
-├── signup-page
-│   ├── Form
-│   └── Button
-└── profile-edit-page
-    └── Form
+
+
+
+
+
