@@ -43,11 +43,5 @@
 ## COMPONENTS
 
 **BASICS**
-```
-|--index
-|--js
-|  |--chronometer
-|  |--index
 
-```
 
