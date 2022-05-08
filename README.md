@@ -43,7 +43,7 @@
 ## COMPONENTS
 
 **BASICS**
-
+.
 +-- homepage
 │+-- Section
 │   │     +-- SearchBar
