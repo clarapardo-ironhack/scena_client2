@@ -22,7 +22,7 @@
 | PAGE | URL |
 | --- | --- |
 | venues-page | /venues |
-| venue-details | /venue/:venueID |
+| venue-details | /venue/:venueId |
 
 | **LABELS**|
 | PAGE | URL |
