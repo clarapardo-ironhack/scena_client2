@@ -44,9 +44,9 @@
 
 **BASICS**
 
-├── homepage
-│   ├── Section
-│   │     └── SearchBar
++-- homepage
+│+-- Section
+│   │     +-- SearchBar
 │   ├──  Section
 │   │     ├── TinyCard
 │   │     └── LinkCard
