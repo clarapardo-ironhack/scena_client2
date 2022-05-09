@@ -2,40 +2,40 @@
 
 ## URLs
 
-| **BASICS**|
+ **BASICS**
 | PAGE | URL |
 | --- | --- |
-| homepage | / |
-| login-page | /login |  
-| signup-page | /register |
-| profile-edit-page | /my-profile |  
-| favorites-page | /favorites |
+| HomePage | / |
+| LoginPage | /login |  
+| SignupPage | /register |
+| ProfileEditPage | /my-profile |  
+| FavoritesPage | /favorites |
 
-| **ARTISTS**|
+ **ARTISTS**
 | PAGE | URL |
 | --- | --- |
-| artists-page | /artists |
-| artist-details | /artist/:artistId |  
-| search-list | /artist/:genre |
+| ArtistsPage | /artists |
+| ArtistDetailsPage | /artist/:artistId |  
+| GenreSearchList | /artists/style/:genre |
 
-| **VENUES**|
+ **VENUES**
 | PAGE | URL |
 | --- | --- |
-| venues-page | /venues |
-| venue-details | /venue/:venueId |
+| VenuesPage | /venues |
+| VenueDetailsPage | /venue/:venueID |
 
-| **LABELS**|
+ **LABELS**
 | PAGE | URL |
 | --- | --- |
-| labels-page | /labels |
-| label-details | /label/:labelId |  
+| LabelsPage | /labels |
+| LabelDetailsPage | /label/:labelId |  
 
-| **EVENTS**|
+ **EVENTS**
 | PAGE | URL |
 | --- | --- |
-| events-page | /events |
-| event-details | /event/:eventId |  
-| event-create-page | /event/create |
+| EventsPage | /events |
+| EventDetailsPage | /event/:eventId |  
+| EventCreatePage | /event/create |
 
 ## COMPONENTS
 
