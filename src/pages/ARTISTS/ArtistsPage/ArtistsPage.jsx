@@ -3,7 +3,7 @@ import './ArtistsPage.css'
 const ArtistPage = () => {
 
     return (
-        <h1>artistpeich</h1>
+        <h1>artistlistpeich</h1>
 
     )
 }
