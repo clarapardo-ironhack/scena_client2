@@ -2,15 +2,13 @@ import { Container, Col, Row, FloatingLabel, Form, FormControl, InputGroup, Butt
 import './LabelSignupForm.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from "react"
-// import authService from "#######################################"
-
-
+import authService from "./../../../../services/auth.service"
 
 
 const LabelSignupForm = () => {
 
     const [signupData, setSignupData] = useState({
-        //// CHECKLIST DUTY
+        duty: 'RecordLabel',
         username: '',
         email: '',
         password: '',
@@ -27,10 +25,10 @@ const LabelSignupForm = () => {
     const handleSubmit = e => {
         e.preventDefault()
 
-        // authService
-        //     .labelRegister(signupData)
-        //     .then(res => navigate('/'))
-        //     .catch(err => console.log(err))
+        authService
+            .labelRegister(signupData)
+            .then(res => navigate('/'))
+            .catch(err => console.log(err))
     }
 
     const handleInputChange = e => {
@@ -51,7 +49,7 @@ const LabelSignupForm = () => {
             <Form onSubmit={handleSubmit}>
 
                 <Form.Group as={Col} controlId="duty" className="mb-3">
-                    <Form.Select defaultValue="RecordLabel" onChange={handleInputChange}>
+                    <Form.Select defaultValue="RecordLabel" name="duty" onChange={handleInputChange}>
                         <option value={'RecordLabel'}>Sello discográfico</option>
                         <option value={'Management'} >Agencia de management</option>
                     </Form.Select>
