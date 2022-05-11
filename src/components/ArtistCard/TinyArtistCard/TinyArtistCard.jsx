@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const TinyArtistCard = ({ _id, images, username }) => {
     return (
         <>
-            <Link to={`artist/detalles/${_id}`}>
+            <Link to={`/artists/details/${_id}`}>
                 <Card className="CoasterCard">
                     <Card.Img variant="top" src={images.avatar} />
                     <Card.Body>
