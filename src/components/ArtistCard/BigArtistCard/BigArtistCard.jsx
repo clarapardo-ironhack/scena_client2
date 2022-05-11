@@ -1,8 +1,6 @@
 import './BigArtistCard.css'
 
-
 const BigArtistCard = () => {
-
     return
 }
 
