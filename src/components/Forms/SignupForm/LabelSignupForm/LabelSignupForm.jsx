@@ -67,7 +67,6 @@ const LabelSignupForm = () => {
                             <Form.Control type="password" placeholder="Contraseña" name="password" value={password} onChange={handleInputChange} />
                         </FloatingLabel>
                     </Col>
-
                 </Form.Group>
 
                 <FloatingLabel controlId="email" label="Email" className="mb-3">
@@ -86,7 +85,7 @@ const LabelSignupForm = () => {
 
                     <Col sm={{ span: 6 }}>
                         <InputGroup className="mb-3">
-                            <InputGroup.Text id="basic-addon1"></InputGroup.Text>
+                            <InputGroup.Text id="phoneNumber"></InputGroup.Text>
                             <FloatingLabel controlId="phoneNumber" label="Móvil">
                                 <Form.Control type="text" placeholder="Móvil" name="phoneNumber" value={phoneNumber} onChange={handleInputChange} />
                             </FloatingLabel>
@@ -96,39 +95,35 @@ const LabelSignupForm = () => {
                         <hr />
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Text id="basic-addon1"></InputGroup.Text>
+                            <InputGroup.Text id="instagram"></InputGroup.Text>
                             <FloatingLabel controlId="instagram" label="Instagram">
                                 <Form.Control type="text" placeholder="Instagram" name="instagram" value={instagram} onChange={handleInputChange} />
                             </FloatingLabel>
                         </InputGroup>
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Text id="basic-addon1"></InputGroup.Text>
+                            <InputGroup.Text id="spotify"></InputGroup.Text>
                             <FloatingLabel controlId="spotify" label="Spotify">
                                 <Form.Control type="text" placeholder="Spotify" style={{ width: '204px' }} name="spotify" value={spotify} onChange={handleInputChange} />
                             </FloatingLabel>
                         </InputGroup>
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Text id="basic-addon1"></InputGroup.Text>
+                            <InputGroup.Text id="soundcloud"></InputGroup.Text>
                             <FloatingLabel controlId="soundcloud" label="Soundcloud">
                                 <Form.Control type="text" placeholder="Soundcloud" style={{ width: '204px' }} name="soundcloud" value={soundcloud} onChange={handleInputChange} />
                             </FloatingLabel>
                         </InputGroup>
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Text id="basic-addon1"></InputGroup.Text>
+                            <InputGroup.Text id="twitter"></InputGroup.Text>
                             <FloatingLabel controlId="twitter" label="Twitter">
                                 <Form.Control type="text" placeholder="Twitter" style={{ width: '204px' }} name="twitter" value={twitter} onChange={handleInputChange} />
                             </FloatingLabel>
                         </InputGroup>
-
-
                     </Col>
 
-
                 </Form.Group>
-
 
             </Form>
         </Container>

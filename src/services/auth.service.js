@@ -22,8 +22,8 @@ class AuthService {
         return this.app.post('/register/fan', user)
     }
 
-    login = user => {
-        return this.app.post('/login', user)
+    login = ({role, user}) => {
+        return this.app.post(`/login/${role}`, {user})
     }
 
     verify = token => {
