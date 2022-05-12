@@ -9,7 +9,7 @@ const ArtistRoutes = () => {
     return (
         <Routes>
             <Route path="/artists" element={<ArtistsPage />} />
-            <Route path="/artist/:artistId" element={<ArtistDetailsPage />} />
+            <Route path="/artists/details/:artistId" element={<ArtistDetailsPage />} />
             <Route path="/artists/style/:genre" element={<GenreSearchList />} />
         </Routes>
     )

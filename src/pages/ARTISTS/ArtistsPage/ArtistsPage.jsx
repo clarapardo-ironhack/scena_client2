@@ -8,7 +8,7 @@ const ArtistPage = () => {
 
 
     const [artist, setArtist] = useState([])
-    const [isLoaded,setIsLoaded]=useState(false)
+    const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
         loadArtists()
@@ -23,7 +23,7 @@ const ArtistPage = () => {
             })
             .catch(err => console.log(err))
     }
-    
+
     return (
         <>
             <Container>
