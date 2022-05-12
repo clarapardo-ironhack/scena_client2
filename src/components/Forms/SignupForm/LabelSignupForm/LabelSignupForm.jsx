@@ -3,22 +3,24 @@ import './LabelSignupForm.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from "react"
 import authService from "./../../../../services/auth.service"
+import uploadService from "./../../../../services/upload.service"
 
 
 const LabelSignupForm = () => {
 
     const [signupData, setSignupData] = useState({
-        duty: 'RecordLabel',
         username: '',
         email: '',
         password: '',
         instagram: '',
-        spotify: '',
-        soundcloud: '',
         twitter: '',
         phoneNumber: '',
+        avatar: '',
         description: '',
+        duty: 'RecordLabel'
     })
+
+    console.log(signupData)
 
     const navigate = useNavigate()
 
@@ -38,12 +40,27 @@ const LabelSignupForm = () => {
         setSignupData({ ...signupData, [name]: value })
     }
 
-    const { username, email, password, instagram, spotify, soundcloud, twitter, phoneNumber, avatar, others, role, duty, description } = signupData
+    const { username, email, password, instagram, twitter, phoneNumber, avatar, description, duty } = signupData
 
+    const handleAvatarUpload = (e) => {
+
+        // setLoadingImage(true)
+
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
+
+        uploadService
+            .uploadImage(uploadData)
+            .then(({ data }) => {
+                // setLoadingImage(false)
+                setSignupData({ ...signupData, avatar: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
 
     return (
         <Container>
-            <h1>Label Sign up</h1>
+            <h1>REGISTRO DE LABEL</h1>
             <hr />
 
             <Form onSubmit={handleSubmit}>
@@ -80,6 +97,11 @@ const LabelSignupForm = () => {
                             <Form.Control as="textarea" style={{ height: '200px' }} placeholder="Descripción del evento" name="description" value={description} onChange={handleInputChange} />
                         </FloatingLabel>
 
+                        <Form.Group className="mb-3" controlId="avatar">
+                            <Form.Label>Foto de perfil</Form.Label>
+                            <Form.Control type="file" onChange={handleAvatarUpload} />
+                        </Form.Group>
+
                         <Button variant="dark" type="submit">Registrarme</Button>
                     </Col>
 
@@ -98,20 +120,6 @@ const LabelSignupForm = () => {
                             <InputGroup.Text id="instagram"></InputGroup.Text>
                             <FloatingLabel controlId="instagram" label="Instagram">
                                 <Form.Control type="text" placeholder="Instagram" name="instagram" value={instagram} onChange={handleInputChange} />
-                            </FloatingLabel>
-                        </InputGroup>
-
-                        <InputGroup className="mb-3">
-                            <InputGroup.Text id="spotify"></InputGroup.Text>
-                            <FloatingLabel controlId="spotify" label="Spotify">
-                                <Form.Control type="text" placeholder="Spotify" style={{ width: '204px' }} name="spotify" value={spotify} onChange={handleInputChange} />
-                            </FloatingLabel>
-                        </InputGroup>
-
-                        <InputGroup className="mb-3">
-                            <InputGroup.Text id="soundcloud"></InputGroup.Text>
-                            <FloatingLabel controlId="soundcloud" label="Soundcloud">
-                                <Form.Control type="text" placeholder="Soundcloud" style={{ width: '204px' }} name="soundcloud" value={soundcloud} onChange={handleInputChange} />
                             </FloatingLabel>
                         </InputGroup>
 

@@ -3,6 +3,8 @@ import './FanSignupForm.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from "react"
 import authService from "./../../../../services/auth.service"
+import uploadService from "./../../../../services/upload.service"
+
 
 
 const FanSignupForm = () => {
@@ -11,9 +13,7 @@ const FanSignupForm = () => {
         username: '',
         email: '',
         password: '',
-        phoneNumber: '',
         avatar: '',
-        others: [],
         likedEvents: [],
         likedArtists: [],
         likedVenues: []
@@ -31,17 +31,33 @@ const FanSignupForm = () => {
     }
 
     const handleInputChange = e => {
-        const { value, name } = e.currentTarget
 
-        console.log(value, name)
+        const { value, name } = e.currentTarget
         setSignupData({ ...signupData, [name]: value })
     }
 
-    const { username, email, password, phoneNumber, avatar, others, role, likedEvents, likedArtists, likedVenues } = signupData
+    const { username, email, password, avatar, likedEvents, likedArtists, likedVenues } = signupData
+
+
+    const handleAvatarUpload = (e) => {
+
+        // setLoadingImage(true)
+
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
+
+        uploadService
+            .uploadImage(uploadData)
+            .then(({ data }) => {
+                // setLoadingImage(false)
+                setSignupData({ ...signupData, avatar: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
 
     return (
         <Container>
-            <h1>Fan sign up</h1>
+            <h1>REGISTO de fan</h1>
             <hr />
 
             <Form onSubmit={handleSubmit}>
@@ -65,17 +81,9 @@ const FanSignupForm = () => {
                     <Form.Control type="email" placeholder="Email" name="email" value={email} onChange={handleInputChange} />
                 </FloatingLabel>
 
-                <Form.Group as={Row}>
-
-                    <Col sm={{ span: 6 }}>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Text id="phoneNumber"></InputGroup.Text>
-                            <FloatingLabel controlId="phoneNumber" label="Móvil">
-                                <Form.Control type="text" placeholder="Móvil" name="phoneNumber" value={phoneNumber} onChange={handleInputChange} />
-                            </FloatingLabel>
-                        </InputGroup>
-                    </Col>
-
+                <Form.Group className="mb-3" controlId="avatar">
+                    <Form.Label>Avatar</Form.Label>
+                    <Form.Control type="file" onChange={handleAvatarUpload} />
                 </Form.Group>
 
                 <Button variant="dark" type="submit">Registrarme</Button>

@@ -6,29 +6,27 @@ import { useState } from 'react'
 
 const LoginPage = () => {
 
+    const [showButtons, setShowButtons] = useState (true)
     const [showForm, setShowForm] = useState('')
 
-    const openFanSignupForm = () => setShowForm('fan')
-    const openVenueSignupForm = () => setShowForm('venue')
-    const openArtistSignupForm = () => setShowForm('artist')
-    const openLabelSignupForm = () => setShowForm('label')
+    const openSignupForm = role => {
+        setShowForm(role)
+        setShowButtons(false)
+    }
 
     return (
         <>
             <h1>loguinpeich</h1>
 
-
-            <Button onClick={openFanSignupForm}>Fan</Button>
-            <Button onClick={openVenueSignupForm}>Venue</Button>
-            <Button onClick={openArtistSignupForm}>Artist</Button>
-            <Button onClick={openLabelSignupForm}>Label</Button>
+            {showButtons && <Button onClick={() => openSignupForm('fan')}>Fan</Button>}
+            {showButtons && <Button onClick={() => openSignupForm('venue')}>Venue</Button>}
+            {showButtons && <Button onClick={() => openSignupForm('artist')}>Artist</Button>}
+            {showButtons && <Button onClick={() => openSignupForm('label')}>Label</Button>}
 
             {showForm === 'fan' && <LoginForm role={showForm} />}
             {showForm === 'venue' && <LoginForm role={showForm} />}
             {showForm === 'artist' && <LoginForm role={showForm} />}
             {showForm === 'label' && <LoginForm role={showForm} />}
-
-
         </>
     )
 }

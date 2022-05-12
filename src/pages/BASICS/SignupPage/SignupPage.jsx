@@ -8,7 +8,8 @@ const SignupPage = () => {
     return (
         <>
             <h1>sainanpeich</h1>
-            <FanSignupForm />
+            <LabelSignupForm />
+            {/* <FanSignupForm /> */}
         </>
     )
 }
