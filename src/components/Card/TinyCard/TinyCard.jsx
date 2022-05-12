@@ -9,7 +9,7 @@ const TinyCard = ({ _id, avatar, username, role}) => {
         
         <>
             <Link to={`/${path.toLowerCase()}s/details/${_id}`}>
-                <Card className="CoasterCard">
+                <Card >
                     <Card.Img variant="top" src={avatar} />
                     <Card.Body>
                         {username && <Card.Title>{username}</Card.Title>}
