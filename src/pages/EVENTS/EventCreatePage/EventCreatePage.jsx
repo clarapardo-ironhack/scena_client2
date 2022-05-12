@@ -1,4 +1,4 @@
-import './EventCreatePage.css'
+
 
 const EventCreatePage = () => {
 
