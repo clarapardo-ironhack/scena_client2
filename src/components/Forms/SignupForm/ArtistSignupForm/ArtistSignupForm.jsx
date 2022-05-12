@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Form, Button, FloatingLabel, Container } from "react-bootstrap"
 import authService from "./../../../../services/auth.service"
+import uploadService from "./../../../../services/upload.service"
 import { useNavigate } from 'react-router-dom'
 
 import './ArtistSignupForm.css'
@@ -18,7 +19,9 @@ const ArtistSignupForm = () => {
         twitter: '',
         style1: '',
         style2: '',
-        style3: ''
+        style3: '',
+        avatar: '',
+        images: ''
     }
     )
 
@@ -42,6 +45,38 @@ const ArtistSignupForm = () => {
         setSignupData({ ...signupData, [name]: value })
     }
 
+    const handleAvatarUpload = (e) => {
+
+        // setLoadingImage(true)
+
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
+
+        uploadService
+            .uploadImage(uploadData)
+            .then(({ data }) => {
+                // setLoadingImage(false)
+                setSignupData({ ...signupData, avatar: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
+
+    const handleImagesUpload = (e) => {
+
+        // setLoadingImage(true)
+
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files)
+
+        uploadService
+            .uploadImage(uploadData)
+            .then(({ data }) => {
+                // setLoadingImage(false)
+                setSignupData({ ...signupData, images: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
+
     const { username,
         password,
         email,
@@ -54,7 +89,9 @@ const ArtistSignupForm = () => {
         twitter,
         style1,
         style2,
-        style3
+        style3,
+        avatar,
+        images
     } = signupData
 
     return (
@@ -120,6 +157,16 @@ const ArtistSignupForm = () => {
                 </FloatingLabel>
 
                 {/* Avatar y fotoss */}
+
+                <Form.Group className="mb-3" controlId="avatar">
+                    <Form.Label>AVATAR</Form.Label>
+                    <Form.Control type="file" onChange={handleAvatarUpload} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="images">
+                    <Form.Label>Imágenes</Form.Label>
+                    <Form.Control type="file" onChange={handleImagesUpload} />
+                </Form.Group>
 
                 <h4>SOCIALS</h4>
 
