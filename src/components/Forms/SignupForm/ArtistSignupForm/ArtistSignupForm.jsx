@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Form, Button, FloatingLabel, Container } from "react-bootstrap"
+import { Form, Button, FloatingLabel, Container, Row, Col, InputGroup } from "react-bootstrap"
 import authService from "./../../../../services/auth.service"
 import uploadService from "./../../../../services/upload.service"
 import { useNavigate } from 'react-router-dom'
@@ -16,12 +16,16 @@ const ArtistSignupForm = () => {
         instagram: '',
         spotify: '',
         soundcloud: '',
+        bandcamp: '',
         twitter: '',
         style1: '',
         style2: '',
         style3: '',
         avatar: '',
-        images: ''
+        image1: '',
+        image2: '',
+        image3: '',
+        image4: '',
     }
     )
 
@@ -61,18 +65,66 @@ const ArtistSignupForm = () => {
             .catch(err => console.log(err))
     }
 
-    const handleImagesUpload = (e) => {
+    const handleImage1Upload = (e) => {
 
         // setLoadingImage(true)
 
         const uploadData = new FormData()
-        uploadData.append('imageData', e.target.files)
+        uploadData.append('imageData', e.target.files[0])
 
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
                 // setLoadingImage(false)
-                setSignupData({ ...signupData, images: data.cloudinary_url })
+                setSignupData({ ...signupData, image1: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
+
+    const handleImage2Upload = (e) => {
+
+        // setLoadingImage(true)
+
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
+
+        uploadService
+            .uploadImage(uploadData)
+            .then(({ data }) => {
+                // setLoadingImage(false)
+                setSignupData({ ...signupData, image2: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
+
+    const handleImage3Upload = (e) => {
+
+        // setLoadingImage(true)
+
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
+
+        uploadService
+            .uploadImage(uploadData)
+            .then(({ data }) => {
+                // setLoadingImage(false)
+                setSignupData({ ...signupData, image3: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
+
+    const handleImage4Upload = (e) => {
+
+        // setLoadingImage(true)
+
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
+
+        uploadService
+            .uploadImage(uploadData)
+            .then(({ data }) => {
+                // setLoadingImage(false)
+                setSignupData({ ...signupData, image4: data.cloudinary_url })
             })
             .catch(err => console.log(err))
     }
@@ -81,80 +133,135 @@ const ArtistSignupForm = () => {
         password,
         email,
         phoneNumber,
-        label,
         description,
         instagram,
         spotify,
         soundcloud,
+        bandcamp,
         twitter,
         style1,
         style2,
         style3,
         avatar,
-        images
+        image1,
+        image2,
+        image3,
+        image4
     } = signupData
 
     return (
         <Container>
 
+            <h1>Artist Sign up</h1>
+            <hr />
+
             <Form onSubmit={handleSubmit}>
 
-                <Form.Group className="mb-3" controlId="username">
-                    <FloatingLabel controlId="floating-username" label="username">
-                        <Form.Control type="text" onChange={handleInputChange} name="username" value={username} placeholder="Username" />
-                    </FloatingLabel>
+                <Form.Group as={Row}>
+                    <Col sm={{ span: 6 }}>
+                        <FloatingLabel controlId="floating-username" label="username" className="mb-3">
+                            <Form.Control type="text" onChange={handleInputChange} name="username" value={username} placeholder="Username" />
+                        </FloatingLabel>
+                    </Col>
+
+                    <Col sm={{ span: 6 }}>
+                        <FloatingLabel controlId="floating-password" label="password" className="mb-3">
+                            <Form.Control type="password" onChange={handleInputChange} name="password" value={password} placeholder="password" />
+                        </FloatingLabel>
+                    </Col>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="password">
-                    <FloatingLabel controlId="floating-password" label="password">
-                        <Form.Control type="password" onChange={handleInputChange} name="password" value={password} placeholder="password" />
-                    </FloatingLabel>
+                <FloatingLabel controlId="floating-email" label="email" className="mb-3">
+                    <Form.Control type="email" onChange={handleInputChange} name="email" value={email} placeholder="email" />
+                </FloatingLabel>
+
+                <Form.Group as={Row}>
+
+                    <Col sm={{ span: 6 }}>
+                        <FloatingLabel controlId="description" label="Cuéntanos algo sobre ti" className="mb-3">
+                            <Form.Control as="textarea" style={{ height: '200px' }} placeholder="Descripción del evento" name="description" value={description} onChange={handleInputChange} />
+                        </FloatingLabel>
+
+
+                        <h4>STYLES</h4>
+
+                        <FloatingLabel controlId="floating-style1" label="Estilo 1" className="mb-3">
+                            <Form.Select aria-label="style1" onChange={handleInputChange} value={style1} name="style1">
+                                <option>Selecciona tu estilo</option>
+                                {stylesList.map(style => <option key={`1 ${style}`} >{style}</option>)}
+                            </Form.Select>
+                        </FloatingLabel>
+
+                        <FloatingLabel controlId="floating-style1" label="Estilo 2" className="mb-3">
+                            <Form.Select aria-label="style2" onChange={handleInputChange} value={style2} name="style2">
+                                <option>Selecciona tu estilo</option>
+                                {stylesList.map(style => <option key={`2 ${style}`} >{style}</option>)}
+                            </Form.Select>
+                        </FloatingLabel>
+
+                        <FloatingLabel controlId="floating-style1" label="Estilo 3" className="mb-3">
+                            <Form.Select aria-label="style3" onChange={handleInputChange} value={style3} name="style3">
+                                <option>Selecciona tu estilo</option>
+                                {stylesList.map(style => <option key={`3 ${style}`}  >{style}</option>)}
+                            </Form.Select>
+                        </FloatingLabel>
+                    </Col>
+
+                    <Col sm={{ span: 6 }}>
+
+                        <Form.Group className="mb-3" controlId="phoneNumber" >
+                            <FloatingLabel controlId="floating-phoneNumber" label="phoneNumber">
+                                <Form.Control type="text" onChange={handleInputChange} name="phoneNumber" value={phoneNumber} placeholder="Phone Number" />
+                            </FloatingLabel>
+                        </Form.Group>
+
+                        <h4>SOCIALS</h4>
+
+                        <InputGroup className="mb-3">
+                            <InputGroup.Text id="instagram"></InputGroup.Text>
+                            <FloatingLabel controlId="instagram" label="Instagram">
+                                <Form.Control type="text" placeholder="Instagram" name="instagram" value={instagram} onChange={handleInputChange} />
+                            </FloatingLabel>
+                        </InputGroup>
+
+                        <InputGroup className="mb-3">
+                            <InputGroup.Text id="spotify"></InputGroup.Text>
+                            <FloatingLabel controlId="spotify" label="Spotify">
+                                <Form.Control type="text" placeholder="Spotify" style={{ width: '204px' }} name="spotify" value={spotify} onChange={handleInputChange} />
+                            </FloatingLabel>
+                        </InputGroup>
+
+                        <InputGroup className="mb-3">
+                            <InputGroup.Text id="soundcloud"></InputGroup.Text>
+                            <FloatingLabel controlId="soundcloud" label="Soundcloud">
+                                <Form.Control type="text" placeholder="Soundcloud" style={{ width: '204px' }} name="soundcloud" value={soundcloud} onChange={handleInputChange} />
+                            </FloatingLabel>
+                        </InputGroup>
+
+                        <InputGroup className="mb-3">
+                            <InputGroup.Text id="twitter"></InputGroup.Text>
+                            <FloatingLabel controlId="twitter" label="Twitter">
+                                <Form.Control type="text" placeholder="Twitter" style={{ width: '204px' }} name="twitter" value={twitter} onChange={handleInputChange} />
+                            </FloatingLabel>
+                        </InputGroup>
+
+                        <InputGroup className="mb-3">
+                            <InputGroup.Text id="bandcamp"></InputGroup.Text>
+                            <FloatingLabel controlId="bandcamp" label="bandcamp">
+                                <Form.Control type="text" placeholder="bandcamp" style={{ width: '204px' }} name="bandcamp" value={bandcamp} onChange={handleInputChange} />
+                            </FloatingLabel>
+                        </InputGroup>
+                    </Col>
+
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="email">
-                    <FloatingLabel controlId="floating-email" label="email">
-                        <Form.Control type="email" onChange={handleInputChange} name="email" value={email} placeholder="email" />
-                    </FloatingLabel>
-                </Form.Group>
 
-                <Form.Group className="mb-3" controlId="phoneNumber">
-                    <FloatingLabel controlId="floating-phoneNumber" label="phoneNumber">
-                        <Form.Control type="text" onChange={handleInputChange} name="phoneNumber" value={phoneNumber} placeholder="Phone Number" />
-                    </FloatingLabel>
-                </Form.Group>
 
-                <Form.Group className="mb-3" controlId="label">
+                {/* <Form.Group className="mb-3" controlId="label">
                     <FloatingLabel controlId="floating-label" label="label">
                         <Form.Control type="text" onChange={handleInputChange} name="label" value={label} placeholder="Label" />
                     </FloatingLabel>
-                </Form.Group>
-
-                <h4>ABOUT</h4>
-
-                <FloatingLabel controlId="floating-description" label="description">
-                    <Form.Control as="textarea" style={{ height: '100px' }} onChange={handleInputChange} name="description" value={description} placeholder="Description" />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="floating-style1" label="style1">
-                    <Form.Select aria-label="style1" onChange={handleInputChange} value={style1} name="style1">
-                        <option>Selecciona tu estilo</option>
-                        {stylesList.map(style => <option key={`1 ${style}`} >{style}</option>)}
-                    </Form.Select>
-                </FloatingLabel>
-
-                <FloatingLabel controlId="floating-style1" label="Estilo 2">
-                    <Form.Select aria-label="style2" onChange={handleInputChange} value={style2} name="style2">
-                        <option>Selecciona tu estilo</option>
-                        {stylesList.map(style => <option key={`2 ${style}`} >{style}</option>)}
-                    </Form.Select>
-                </FloatingLabel>
-
-                <FloatingLabel controlId="floating-style1" label="Estilo 3">
-                    <Form.Select aria-label="style3" onChange={handleInputChange} value={style3} name="style3">
-                        <option>Selecciona tu estilo</option>
-                        {stylesList.map(style => <option key={`3 ${style}`}  >{style}</option>)}
-                    </Form.Select>
-                </FloatingLabel>
+                </Form.Group> */}
 
                 {/* Avatar y fotoss */}
 
@@ -163,36 +270,25 @@ const ArtistSignupForm = () => {
                     <Form.Control type="file" onChange={handleAvatarUpload} />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="images">
-                    <Form.Label>Imágenes</Form.Label>
-                    <Form.Control type="file" onChange={handleImagesUpload} />
+                <Form.Group className="mb-3" controlId="image1">
+                    <Form.Label>Imagen 1</Form.Label>
+                    <Form.Control type="file" onChange={handleImage1Upload} />
                 </Form.Group>
 
-                <h4>SOCIALS</h4>
-
-                <Form.Group className="mb-3" controlId="instagram">
-                    <FloatingLabel controlId="floating-instagram" label="instagram">
-                        <Form.Control type="text" onChange={handleInputChange} name="instagram" value={instagram} placeholder="Instagram" />
-                    </FloatingLabel>
+                <Form.Group className="mb-3" controlId="image2">
+                    <Form.Label>Imagen 2</Form.Label>
+                    <Form.Control type="file" onChange={handleImage2Upload} />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="spotify">
-                    <FloatingLabel controlId="floating-spotify" label="spotify">
-                        <Form.Control type="text" onChange={handleInputChange} name="spotify" value={spotify} placeholder="Spotify" />
-                    </FloatingLabel>
+                <Form.Group className="mb-3" controlId="image3">
+                    <Form.Label>Imagen 3</Form.Label>
+                    <Form.Control type="file" onChange={handleImage3Upload} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="image4">
+                    <Form.Label>Imagen 4</Form.Label>
+                    <Form.Control type="file" onChange={handleImage4Upload} />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="soundcloud">
-                    <FloatingLabel controlId="floating-soundcloud" label="soundcloud">
-                        <Form.Control type="text" onChange={handleInputChange} name="soundcloud" value={soundcloud} placeholder="Soundcloud" />
-                    </FloatingLabel>
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="twitter">
-                    <FloatingLabel controlId="floating-twitter" label="twitter">
-                        <Form.Control type="text" onChange={handleInputChange} name="twitter" value={twitter} placeholder="Twitter" />
-                    </FloatingLabel>
-                </Form.Group>
 
                 <input id="role" name="role" type="hidden" value="Artist"></input>
 
