@@ -3,8 +3,9 @@ import axios from 'axios'
 class AuthService {
 
     constructor() {
-        this.app = axios.create({ baseURL: 'http://localhost:5005/api/auth' })
-    }
+this.app = axios.create({
+            baseURL: `${process.env.REACT_APP_API_URL}/auth`
+        })    }
 
     artistRegister = user => {
         return this.app.post('/register/artist', user)
@@ -22,8 +23,9 @@ class AuthService {
         return this.app.post('/register/fan', user)
     }
 
-    login = ({role, user}) => {
-        return this.app.post(`/login/${role}`, {user})
+    login = ({ role, loginData }) => {
+        console.log('----ESTOY AQUI----', loginData, role)
+        return this.app.post(`/login/${role}`, loginData)
     }
 
     verify = token => {
