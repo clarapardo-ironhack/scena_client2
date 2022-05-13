@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 const LoginPage = () => {
 
-    const [showButtons, setShowButtons] = useState (true)
+    const [showButtons, setShowButtons] = useState(true)
     const [showForm, setShowForm] = useState('')
 
     const openSignupForm = role => {

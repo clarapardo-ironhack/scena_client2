@@ -12,20 +12,16 @@ const SignupPage = () => {
 
     const [showForm, setShowForm] = useState('')
 
-    const openFanSignupForm = () => setShowForm('fan')
-    const openVenueSignupForm = () => setShowForm('venue')
-    const openArtistSignupForm = () => setShowForm('artist')
-    const openLabelSignupForm = () => setShowForm('label')
 
     return (
         <>
             <h1>loguinpeich</h1>
 
 
-            <Button onClick={openFanSignupForm}>Fan</Button>
-            <Button onClick={openArtistSignupForm}>Artist</Button>
-            <Button onClick={openVenueSignupForm}>Venue</Button>
-            <Button onClick={openLabelSignupForm}>Label</Button>
+            <Button onClick={() => setShowForm('fan')}>Fan</Button>
+            <Button onClick={() => setShowForm('venue')}>Artist</Button>
+            <Button onClick={() => setShowForm('artist')}>Venue</Button>
+            <Button onClick={() => setShowForm('label')}>Label</Button>
 
             {showForm === 'fan' && <FanSignupForm />}
             {showForm === 'artist' && <ArtistSignupForm />}
