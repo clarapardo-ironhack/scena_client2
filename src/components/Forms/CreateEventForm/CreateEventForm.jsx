@@ -10,12 +10,14 @@ import artistsService from './../../../services/artist.service'
 const CreateEventForm = () => {
 
     const [allArtist, setAllArtist] = useState([])
+    const [allVenues, setAllVenues] = useState([])
     const [newEventData, setNewEventData] = useState({
         title: '',
-        date: '', // ################################
+        date: '', 
         image: '',
         mainArtist: {},
         supportingArtists: [],
+        venue: {},
         aprovedArtist: false,
         aprovedVenue: false,
         description: '',
@@ -30,9 +32,6 @@ const CreateEventForm = () => {
             })
             .catch(err => console.log(err))
     }, [])
-
-
-    // console.log(newEventData)
 
     const navigate = useNavigate()
 
@@ -70,22 +69,6 @@ const CreateEventForm = () => {
 
     const { title, date, image, mainArtist, supportingArtists, venue, aprovedArtist, aprovedVenue, creator, description } = newEventData
 
-    const handleAvatarUpload = (e) => {
-
-        // setLoadingImage(true)
-
-        const uploadData = new FormData()
-        uploadData.append('imageData', e.target.files[0])
-
-        uploadService
-            .uploadImage(uploadData)
-            .then(({ data }) => {
-                // setLoadingImage(false)
-                setNewEventData({ ...newEventData, avatar: data.cloudinary_url })
-            })
-            .catch(err => console.log(err))
-    }
-
     return (
         <Container>
             <h1>CREAR EVENTO</h1>
@@ -111,14 +94,9 @@ const CreateEventForm = () => {
                         </FloatingLabel>
 
                         <FloatingLabel controlId="supportingArtists" label="Supporting artists">
-                            <Form.Select aria-label="supportingArtists" onChange={handleInputChange} value={supportingArtists} name="supportingArtists">
-                                <option>Selecciona el artista principal</option>
+                            <Form.Select multiple={true} aria-label="supportingArtists" onChange={handleInputChange} value={supportingArtists} name="supportingArtists">
                                 {allArtist.map(({ username }) => <option> {username}</option>)}
                             </Form.Select>
-                        </FloatingLabel>
-
-                        <FloatingLabel controlId="date" label="Fecha y hora" className="mb-3">
-                            <Form.Control type="datetime-local" placeholder="Fecha y hora" name="date" value={date} onChange={handleInputChange} />
                         </FloatingLabel>
 
                     </Col>
@@ -128,6 +106,17 @@ const CreateEventForm = () => {
                             <Form.Label>Cartel</Form.Label>
                             <Form.Control type="file" onChange={handleImageUpload} />
                         </Form.Group>
+
+                        <FloatingLabel controlId="date" label="Fecha y hora" className="mb-3">
+                            <Form.Control type="datetime-local" placeholder="Fecha y hora" name="date" value={date} onChange={handleInputChange} />
+                        </FloatingLabel>
+
+                        <FloatingLabel controlId="venue" label="Lugar">
+                            <Form.Select aria-label="venue" onChange={handleInputChange} value={mainArtist} name="venue">
+                                <option>Lugar</option>
+                                {allVenues.map(({ username }) => <option> {username}</option>)}
+                            </Form.Select>
+                        </FloatingLabel>
                     </Col>
                 </Form.Group>
 
