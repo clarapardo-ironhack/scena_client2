@@ -5,34 +5,42 @@ import './SearchBar.css'
 
 
 
-const SearchBar = ({ searchQuery, setSearchQuery }) => {
 
-    const handleKeyUp = (e) => {
-        setSearchQuery(e.target.value)
-    }
+const SearchBar = ({ handler }) => {
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     setSearchQuery(e.target.value)
-    // }
+
 
     return (
-        <Form className="d-flex">
+        <div className="search">
             <FormControl
-                value={searchQuery}
-                // onInput={e => setSearchQuery(e.target.value)}
-                onChange={handleKeyUp}
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-                name='artist'
+                id="outlined-basic"
+                onChange={handler}
+                variant="outlined"
+                fullWidth
+                label="Search"
             />
-            <Button type='submit'>Search</Button>
-        </Form>
+        </div>
+
     )
 };
 
 export default SearchBar;
+
+
+
+
+//  <Form className="d-flex">
+//             <FormControl
+//                 value={searchQuery}
+//                 // onInput={e => setSearchQuery(e.target.value)}
+//                 onChange={handleOnChange}
+//                 type="search"
+//                 placeholder="Search"
+//                 className="me-2"
+//                 aria-label="Search"
+//                 name='artist'
+//             />
+//             <Button type='submit'>Search</Button>
+//         </Form>
 
 
