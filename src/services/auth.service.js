@@ -3,9 +3,10 @@ import axios from 'axios'
 class AuthService {
 
     constructor() {
-this.app = axios.create({
+        this.app = axios.create({
             baseURL: `${process.env.REACT_APP_API_URL}/auth`
-        })    }
+        })
+    }
 
     artistRegister = user => {
         return this.app.post('/register/artist', user)

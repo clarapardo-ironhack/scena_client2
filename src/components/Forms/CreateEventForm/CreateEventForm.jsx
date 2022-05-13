@@ -5,6 +5,9 @@ import { useEffect, useState } from "react"
 import authService from "./../../../services/auth.service"
 import uploadService from "./../../../services/upload.service"
 import artistsService from './../../../services/artist.service'
+import venuesService from '../../../services/venue.service'
+import eventsService from '../../../services/events.service'
+
 
 
 const CreateEventForm = () => {
@@ -13,7 +16,7 @@ const CreateEventForm = () => {
     const [allVenues, setAllVenues] = useState([])
     const [newEventData, setNewEventData] = useState({
         title: '',
-        date: '', 
+        date: '',
         image: '',
         mainArtist: {},
         supportingArtists: [],
@@ -31,15 +34,24 @@ const CreateEventForm = () => {
                 setAllArtist(data)
             })
             .catch(err => console.log(err))
+
+        venuesService
+            .getAllVenues()
+            .then(({ data }) => {
+                setAllVenues(data)
+            })
+            .catch(err => console.log(err))
     }, [])
+
+    console.log(newEventData)
 
     const navigate = useNavigate()
 
     const handleSubmit = e => {
         e.preventDefault()
 
-        authService
-            .labelRegister(newEventData)
+        eventsService
+            .createEvent(newEventData)
             .then(res => navigate('/'))
             .catch(err => console.log(err))
     }
@@ -89,20 +101,20 @@ const CreateEventForm = () => {
                         <FloatingLabel controlId="mainArtist" label="Main artist">
                             <Form.Select aria-label="mainArtist" onChange={handleInputChange} value={mainArtist} name="mainArtist">
                                 <option>Selecciona el artista principal</option>
-                                {allArtist.map(({ username }) => <option> {username}</option>)}
+                                {allArtist.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
                             </Form.Select>
                         </FloatingLabel>
 
                         <FloatingLabel controlId="supportingArtists" label="Supporting artists">
                             <Form.Select multiple={true} aria-label="supportingArtists" onChange={handleInputChange} value={supportingArtists} name="supportingArtists">
-                                {allArtist.map(({ username }) => <option> {username}</option>)}
+                                {allArtist.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
                             </Form.Select>
                         </FloatingLabel>
 
                     </Col>
 
                     <Col sm={{ span: 6 }}>
-                        <Form.Group className="mb-3" controlId="avatar">
+                        <Form.Group className="mb-3" controlId="iamge">
                             <Form.Label>Cartel</Form.Label>
                             <Form.Control type="file" onChange={handleImageUpload} />
                         </Form.Group>
@@ -112,9 +124,9 @@ const CreateEventForm = () => {
                         </FloatingLabel>
 
                         <FloatingLabel controlId="venue" label="Lugar">
-                            <Form.Select aria-label="venue" onChange={handleInputChange} value={mainArtist} name="venue">
+                            <Form.Select aria-label="venue" onChange={handleInputChange} value={venue} name="venue">
                                 <option>Lugar</option>
-                                {allVenues.map(({ username }) => <option> {username}</option>)}
+                                {allVenues.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
                             </Form.Select>
                         </FloatingLabel>
                     </Col>

@@ -1,8 +1,14 @@
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
+import { AuthContext } from '../../context/auth.context'
 import './ScenaNav.css'
 
+
 const ScenaNav = () => {
+
+    const { user, logOutUser, isLoggedIn } = useContext(AuthContext)
+
     return (
         <div>
             < Navbar bg="light" expand="lg" >
@@ -11,6 +17,7 @@ const ScenaNav = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
+                            {user && <NavLink to="########" className="nav-link justify-content-end">Hola, {user.username}</NavLink>}
                             <NavLink className="nav-link" to="/">Home</NavLink>
                             <NavLink className="nav-link" to="/login">Login</NavLink>
                             <NavLink className="nav-link" to="/register">Register</NavLink>

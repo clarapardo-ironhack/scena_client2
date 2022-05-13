@@ -1,8 +1,9 @@
 import { Container, Col, Row, FloatingLabel, Form, FormControl, InputGroup, Button } from 'react-bootstrap'
 import './LoginForm.css'
 import { useNavigate } from 'react-router-dom'
-import { useState } from "react"
+import { useContext, useState } from "react"
 import authService from '../../../services/auth.service'
+import { AuthContext } from '../../../context/auth.context'
 
 
 const LoginForm = ({ role }) => {
@@ -15,13 +16,19 @@ const LoginForm = ({ role }) => {
     console.log(loginData)
     const navigate = useNavigate()
 
+    const { storeToken, authenticateUser } = useContext(AuthContext)
+
     const handleSubmit = e => {
         e.preventDefault()
 
         console.log(loginData)
         authService
-            .login({role, loginData})
-            .then(res => navigate('/'))
+            .login({ role, loginData })
+            .then(({ data }) => {
+                storeToken(data.authToken)
+                authenticateUser()
+                navigate('/')
+            })
             .catch(err => console.log(err))
     }
 
@@ -53,7 +60,6 @@ const LoginForm = ({ role }) => {
                             <Form.Control type="password" placeholder="Contraseña" name="password" value={password} onChange={handleInputChange} />
                         </FloatingLabel>
                     </Col>
-
                 </Form.Group>
 
                 <Button variant="dark" type="submit">Iniciar sesión</Button>

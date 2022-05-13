@@ -29,6 +29,7 @@ class EventsService {
     }
 
     createEvent = event => {
+        console.log('------------- ', event)
         return this.app.post(`/create`, event)
     }
 
