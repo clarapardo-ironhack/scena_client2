@@ -8,6 +8,8 @@ import './VenueSignupForm.css'
 
 const VenueSignupForm = () => {
 
+    const [loadingImage, setLoadingImage] = useState(false)
+
     const [signupData, setSignupData] = useState({
         username: '',
         password: '',
@@ -30,8 +32,6 @@ const VenueSignupForm = () => {
     }
     )
 
-    console.log(signupData)
-
     const navigate = useNavigate()
 
     const handleSubmit = e => {
@@ -39,10 +39,8 @@ const VenueSignupForm = () => {
 
         authService
             .venueRegister(signupData)
-            .then(res => {
-                navigate('/')
-            })
-            .catch(err => console.log(err))
+            .then(() => { navigate('/') })
+            .catch(err => res.json(err))
     }
 
     const handleInputChange = e => {
@@ -52,7 +50,7 @@ const VenueSignupForm = () => {
 
     const handleAvatarUpload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -60,15 +58,15 @@ const VenueSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
+                setLoadingImage(false)
                 setSignupData({ ...signupData, avatar: data.cloudinary_url })
             })
-            .catch(err => console.log(err))
+            .catch(err => res.json(err))
     }
 
     const handleImage1Upload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -76,15 +74,15 @@ const VenueSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
+                setLoadingImage(false)
                 setSignupData({ ...signupData, image1: data.cloudinary_url })
             })
-            .catch(err => console.log(err))
+            .catch(err => res.json(err))
     }
 
     const handleImage2Upload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -92,15 +90,15 @@ const VenueSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
+                setLoadingImage(false)
                 setSignupData({ ...signupData, image2: data.cloudinary_url })
             })
-            .catch(err => console.log(err))
+            .catch(err => res.json(err))
     }
 
     const handleImage3Upload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -108,15 +106,15 @@ const VenueSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
+                setLoadingImage(false)
                 setSignupData({ ...signupData, image3: data.cloudinary_url })
             })
-            .catch(err => console.log(err))
+            .catch(err => res.json(err))
     }
 
     const handleImage4Upload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -124,10 +122,10 @@ const VenueSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
+                setLoadingImage(false)
                 setSignupData({ ...signupData, image4: data.cloudinary_url })
             })
-            .catch(err => console.log(err))
+            .catch(err => res.json(err))
     }
 
     const {
@@ -279,7 +277,7 @@ const VenueSignupForm = () => {
 
                 <input id="role" name="role" type="hidden" value="Venue"></input>
 
-                <Button variant="dark" type="submit">Registrarme</Button>
+                <Button variant="dark" type="submit">{loadingImage ? <Loader /> : "Registrarme"}</Button>
             </Form>
         </Container>
     )

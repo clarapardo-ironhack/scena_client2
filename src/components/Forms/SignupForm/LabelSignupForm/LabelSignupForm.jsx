@@ -8,6 +8,8 @@ import uploadService from "./../../../../services/upload.service"
 
 const LabelSignupForm = () => {
 
+    const [loadingImage, setLoadingImage] = useState(false)
+
     const [signupData, setSignupData] = useState({
         username: '',
         email: '',
@@ -29,8 +31,8 @@ const LabelSignupForm = () => {
 
         authService
             .labelRegister(signupData)
-            .then(res => navigate('/'))
-            .catch(err => console.log(err))
+            .then(() => navigate('/'))
+            .catch(err => res.json(err))
     }
 
     const handleInputChange = e => {
@@ -40,11 +42,21 @@ const LabelSignupForm = () => {
         setSignupData({ ...signupData, [name]: value })
     }
 
-    const { username, email, password, instagram, twitter, phoneNumber, avatar, description, duty } = signupData
+    const {
+        username,
+        email,
+        password,
+        instagram,
+        twitter,
+        phoneNumber,
+        avatar,
+        description,
+        duty
+    } = signupData
 
     const handleAvatarUpload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -52,10 +64,9 @@ const LabelSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
-                setSignupData({ ...signupData, avatar: data.cloudinary_url })
-            })
-            .catch(err => console.log(err))
+                setLoadingImage(false)
+                setSignupData({ ...signupData, avatar: data.cloudinary_url })})
+            .catch(err => res.json(err))
     }
 
     return (
@@ -102,7 +113,7 @@ const LabelSignupForm = () => {
                             <Form.Control type="file" onChange={handleAvatarUpload} />
                         </Form.Group>
 
-                        <Button variant="dark" type="submit">Registrarme</Button>
+                        <Button variant="dark" type="submit">{loadingImage ? <Loader /> : "Registrarme"}</Button>
                     </Col>
 
                     <Col sm={{ span: 6 }}>

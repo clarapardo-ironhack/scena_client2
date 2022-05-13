@@ -5,9 +5,9 @@ import { useState } from "react"
 import authService from "./../../../../services/auth.service"
 import uploadService from "./../../../../services/upload.service"
 
-
-
 const FanSignupForm = () => {
+
+    const [loadingImage, setLoadingImage] = useState(false)
 
     const [signupData, setSignupData] = useState({
         username: '',
@@ -26,8 +26,8 @@ const FanSignupForm = () => {
 
         authService
             .fanRegister(signupData)
-            .then(res => navigate('/'))
-            .catch(err => console.log(err))
+            .then(() => navigate('/'))
+            .catch(err => res.json(err))
     }
 
     const handleInputChange = e => {
@@ -36,12 +36,20 @@ const FanSignupForm = () => {
         setSignupData({ ...signupData, [name]: value })
     }
 
-    const { username, email, password, avatar, likedEvents, likedArtists, likedVenues } = signupData
+    const {
+        username,
+        email,
+        password,
+        avatar,
+        likedEvents,
+        likedArtists,
+        likedVenues
+    } = signupData
 
 
     const handleAvatarUpload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -49,10 +57,10 @@ const FanSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
+                setLoadingImage(false)
                 setSignupData({ ...signupData, avatar: data.cloudinary_url })
             })
-            .catch(err => console.log(err))
+            .catch(err => res.json(err))
     }
 
     return (
@@ -86,7 +94,7 @@ const FanSignupForm = () => {
                     <Form.Control type="file" onChange={handleAvatarUpload} />
                 </Form.Group>
 
-                <Button variant="dark" type="submit">Registrarme</Button>
+                <Button variant="dark" type="submit">{loadingImage ? <Loader /> : "Registrarme"}</Button>
             </Form>
         </Container>
     )

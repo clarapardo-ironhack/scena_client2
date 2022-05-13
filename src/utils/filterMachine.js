@@ -1,12 +1,11 @@
-const filterMachine = (artists, query) => {
-    if (!query) {
-        return artists;
-    }
-
-    return artists.filter((artist) => {
-        const artistName = artist.username.toLowerCase();
-        return artistName.includes(query);
-    });
+const filterMachine = (infoType, input) => {
+    const filteredData = infoType.filter((element) => {
+        if (input === '') {
+            return element;
+        } else {
+            return element.username.toLowerCase().includes(input)
+        }})
+    return filteredData
 }
 
 export default filterMachine

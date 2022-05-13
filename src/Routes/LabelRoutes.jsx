@@ -7,7 +7,7 @@ const LabelsRoutes = () => {
     return (
         <Routes>
             <Route path="/labels" element={<LabelsPage />} />
-            <Route path="/label/:labelId" element={<LabelDetailsPage />} />
+            <Route path="/labels/details/:labelId" element={<LabelDetailsPage />} />
         </Routes>
     )
 }

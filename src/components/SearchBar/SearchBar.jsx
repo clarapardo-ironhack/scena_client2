@@ -1,30 +1,23 @@
-import artistsService from '../../services/artist.service';
+import { FormControl } from 'react-bootstrap';
 import './SearchBar.css'
 
-
-const SearchBar = ({ searchQuery, setSearchQuery }) => {
-
-    const handleKeyUp = (e) => {
-        setSearchQuery(e.target.value)
-    }
+const SearchBar = ({ handler }) => {
 
     return (
-        <form action="/" method="get">
-            <label htmlFor="header-search">
-                <span className="visually-hidden">Search...</span>
-            </label>
-            <input
-                value={searchQuery}
-                // onInput={e => setSearchQuery(e.target.value)}
-                onInput={handleKeyUp}
-                type="text"
-                id="header-search"
-                placeholder="Search..."
-                name="s"
+        <div className="search">
+            <FormControl
+                id="outlined-basic"
+                onChange={handler}
+                variant="outlined"
+                fullWidth
+                label="Search"
             />
-            <button type="submit">Search</button>
-        </form>
+        </div>
+
     )
 };
 
 export default SearchBar;
+
+
+

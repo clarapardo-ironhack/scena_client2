@@ -3,7 +3,6 @@ import EventCreatePage from "../pages/EVENTS/EventCreatePage/EventCreatePage"
 import EventDetailsPage from "../pages/EVENTS/EventDetailsPage/EventDetailsPage"
 import EventsPage from "../pages/EVENTS/EventsPage/EventsPage"
 
-
 const EventsRoutes = () => {
 
     return (

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import artistsService from '../../../services/artist.service'
-import BigArtistCard from '../../../components/ArtistCard/BigArtistCard/BigArtistCard'
+import BigCard from '../../../components/Card/BigCard/BigCard'
 import './ArtistDetailsPage.css'
 import Loader from '../../../components/Loader/Loader'
 import { Container } from 'react-bootstrap'
@@ -36,7 +36,7 @@ const ArtistDetailsPage = () => {
             <Loader />
             :
             <Container>
-                {isLoaded && <BigArtistCard {...artist} />}
+                {isLoaded && <BigCard {...artist} />}
             </Container>
     )
 }
