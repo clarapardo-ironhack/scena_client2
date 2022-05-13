@@ -11,7 +11,7 @@ import artistsService from '../../../services/artist.service'
 const HomePage = () => {
 
     const { search } = window.location;
-    const query = new URLSearchParams(search).get('s');
+    const query = new URLSearchParams(search).get('artist');
     const [searchQuery, setSearchQuery] = useState(query || '');
 
     const posts = [

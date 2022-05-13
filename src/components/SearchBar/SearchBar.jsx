@@ -1,5 +1,8 @@
+import { Form, Button, FormControl } from 'react-bootstrap';
 import artistsService from '../../services/artist.service';
 import './SearchBar.css'
+
+
 
 
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
@@ -8,23 +11,28 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
         setSearchQuery(e.target.value)
     }
 
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     setSearchQuery(e.target.value)
+    // }
+
     return (
-        <form action="/" method="get">
-            <label htmlFor="header-search">
-                <span className="visually-hidden">Search...</span>
-            </label>
-            <input
+        <Form className="d-flex">
+            <FormControl
                 value={searchQuery}
                 // onInput={e => setSearchQuery(e.target.value)}
-                onInput={handleKeyUp}
-                type="text"
-                id="header-search"
-                placeholder="Search..."
-                name="s"
+                onChange={handleKeyUp}
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+                name='artist'
             />
-            <button type="submit">Search</button>
-        </form>
+            <Button type='submit'>Search</Button>
+        </Form>
     )
 };
 
 export default SearchBar;
+
+
