@@ -12,8 +12,9 @@ const ArtistPage = () => {
     const [isLoaded, setIsLoaded] = useState(false)
 
     const [inputText, setInputText] = useState("");
+
     let inputHandler = (e) => {
-        var lowerCase = e.target.value.toLowerCase();
+        let lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
     };
 
@@ -30,7 +31,6 @@ const ArtistPage = () => {
             })
             .catch(err => console.log(err))
     }
-    console.log(infoType)
     return (
         <>
             <Container>

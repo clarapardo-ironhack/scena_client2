@@ -1,35 +1,28 @@
 import { Row, Col } from "react-bootstrap"
+import filterMachine from "../../utils/filterMachine"
 import TinyCard from "../Card/TinyCard/TinyCard"
 import Loader from "../Loader/Loader.jsx"
 
-const ArtistList = ({ infoType, input }) => {
 
-    const filteredData = infoType.filter((el) => {
-        if (input === '') {
-            return el;
-        }
-        else {
-            return el.username.toLowerCase().includes(input)
-        }
-    })
+const GeneralList = ({ infoType, input }) => {
+
+    const filteredData = filterMachine(infoType, input)
 
     return (
-        infoType?.length
+        filteredData?.length
             ?
             <Row>
-                {
-                    filteredData?.map(elem => {
+                {filteredData?.map(element => {
                         return (
-                            <Col md={{ span: 4 }} key={elem._id}>
-                                <TinyCard {...elem} />
+                            <Col md={{ span: 4 }} key={element._id}>
+                                <TinyCard {...element} />
                             </Col>
                         )
-                    })
-                }
+                    }) }
             </Row>
             :
             <Loader />
     )
 }
 
-export default ArtistList
+export default GeneralList
