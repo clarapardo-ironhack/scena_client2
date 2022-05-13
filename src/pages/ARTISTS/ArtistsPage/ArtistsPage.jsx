@@ -1,13 +1,13 @@
 import './ArtistsPage.css'
 import { Container } from 'react-bootstrap'
-import ArtistList from '../../../components/ArtistList/ArtistList'
+import GeneralList from '../../../components/GeneralList/GeneralList'
 import { useEffect, useState } from "react"
 import artistsService from "../../../services/artist.service"
 
 const ArtistPage = () => {
 
 
-    const [artist, setArtist] = useState([])
+    const [infoType, setArtist] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
@@ -23,11 +23,11 @@ const ArtistPage = () => {
             })
             .catch(err => console.log(err))
     }
-
+    console.log(infoType)
     return (
         <>
             <Container>
-                {isLoaded && <ArtistList artist={artist} />}
+                {isLoaded && <GeneralList infoType={infoType} />}
             </Container>
         </>
     )

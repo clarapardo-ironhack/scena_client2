@@ -7,31 +7,32 @@ import authService from '../../../services/auth.service'
 
 const LoginForm = ({ role }) => {
 
-    const [signupData, setSignupData] = useState({
+    const [loginData, setLoginData] = useState({
         email: '',
         password: ''
     })
 
+    console.log(loginData)
     const navigate = useNavigate()
 
     const handleSubmit = e => {
         e.preventDefault()
 
+        console.log(loginData)
         authService
-            .login({role, signupData})
+            .login({role, loginData})
             .then(res => navigate('/'))
             .catch(err => console.log(err))
-
     }
 
     const handleInputChange = e => {
         const { value, name } = e.currentTarget
 
         console.log(value, name)
-        setSignupData({ ...signupData, [name]: value })
+        setLoginData({ ...loginData, [name]: value })
     }
 
-    const { email, password } = signupData
+    const { email, password } = loginData
 
     return (
         <Container>
