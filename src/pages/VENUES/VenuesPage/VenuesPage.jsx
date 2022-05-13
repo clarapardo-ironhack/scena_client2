@@ -3,11 +3,19 @@ import { Container } from 'react-bootstrap'
 import { useEffect, useState } from "react"
 import venuesService from "../../../services/venue.service"
 import GeneralList from "../../../components/GeneralList/GeneralList"
+import SearchBar from '../../../components/SearchBar/SearchBar'
 
 const VenuesPage = () => {
 
     const [infoType, setVenue] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
+
+    const [inputText, setInputText] = useState("");
+
+    let inputHandler = (e) => {
+        let lowerCase = e.target.value.toLowerCase();
+        setInputText(lowerCase);
+    };
 
     useEffect(() => {
         loadVenues()
@@ -26,7 +34,8 @@ const VenuesPage = () => {
     return (
         <>
             <Container>
-                {isLoaded && <GeneralList infoType={infoType} />}
+                <SearchBar handler={inputHandler} />
+                {isLoaded && <GeneralList infoType={infoType} input={inputText} />}
             </Container>
         </>
     )

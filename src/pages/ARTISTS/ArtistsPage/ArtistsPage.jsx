@@ -34,7 +34,7 @@ const ArtistPage = () => {
     return (
         <>
             <Container>
-               <SearchBar handler={inputHandler}/>
+                <SearchBar handler={inputHandler} />
                 {isLoaded && <GeneralList infoType={infoType} input={inputText} />}
             </Container>
         </>

@@ -17,6 +17,7 @@ const EventDetailsPage = () => {
         loadEvent()
     }, [])
 
+
     const loadEvent = () => {
 
         eventsService
