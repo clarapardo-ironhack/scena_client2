@@ -1,7 +1,5 @@
-import { Form, Button, FormControl } from 'react-bootstrap';
-import artistsService from '../../services/artist.service';
+import { FormControl } from 'react-bootstrap';
 import './SearchBar.css'
-
 
 const SearchBar = ({ handler }) => {
 

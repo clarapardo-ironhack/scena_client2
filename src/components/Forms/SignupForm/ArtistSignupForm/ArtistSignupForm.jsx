@@ -3,11 +3,13 @@ import { Form, Button, FloatingLabel, Container, Row, Col, InputGroup } from "re
 import authService from "./../../../../services/auth.service"
 import uploadService from "./../../../../services/upload.service"
 import { useNavigate } from 'react-router-dom'
-
 import './ArtistSignupForm.css'
 import stylesList from "../../../../utils/stylesList"
+import Loader from '../../../Loader/Loader'
 
 const ArtistSignupForm = () => {
+
+    const [loadingImage, setLoadingImage] = useState(false)
 
     const [signupData, setSignupData] = useState({
         username: '',
@@ -29,8 +31,6 @@ const ArtistSignupForm = () => {
     }
     )
 
-    console.log(signupData)
-
     const navigate = useNavigate()
 
     const handleSubmit = e => {
@@ -38,9 +38,7 @@ const ArtistSignupForm = () => {
 
         authService
             .artistRegister(signupData)
-            .then(res => {
-                navigate('/')
-            })
+            .then(() => {navigate('/')})
             .catch(err => console.log(err))
     }
 
@@ -51,7 +49,7 @@ const ArtistSignupForm = () => {
 
     const handleAvatarUpload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -59,7 +57,7 @@ const ArtistSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
+                setLoadingImage(false)
                 setSignupData({ ...signupData, avatar: data.cloudinary_url })
             })
             .catch(err => console.log(err))
@@ -67,7 +65,7 @@ const ArtistSignupForm = () => {
 
     const handleImage1Upload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -75,7 +73,7 @@ const ArtistSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
+                setLoadingImage(false)
                 setSignupData({ ...signupData, image1: data.cloudinary_url })
             })
             .catch(err => console.log(err))
@@ -83,7 +81,7 @@ const ArtistSignupForm = () => {
 
     const handleImage2Upload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -91,7 +89,7 @@ const ArtistSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
+                setLoadingImage(false)
                 setSignupData({ ...signupData, image2: data.cloudinary_url })
             })
             .catch(err => console.log(err))
@@ -99,7 +97,7 @@ const ArtistSignupForm = () => {
 
     const handleImage3Upload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -107,7 +105,7 @@ const ArtistSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
+                setLoadingImage(false)
                 setSignupData({ ...signupData, image3: data.cloudinary_url })
             })
             .catch(err => console.log(err))
@@ -115,7 +113,7 @@ const ArtistSignupForm = () => {
 
     const handleImage4Upload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -123,7 +121,7 @@ const ArtistSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
+                setLoadingImage(false)
                 setSignupData({ ...signupData, image4: data.cloudinary_url })
             })
             .catch(err => console.log(err))
@@ -255,14 +253,6 @@ const ArtistSignupForm = () => {
 
                 </Form.Group>
 
-
-
-                {/* <Form.Group className="mb-3" controlId="label">
-                    <FloatingLabel controlId="floating-label" label="label">
-                        <Form.Control type="text" onChange={handleInputChange} name="label" value={label} placeholder="Label" />
-                    </FloatingLabel>
-                </Form.Group> */}
-
                 {/* Avatar y fotoss */}
 
                 <Form.Group className="mb-3" controlId="avatar">
@@ -292,7 +282,7 @@ const ArtistSignupForm = () => {
 
                 <input id="role" name="role" type="hidden" value="Artist"></input>
 
-                <Button variant="dark" type="submit">Registrarme</Button>
+                <Button variant="dark" type="submit"> {loadingImage ? <Loader /> : "Registrarme"}</Button>
             </Form>
         </Container>
     )

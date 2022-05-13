@@ -5,7 +5,6 @@ import SignupPage from "../pages/BASICS/SignupPage/SignupPage"
 import ProfileEditPage from "../pages/BASICS/ProfileEditPage/ProfileEditPage"
 import FavoritesPage from "../pages/BASICS/FavoritesPage/FavoritesPage"
 
-
 const BasicRoutes = () => {
 
     return (

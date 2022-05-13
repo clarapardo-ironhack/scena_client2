@@ -17,8 +17,7 @@ const GeneralList = ({ infoType, input }) => {
                             <Col md={{ span: 4 }} key={element._id}>
                                 <TinyCard {...element} />
                             </Col>
-                        )
-                    }) }
+                        )})}
             </Row>
             :
             <Loader />
