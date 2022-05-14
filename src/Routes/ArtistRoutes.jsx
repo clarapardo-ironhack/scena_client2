@@ -3,7 +3,6 @@ import ArtistDetailsPage from "../pages/artists/ArtistDetailsPage/ArtistDetailsP
 import ArtistsPage from "../pages/artists/ArtistsPage/ArtistsPage"
 import GenreSearchList from "../pages/artists/GenreSearchList/GenreSearchList"
 
-
 const ArtistRoutes = () => {
 
     return (
