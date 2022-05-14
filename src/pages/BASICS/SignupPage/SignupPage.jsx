@@ -1,5 +1,5 @@
 import './SignupPage.css'
-import LabelSignupForm from './../../../components/Forms/SignupForm/LabelSignupForm/LabelSignupForm'
+import LabelSignupForm from '../../../components/Forms/SignupForm/LabelSignupForm/LabelSignupForm'
 import FanSignupForm from '../../../components/Forms/SignupForm/FanSignupForm/FanSignupForm'
 import ArtistSignupForm from '../../../components/Forms/SignupForm/ArtistSignupForm/ArtistSignupForm'
 import VenueSignupForm from '../../../components/Forms/SignupForm/VenueSignupForm/VenueSignupForm'
@@ -19,8 +19,8 @@ const SignupPage = () => {
 
 
             <Button onClick={() => setShowForm('fan')}>Fan</Button>
-            <Button onClick={() => setShowForm('venue')}>Artist</Button>
-            <Button onClick={() => setShowForm('artist')}>Venue</Button>
+            <Button onClick={() => setShowForm('artist')}>Artist</Button>
+            <Button onClick={() => setShowForm('venue')}>Venue</Button>
             <Button onClick={() => setShowForm('label')}>Label</Button>
 
             {showForm === 'fan' && <FanSignupForm />}

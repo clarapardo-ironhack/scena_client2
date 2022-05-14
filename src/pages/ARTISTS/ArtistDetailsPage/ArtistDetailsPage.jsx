@@ -28,7 +28,6 @@ const ArtistDetailsPage = () => {
             .catch(err => console.log(err))
 
     }
-    console.log(artist)
 
     return (
         !artist

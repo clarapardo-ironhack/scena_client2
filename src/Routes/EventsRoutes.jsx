@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom"
-import EventCreatePage from "../pages/EVENTS/EventCreatePage/EventCreatePage"
-import EventDetailsPage from "../pages/EVENTS/EventDetailsPage/EventDetailsPage"
-import EventsPage from "../pages/EVENTS/EventsPage/EventsPage"
+import EventCreatePage from "../pages/events/EventCreatePage/EventCreatePage"
+import EventDetailsPage from "../pages/events/EventDetailsPage/EventDetailsPage"
+import EventsPage from "../pages/events/EventsPage/EventsPage"
 
 const EventsRoutes = () => {
 

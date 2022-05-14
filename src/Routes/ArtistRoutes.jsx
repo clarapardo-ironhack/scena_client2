@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom"
-import ArtistDetailsPage from "../pages/ARTISTS/ArtistDetailsPage/ArtistDetailsPage"
-import ArtistsPage from "../pages/ARTISTS/ArtistsPage/ArtistsPage"
-import GenreSearchList from "../pages/ARTISTS/GenreSearchList/GenreSearchList"
+import ArtistDetailsPage from "../pages/artists/ArtistDetailsPage/ArtistDetailsPage"
+import ArtistsPage from "../pages/artists/ArtistsPage/ArtistsPage"
+import GenreSearchList from "../pages/artists/GenreSearchList/GenreSearchList"
 
 
 const ArtistRoutes = () => {

@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
-import LabelDetailsPage from "../pages/LABELS/LabelDetailsPage/LabelDetailsPage"
-import LabelsPage from "../pages/LABELS/LabelsPage/LabelsPage"
+import LabelDetailsPage from "../pages/labels/LabelDetailsPage/LabelDetailsPage"
+import LabelsPage from "../pages/labels/LabelsPage/LabelsPage"
 
 const LabelsRoutes = () => {
 

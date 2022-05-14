@@ -9,7 +9,8 @@ import Loader from '../../../Loader/Loader'
 
 const ArtistSignupForm = () => {
 
-    const [loadingImage, setLoadingImage] = useState(false)
+    const [loadingAvatar, setLoadingAvatar] = useState(false)
+    const [loadingImages, setLoadingImages] = useState(false)
 
     const [signupData, setSignupData] = useState({
         username: '',
@@ -24,10 +25,7 @@ const ArtistSignupForm = () => {
         style2: '',
         style3: '',
         avatar: '',
-        image1: '',
-        image2: '',
-        image3: '',
-        image4: '',
+        images: []
     }
     )
 
@@ -38,7 +36,7 @@ const ArtistSignupForm = () => {
 
         authService
             .artistRegister(signupData)
-            .then(() => {navigate('/')})
+            .then(() => { navigate('/') })
             .catch(err => console.log(err))
     }
 
@@ -49,7 +47,7 @@ const ArtistSignupForm = () => {
 
     const handleAvatarUpload = (e) => {
 
-        setLoadingImage(true)
+        setLoadingAvatar(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -57,72 +55,27 @@ const ArtistSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                setLoadingImage(false)
+                setLoadingAvatar(false)
                 setSignupData({ ...signupData, avatar: data.cloudinary_url })
             })
             .catch(err => console.log(err))
     }
 
-    const handleImage1Upload = (e) => {
+    const handleImagesUpload = (e) => {
 
-        setLoadingImage(true)
-
-        const uploadData = new FormData()
-        uploadData.append('imageData', e.target.files[0])
-
-        uploadService
-            .uploadImage(uploadData)
-            .then(({ data }) => {
-                setLoadingImage(false)
-                setSignupData({ ...signupData, image1: data.cloudinary_url })
-            })
-            .catch(err => console.log(err))
-    }
-
-    const handleImage2Upload = (e) => {
-
-        setLoadingImage(true)
+        setLoadingImages(true)
 
         const uploadData = new FormData()
-        uploadData.append('imageData', e.target.files[0])
+        for (let i = 0; i < e.target.files.length; i++) {
+            uploadData.append('imageData', e.target.files[i])
+        }
+
 
         uploadService
-            .uploadImage(uploadData)
+            .uploadImages(uploadData)
             .then(({ data }) => {
-                setLoadingImage(false)
-                setSignupData({ ...signupData, image2: data.cloudinary_url })
-            })
-            .catch(err => console.log(err))
-    }
-
-    const handleImage3Upload = (e) => {
-
-        setLoadingImage(true)
-
-        const uploadData = new FormData()
-        uploadData.append('imageData', e.target.files[0])
-
-        uploadService
-            .uploadImage(uploadData)
-            .then(({ data }) => {
-                setLoadingImage(false)
-                setSignupData({ ...signupData, image3: data.cloudinary_url })
-            })
-            .catch(err => console.log(err))
-    }
-
-    const handleImage4Upload = (e) => {
-
-        setLoadingImage(true)
-
-        const uploadData = new FormData()
-        uploadData.append('imageData', e.target.files[0])
-
-        uploadService
-            .uploadImage(uploadData)
-            .then(({ data }) => {
-                setLoadingImage(false)
-                setSignupData({ ...signupData, image4: data.cloudinary_url })
+                setLoadingImages(false)
+                setSignupData({ ...signupData, images: data.cloudinary_urls })
             })
             .catch(err => console.log(err))
     }
@@ -141,10 +94,7 @@ const ArtistSignupForm = () => {
         style2,
         style3,
         avatar,
-        image1,
-        image2,
-        image3,
-        image4
+        images
     } = signupData
 
     return (
@@ -260,29 +210,14 @@ const ArtistSignupForm = () => {
                     <Form.Control type="file" onChange={handleAvatarUpload} />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="image1">
-                    <Form.Label>Imagen 1</Form.Label>
-                    <Form.Control type="file" onChange={handleImage1Upload} />
+                <Form.Group className="mb-3" controlId="pages">
+                    <Form.Label>Imágenes</Form.Label>
+                    <Form.Control type="file" onChange={handleImagesUpload} multiple />
                 </Form.Group>
-
-                <Form.Group className="mb-3" controlId="image2">
-                    <Form.Label>Imagen 2</Form.Label>
-                    <Form.Control type="file" onChange={handleImage2Upload} />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="image3">
-                    <Form.Label>Imagen 3</Form.Label>
-                    <Form.Control type="file" onChange={handleImage3Upload} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="image4">
-                    <Form.Label>Imagen 4</Form.Label>
-                    <Form.Control type="file" onChange={handleImage4Upload} />
-                </Form.Group>
-
 
                 <input id="role" name="role" type="hidden" value="Artist"></input>
 
-                <Button variant="dark" type="submit"> {loadingImage ? <Loader /> : "Registrarme"}</Button>
+                <Button variant="dark" type="submit"> {loadingAvatar || loadingImages ? <Loader /> : "Registrarme"}</Button>
             </Form>
         </Container>
     )

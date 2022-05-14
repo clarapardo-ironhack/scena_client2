@@ -18,10 +18,13 @@ const LoginPage = () => {
         <>
             <h1>loguinpeich</h1>
 
-            {showButtons && <Button onClick={() => openSignupForm('fan')}>Fan</Button>}
-            {showButtons && <Button onClick={() => openSignupForm('venue')}>Venue</Button>}
-            {showButtons && <Button onClick={() => openSignupForm('artist')}>Artist</Button>}
-            {showButtons && <Button onClick={() => openSignupForm('label')}>Label</Button>}
+            {showButtons &&
+                <>
+                    <Button onClick={() => openSignupForm('fan')}>Fan</Button>
+                    <Button onClick={() => openSignupForm('venue')}>Venue</Button>
+                    <Button onClick={() => openSignupForm('artist')}>Artist</Button>
+                    <Button onClick={() => openSignupForm('label')}>Label</Button>
+                </>}
 
             {showForm === 'fan' && <LoginForm role={showForm} />}
             {showForm === 'venue' && <LoginForm role={showForm} />}

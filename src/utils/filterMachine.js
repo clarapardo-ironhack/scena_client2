@@ -4,8 +4,7 @@ const filterMachine = (infoType, input) => {
             return element;
         } else {
             return element.username.toLowerCase().includes(input)
-        }})
-        
+        }}) 
     return filteredData
 }
 

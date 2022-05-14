@@ -8,7 +8,6 @@ import uploadService from "./../../../../services/upload.service"
 const FanSignupForm = () => {
 
     const [loadingImage, setLoadingImage] = useState(false)
-
     const [signupData, setSignupData] = useState({
         username: '',
         email: '',
@@ -65,7 +64,7 @@ const FanSignupForm = () => {
 
     return (
         <Container>
-            <h1>REGISTO de fan</h1>
+            <h1>Registro de fan</h1>
             <hr />
 
             <Form onSubmit={handleSubmit}>

@@ -19,7 +19,11 @@ class UploadService {
     }
 
     uploadImage(imageForm) {
-        return this.app.post('/image', imageForm)
+        return this.app.post('/avatar', imageForm)
+    }
+
+    uploadImages(imageForm) {
+        return this.app.post('/images', imageForm)
     }
 }
 

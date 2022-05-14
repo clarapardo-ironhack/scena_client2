@@ -12,13 +12,11 @@ const LoginForm = ({ role }) => {
         password: ''
     })
 
-    console.log(loginData)
     const navigate = useNavigate()
 
     const handleSubmit = e => {
         e.preventDefault()
 
-        console.log(loginData)
         authService
             .login({role, loginData})
             .then(res => navigate('/'))
@@ -28,7 +26,6 @@ const LoginForm = ({ role }) => {
     const handleInputChange = e => {
         const { value, name } = e.currentTarget
 
-        console.log(value, name)
         setLoginData({ ...loginData, [name]: value })
     }
 
@@ -44,13 +41,15 @@ const LoginForm = ({ role }) => {
                 <Form.Group as={Row}>
                     <Col sm={{ span: 6 }}>
                         <FloatingLabel controlId="Email" label="Email" className="mb-3">
-                            <Form.Control type="email" placeholder="Email" name="email" value={email} onChange={handleInputChange} />
+                            <Form.Control type="email" placeholder="Email" name="email"
+                                value={email} onChange={handleInputChange} />
                         </FloatingLabel>
                     </Col>
 
                     <Col sm={{ span: 6 }}>
                         <FloatingLabel controlId="password" label="Contraseña" className="mb-3">
-                            <Form.Control type="password" placeholder="Contraseña" name="password" value={password} onChange={handleInputChange} />
+                            <Form.Control type="password" placeholder="Contraseña"
+                                name="password" value={password} onChange={handleInputChange} />
                         </FloatingLabel>
                     </Col>
 
