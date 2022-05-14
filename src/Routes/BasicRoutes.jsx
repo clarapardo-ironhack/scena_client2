@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom"
-import HomePage from "../pages/BASICS/HomePage/HomePage"
-import LoginPage from "../pages/BASICS/LoginPage/LoginPage"
-import SignupPage from "../pages/BASICS/SignupPage/SignupPage"
-import ProfileEditPage from "../pages/BASICS/ProfileEditPage/ProfileEditPage"
-import FavoritesPage from "../pages/BASICS/FavoritesPage/FavoritesPage"
+import HomePage from "../pages/basics/HomePage/HomePage"
+import LoginPage from "../pages/basics/LoginPage/LoginPage"
+import SignupPage from "../pages/basics/SignupPage/SignupPage"
+import ProfileEditPage from "../pages/basics/ProfileEditPage/ProfileEditPage"
+import FavoritesPage from "../pages/basics/FavoritesPage/FavoritesPage"
 
 
 const BasicRoutes = () => {

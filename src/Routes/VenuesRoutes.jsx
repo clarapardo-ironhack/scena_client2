@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
-import VenueDetailsPage from "../pages/VENUES/VenueDetailsPage/VenueDetailsPage"
-import VenuesPage from "../pages/VENUES/VenuesPage/VenuesPage"
+import VenueDetailsPage from "../pages/venues/VenueDetailsPage/VenueDetailsPage"
+import VenuesPage from "../pages/venues/VenuesPage/VenuesPage"
 
 const VenuesRoutes = () => {
 
