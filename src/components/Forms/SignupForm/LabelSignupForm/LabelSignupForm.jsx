@@ -9,7 +9,6 @@ import uploadService from "./../../../../services/upload.service"
 const LabelSignupForm = () => {
 
     const [loadingImage, setLoadingImage] = useState(false)
-
     const [signupData, setSignupData] = useState({
         username: '',
         email: '',
@@ -21,8 +20,6 @@ const LabelSignupForm = () => {
         description: '',
         duty: 'RecordLabel'
     })
-
-    console.log(signupData)
 
     const navigate = useNavigate()
 
@@ -36,9 +33,8 @@ const LabelSignupForm = () => {
     }
 
     const handleInputChange = e => {
+        
         const { value, name } = e.currentTarget
-
-        console.log(value, name)
         setSignupData({ ...signupData, [name]: value })
     }
 

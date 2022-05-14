@@ -45,7 +45,6 @@ const FanSignupForm = () => {
         likedVenues
     } = signupData
 
-
     const handleAvatarUpload = (e) => {
 
         setLoadingImage(true)
@@ -93,7 +92,7 @@ const FanSignupForm = () => {
                     <Form.Control type="file" onChange={handleAvatarUpload} />
                 </Form.Group>
 
-                <Button variant="dark" type="submit">{loadingImage ? <Loader /> : "Registrarme"}</Button>
+                <Button variant="dark" type="submit">Registrarme</Button>
             </Form>
         </Container>
     )

@@ -3,7 +3,6 @@ import { Form, Button, FloatingLabel, Container, Col, Row, InputGroup } from "re
 import authService from "./../../../../services/auth.service"
 import uploadService from "./../../../../services/upload.service"
 import { useNavigate } from 'react-router-dom'
-
 import './VenueSignupForm.css'
 
 const VenueSignupForm = () => {

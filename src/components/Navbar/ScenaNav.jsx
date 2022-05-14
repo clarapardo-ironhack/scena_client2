@@ -1,8 +1,14 @@
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
+import { AuthContext } from '../../context/auth.context'
 import './ScenaNav.css'
 
+
 const ScenaNav = () => {
+
+    const { user, logOutUser, isLoggedIn } = useContext(AuthContext)
+
     return (
         <div>
             < Navbar bg="light" expand="lg" >
@@ -11,12 +17,7 @@ const ScenaNav = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <NavLink className="nav-link" to="/">Home</NavLink>
-                            <NavLink className="nav-link" to="/login">Login</NavLink>
-                            <NavLink className="nav-link" to="/register">Register</NavLink>
-                            <NavLink className="nav-link" to="#">Log out</NavLink>
-                            <NavLink className="nav-link" to="/my-profile">My profile</NavLink>
-                            <NavLink className="nav-link" to="/favorites">My favorites</NavLink>
+
                             <NavDropdown title="Artist" id="basic-nav-dropdown">
                                 <NavLink className="nav-link" to="/artists">Artists List</NavLink>
                             </NavDropdown>
@@ -30,6 +31,24 @@ const ScenaNav = () => {
                                 <NavLink className="nav-link" to="/events">Events List</NavLink>
                                 <NavLink className="nav-link" to="/event/create">Create an event</NavLink>
                             </NavDropdown>
+
+
+                            {isLoggedIn
+                                ?
+                                <>
+                                    <NavLink to="########" className="nav-link justify-content-end">Hola {user.username} :)</NavLink>
+                                    <div className="nav-link" onClick={logOutUser}>Cerrar sesión</div>
+                                    {/* <NavLink className="nav-link" to="#">Log out</NavLink> */}
+                                    <NavLink className="nav-link" to="/my-profile">Mi perfil</NavLink>
+                                    <NavLink className="nav-link" to="/favorites">Mis favoritos</NavLink>
+                                </>
+                                :
+                                <>
+                                    <NavLink className="nav-link" to="/login">Iniciar sesión</NavLink>
+                                    <NavLink className="nav-link" to="/register">Registro</NavLink>
+                                </>
+                            }
+
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

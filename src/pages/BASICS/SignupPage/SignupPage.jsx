@@ -10,26 +10,37 @@ import { Button } from 'react-bootstrap'
 
 const SignupPage = () => {
 
+    const [showButtons, setShowButtons] = useState(true)
     const [showForm, setShowForm] = useState('')
 
+    const openSignupForm = role => {
+        setShowForm(role)
+        setShowButtons(false)
+    }
 
     return (
         <>
-            <h1>loguinpeich</h1>
+            <h1>sainginpeich</h1>
 
-
-            <Button onClick={() => setShowForm('fan')}>Fan</Button>
-            <Button onClick={() => setShowForm('artist')}>Artist</Button>
-            <Button onClick={() => setShowForm('venue')}>Venue</Button>
-            <Button onClick={() => setShowForm('label')}>Label</Button>
-
-            {showForm === 'fan' && <FanSignupForm />}
-            {showForm === 'artist' && <ArtistSignupForm />}
-            {showForm === 'venue' && <VenueSignupForm />}
-            {showForm === 'label' && <LabelSignupForm />}
-
+            {showButtons
+                ?
+                <>
+                    <Button onClick={() => openSignupForm('fan')}>Fan</Button>
+                    <Button onClick={() => openSignupForm('venue')}>Venue</Button>
+                    <Button onClick={() => openSignupForm('artist')}>Artist</Button>
+                    <Button onClick={() => openSignupForm('label')}>Label</Button>
+                </>
+                :
+                <>
+                    {showForm === 'fan' && <FanSignupForm />}
+                    {showForm === 'artist' && <ArtistSignupForm />}
+                    {showForm === 'venue' && <VenueSignupForm />}
+                    {showForm === 'label' && <LabelSignupForm />}
+                </>
+            }
 
         </>
     )
 }
+
 export default SignupPage
