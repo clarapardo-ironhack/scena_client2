@@ -8,7 +8,7 @@ import uploadService from "./../../../../services/upload.service"
 
 const LabelSignupForm = () => {
 
-    const [loadingImage, setLoadingImage] = useState(false)
+    const [loadingAvatar, setLoadingAvatar] = useState(false)
     const [signupData, setSignupData] = useState({
         username: '',
         email: '',
@@ -33,7 +33,7 @@ const LabelSignupForm = () => {
     }
 
     const handleInputChange = e => {
-        
+
         const { value, name } = e.currentTarget
         setSignupData({ ...signupData, [name]: value })
     }
@@ -60,8 +60,9 @@ const LabelSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                setLoadingImage(false)
-                setSignupData({ ...signupData, avatar: data.cloudinary_url })})
+                setLoadingAvatar(false)
+                setSignupData({ ...signupData, avatar: data.cloudinary_url })
+            })
             .catch(err => res.json(err))
     }
 
@@ -109,8 +110,12 @@ const LabelSignupForm = () => {
                             <Form.Control type="file" onChange={handleAvatarUpload} />
                         </Form.Group>
 
-                        <Button variant="dark" type="submit">{loadingImage ? <Loader /> : "Registrarme"}</Button>
-                    </Col>
+                        {loadingAvatar
+                            ?
+                            <Button variant="dark" type="submit" disabled><Loader /></Button>
+                            :
+                            <Button variant="dark" type="submit">Registrarme</Button>
+                        }                    </Col>
 
                     <Col sm={{ span: 6 }}>
                         <InputGroup className="mb-3">

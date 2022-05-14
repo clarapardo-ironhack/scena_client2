@@ -10,7 +10,7 @@ const BasicRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage state={true} />} />
             <Route path="/register" element={<SignupPage />} />
             <Route path="/my-profile" element={<ProfileEditPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />

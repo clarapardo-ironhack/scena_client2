@@ -216,7 +216,12 @@ const ArtistSignupForm = () => {
 
                 <input id="role" name="role" type="hidden" value="Artist"></input>
 
-                <Button variant="dark" type="submit"> {loadingAvatar || loadingImages ? <Loader /> : "Registrarme"}</Button>
+                {loadingAvatar || loadingImages
+                    ?
+                    <Button variant="dark" type="submit" disabled><Loader /></Button>
+                    :
+                    <Button variant="dark" type="submit">Registrarme</Button>
+                }
             </Form>
         </Container>
     )

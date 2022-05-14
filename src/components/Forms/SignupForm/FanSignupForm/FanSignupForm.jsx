@@ -7,7 +7,7 @@ import uploadService from "./../../../../services/upload.service"
 
 const FanSignupForm = () => {
 
-    const [loadingImage, setLoadingImage] = useState(false)
+    const [loadingAvatar, setLoadingAvatar] = useState(false)
     const [signupData, setSignupData] = useState({
         username: '',
         email: '',
@@ -55,7 +55,7 @@ const FanSignupForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                setLoadingImage(false)
+                setLoadingAvatar(false)
                 setSignupData({ ...signupData, avatar: data.cloudinary_url })
             })
             .catch(err => res.json(err))
@@ -92,7 +92,12 @@ const FanSignupForm = () => {
                     <Form.Control type="file" onChange={handleAvatarUpload} />
                 </Form.Group>
 
-                <Button variant="dark" type="submit">Registrarme</Button>
+                {loadingAvatar
+                    ?
+                    <Button variant="dark" type="submit" disabled><Loader /></Button>
+                    :
+                    <Button variant="dark" type="submit">Registrarme</Button>
+                }
             </Form>
         </Container>
     )
