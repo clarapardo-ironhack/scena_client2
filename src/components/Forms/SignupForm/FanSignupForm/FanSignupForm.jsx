@@ -8,7 +8,6 @@ import uploadService from "./../../../../services/upload.service"
 const FanSignupForm = () => {
 
     const [loadingImage, setLoadingImage] = useState(false)
-
     const [signupData, setSignupData] = useState({
         username: '',
         email: '',
@@ -45,7 +44,6 @@ const FanSignupForm = () => {
         likedArtists,
         likedVenues
     } = signupData
-
 
     const handleAvatarUpload = (e) => {
 

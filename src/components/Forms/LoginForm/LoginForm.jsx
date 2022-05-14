@@ -13,15 +13,14 @@ const LoginForm = ({ role }) => {
         password: ''
     })
 
-    console.log(loginData)
     const navigate = useNavigate()
 
     const { storeToken, authenticateUser } = useContext(AuthContext)
 
     const handleSubmit = e => {
+
         e.preventDefault()
 
-        console.log(loginData)
         authService
             .login({ role, loginData })
             .then(({ data }) => {
@@ -35,7 +34,6 @@ const LoginForm = ({ role }) => {
     const handleInputChange = e => {
         const { value, name } = e.currentTarget
 
-        console.log(value, name)
         setLoginData({ ...loginData, [name]: value })
     }
 

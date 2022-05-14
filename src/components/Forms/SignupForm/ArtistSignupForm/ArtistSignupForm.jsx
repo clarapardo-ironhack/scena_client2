@@ -15,21 +15,20 @@ const ArtistSignupForm = () => {
         username: '',
         password: '',
         email: '',
+        phoneNumber: '',
+        description: '',
         instagram: '',
         spotify: '',
         soundcloud: '',
         bandcamp: '',
         twitter: '',
-        style1: '',
-        style2: '',
-        style3: '',
+        styles: [],
+        figures: {
+            avatar: '',
+            images: []          //image1, image2, image3, image4
+        },
         avatar: '',
-        image1: '',
-        image2: '',
-        image3: '',
-        image4: '',
-    }
-    )
+    })
 
     const navigate = useNavigate()
 
@@ -38,7 +37,7 @@ const ArtistSignupForm = () => {
 
         authService
             .artistRegister(signupData)
-            .then(() => {navigate('/')})
+            .then(() => { navigate('/') })
             .catch(err => console.log(err))
     }
 
@@ -137,15 +136,10 @@ const ArtistSignupForm = () => {
         soundcloud,
         bandcamp,
         twitter,
-        style1,
-        style2,
-        style3,
-        avatar,
-        image1,
-        image2,
-        image3,
-        image4
+        styles,
+        figures: { avatar, images },
     } = signupData
+
 
     return (
         <Container>
@@ -184,21 +178,21 @@ const ArtistSignupForm = () => {
                         <h4>STYLES</h4>
 
                         <FloatingLabel controlId="floating-style1" label="Estilo 1" className="mb-3">
-                            <Form.Select aria-label="style1" onChange={handleInputChange} value={style1} name="style1">
+                            <Form.Select aria-label="styles.style1" onChange={handleInputChange} value={styles} name="styles">
                                 <option>Selecciona tu estilo</option>
                                 {stylesList.map(style => <option key={`1 ${style}`} >{style}</option>)}
                             </Form.Select>
                         </FloatingLabel>
 
                         <FloatingLabel controlId="floating-style1" label="Estilo 2" className="mb-3">
-                            <Form.Select aria-label="style2" onChange={handleInputChange} value={style2} name="style2">
+                            <Form.Select aria-label="styles.style2" onChange={handleInputChange} value={styles} name="styles">
                                 <option>Selecciona tu estilo</option>
                                 {stylesList.map(style => <option key={`2 ${style}`} >{style}</option>)}
                             </Form.Select>
                         </FloatingLabel>
 
                         <FloatingLabel controlId="floating-style1" label="Estilo 3" className="mb-3">
-                            <Form.Select aria-label="style3" onChange={handleInputChange} value={style3} name="style3">
+                            <Form.Select aria-label="styles.styles3" onChange={handleInputChange} value={styles} name="styles">
                                 <option>Selecciona tu estilo</option>
                                 {stylesList.map(style => <option key={`3 ${style}`}  >{style}</option>)}
                             </Form.Select>

@@ -27,23 +27,27 @@ const CreateEventForm = () => {
     })
 
     useEffect(() => {
+        artistsCall()
+        venuesCall()
+    }, [])
 
+    const artistsCall = () => {
         artistsService
             .getAllArtists()
             .then(({ data }) => {
                 setAllArtist(data)
             })
             .catch(err => console.log(err))
+    }
 
+    const venuesCall = () => {
         venuesService
             .getAllVenues()
             .then(({ data }) => {
                 setAllVenues(data)
             })
             .catch(err => console.log(err))
-    }, [])
-
-    console.log(newEventData)
+    }
 
     const navigate = useNavigate()
 

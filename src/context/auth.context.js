@@ -29,6 +29,7 @@ function AuthProviderWrapper(props) {
 
         if (!storedToken) {
             logOutUser()
+
         } else {
             authService
                 .verify(storedToken)

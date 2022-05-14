@@ -25,14 +25,12 @@ class AuthService {
     }
 
     login = ({ role, loginData }) => {
-        console.log('----ESTOY AQUI----', loginData, role)
         return this.app.post(`/login/${role}`, loginData)
     }
 
     verify = token => {
         return this.app.get('/verify', { headers: { Authorization: `Bearer ${token}` } })
     }
-
 }
 
 const authService = new AuthService()
