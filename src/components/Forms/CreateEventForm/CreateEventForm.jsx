@@ -11,11 +11,9 @@ import venuesService from '../../../services/venue.service'
 import eventsService from '../../../services/events.service'
 
 
-
 const CreateEventForm = () => {
 
     const { user } = useContext(AuthContext)
-
 
     const [allArtist, setAllArtist] = useState([])
     const [allVenues, setAllVenues] = useState([])
@@ -69,8 +67,11 @@ const CreateEventForm = () => {
     const handleInputChange = e => {
         const { value, name } = e.currentTarget
 
-        console.log(value, name)
-        setNewEventData({ ...newEventData, [name]: value })
+        if (name === 'supportingArtists') {
+            setNewEventData({ ...newEventData, [name]: [...newEventData.supportingArtists, value] })
+        } else {
+            setNewEventData({ ...newEventData, [name]: value })
+        }
     }
 
     const handleImageUpload = (e) => {

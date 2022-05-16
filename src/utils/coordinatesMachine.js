@@ -1,21 +1,21 @@
-const coordinatesMachine = (street, number, city) => {
-
-    // street.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-    // city.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+const coordinatesMachine = (street, number, city, postalCode) => {
 
     let address = ''
 
     let streetArr = street.split(' ')
 
     streetArr.forEach(word => {
-        address += `${word}$20`
+        address += `${word}+`
     })
 
-    address += `${number}$20`
+    address += `${number}+`
+
+    address += `${postalCode}`
 
     address += `-${city}`
 
     console.log (address)
+
 
     return address
 

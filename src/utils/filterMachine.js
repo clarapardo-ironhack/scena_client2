@@ -3,8 +3,13 @@ const filterMachine = (infoType, input) => {
         if (input === '') {
             return element;
         } else {
-            return element.username.toLowerCase().includes(input)
-        }}) 
+            if (element.username) {
+                return element.username.toLowerCase().includes(input)
+            } else {
+                return element.toLowerCase().includes(input)
+            }
+        }
+    })
     return filteredData
 }
 

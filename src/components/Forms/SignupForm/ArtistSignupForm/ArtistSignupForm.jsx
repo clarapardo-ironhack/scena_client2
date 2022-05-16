@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Form, Button, FloatingLabel, Container, Row, Col, InputGroup } from "react-bootstrap"
 import authService from "./../../../../services/auth.service"
 import uploadService from "./../../../../services/upload.service"
@@ -7,9 +7,13 @@ import './ArtistSignupForm.css'
 import stylesList from "../../../../utils/stylesList"
 import Loader from '../../../Loader/Loader'
 import artistsService from '../../../../services/artist.service'
+import { AuthContext } from './../../..//../context/auth.context'
+
 
 
 const ArtistSignupForm = ({ edit }) => {
+
+    const { storeToken, authenticateUser } = useContext(AuthContext)
 
     const [loadingAvatar, setLoadingAvatar] = useState(false)
     const [loadingImages, setLoadingImages] = useState(false)
@@ -59,7 +63,11 @@ const ArtistSignupForm = ({ edit }) => {
             :
             authService
                 .artistRegister(signupData)
-                .then(() => navigate('/'))
+                .then(({ data }) => {
+                    storeToken(data.authToken)
+                    authenticateUser()
+                    navigate('/')
+                })
                 .catch(err => console.log(err))
     }
 
@@ -73,6 +81,8 @@ const ArtistSignupForm = ({ edit }) => {
                     [name]: value
                 }
             })
+        } else if (name === 'styles') {
+            setSignupData({ ...signupData, [name]: [...signupData.styles, value] })
         } else {
             setSignupData({ ...signupData, [name]: value })
         }
@@ -162,25 +172,13 @@ const ArtistSignupForm = ({ edit }) => {
                         <h4>STYLES</h4>
 
                         <FloatingLabel controlId="floating-style1" label="Estilo 1" className="mb-3">
-                            <Form.Select aria-label="styles.style1" onChange={handleInputChange} value={styles} name="styles">
+                            <Form.Select multiple={true} aria-label="styles" onChange={handleInputChange} value={styles} name="styles">
                                 <option>Selecciona tu estilo</option>
                                 {stylesList.map(style => <option key={`1 ${style}`} >{style}</option>)}
                             </Form.Select>
                         </FloatingLabel>
 
-                        <FloatingLabel controlId="floating-style1" label="Estilo 2" className="mb-3">
-                            <Form.Select aria-label="styles.style2" onChange={handleInputChange} value={styles} name="styles">
-                                <option>Selecciona tu estilo</option>
-                                {stylesList.map(style => <option key={`2 ${style}`} >{style}</option>)}
-                            </Form.Select>
-                        </FloatingLabel>
 
-                        <FloatingLabel controlId="floating-style1" label="Estilo 3" className="mb-3">
-                            <Form.Select aria-label="styles.styles3" onChange={handleInputChange} value={styles} name="styles">
-                                <option>Selecciona tu estilo</option>
-                                {stylesList.map(style => <option key={`3 ${style}`}  >{style}</option>)}
-                            </Form.Select>
-                        </FloatingLabel>
                     </Col>
 
                     <Col sm={{ span: 6 }}>
@@ -236,10 +234,10 @@ const ArtistSignupForm = ({ edit }) => {
                     <Form.Control type="file" onChange={handleAvatarUpload} />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="pages">
+                {!loadingAvatar && <Form.Group className="mb-3" controlId="pages">
                     <Form.Label>Imágenes</Form.Label>
                     <Form.Control type="file" onChange={handleImagesUpload} multiple />
-                </Form.Group>
+                </Form.Group>}
 
                 <input id="role" name="role" type="hidden" value="Artist"></input>
 
