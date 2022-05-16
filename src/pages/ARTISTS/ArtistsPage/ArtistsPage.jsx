@@ -1,11 +1,17 @@
 import './ArtistsPage.css'
-import { Container, InputGroup } from 'react-bootstrap'
+import { Button, Container, InputGroup } from 'react-bootstrap'
 import GeneralList from '../../../components/GeneralList/GeneralList'
 import { useEffect, useState } from "react"
 import artistsService from "../../../services/artist.service"
 import SearchBar from '../../../components/SearchBar/SearchBar'
+import GenreSearchList from '../GenreSearchList/GenreSearchList'
+import stylesList from '../../../utils/stylesList'
+
 
 const ArtistPage = () => {
+
+    const [genreSearch, setGenreSearch] = useState(false)
+    const [artistSearch, setArtistSearch] = useState(true)
 
 
     const [infoType, setArtist] = useState([])
@@ -16,7 +22,17 @@ const ArtistPage = () => {
     let inputHandler = (e) => {
         let lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
-    };
+    }
+
+    let genreButtonHandler = () => {
+        setGenreSearch(true)
+        setArtistSearch(false)
+    }
+
+    let artistsButtonHandler = () => {
+        setGenreSearch(false)
+        setArtistSearch(true)
+    }
 
     useEffect(() => {
         loadArtists()
@@ -34,8 +50,11 @@ const ArtistPage = () => {
     return (
         <>
             <Container>
-                <SearchBar handler={inputHandler} />
-                {isLoaded && <GeneralList infoType={infoType} input={inputText} />}
+                {artistSearch && <Button onClick={genreButtonHandler}>GÉNEROS</Button>}
+                {genreSearch && <Button onClick={artistsButtonHandler}>ARTISTAS</Button>}
+                <SearchBar handler={inputHandler} task={artistSearch ? 'artistas' : 'géneros'} />
+                {isLoaded && artistSearch && <GeneralList infoType={infoType} input={inputText} />}
+                {genreSearch && <GenreSearchList infoType={stylesList} input={inputText} artistsList={infoType} />}
             </Container>
         </>
     )

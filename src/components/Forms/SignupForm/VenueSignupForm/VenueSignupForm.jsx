@@ -243,10 +243,10 @@ const VenueSignupForm = ({ edit }) => {
                             <Form.Control type="file" onChange={handleAvatarUpload} />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="pages">
+                        {!loadingAvatar && <Form.Group className="mb-3" controlId="pages">
                             <Form.Label>Imágenes</Form.Label>
                             <Form.Control type="file" onChange={handleImagesUpload} multiple />
-                        </Form.Group>
+                        </Form.Group>}
 
                     </Col>
 

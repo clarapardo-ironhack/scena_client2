@@ -1,7 +1,9 @@
 import { FormControl } from 'react-bootstrap';
 import './SearchBar.css'
 
-const SearchBar = ({ handler }) => {
+const SearchBar = ({ handler, task }) => {
+
+const placeholderText = `Búsqueda por ${task}`
 
     return (
         <div className="search">
@@ -11,6 +13,7 @@ const SearchBar = ({ handler }) => {
                 variant="outlined"
                 fullWidth
                 label="Search"
+                placeholder = {placeholderText}
             />
         </div>
 
