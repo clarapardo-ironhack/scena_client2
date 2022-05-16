@@ -1,14 +1,18 @@
 import { Container, Col, Row, FloatingLabel, Form, FormControl, InputGroup, Button } from 'react-bootstrap'
 import './LabelSignupForm.css'
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import authService from "./../../../../services/auth.service"
 import uploadService from "./../../../../services/upload.service"
 import Loader from '../../../Loader/Loader'
 import labelsService from '../../../../services/label.service'
+import { AuthContext } from './../../..//../context/auth.context'
+
 
 
 const LabelSignupForm = ({ edit }) => {
+
+    const { storeToken, authenticateUser } = useContext(AuthContext)
 
     const [loadingAvatar, setLoadingAvatar] = useState(false)
     const [signupData, setSignupData] = useState({
@@ -52,7 +56,11 @@ const LabelSignupForm = ({ edit }) => {
             :
             authService
                 .labelRegister(signupData)
-                .then(() => navigate('/'))
+                .then(({data}) => {
+                    storeToken(data.authToken)
+                    authenticateUser()
+                    navigate('/')
+                })
                 .catch(err => console.log(err))
     }
 
@@ -72,7 +80,6 @@ const LabelSignupForm = ({ edit }) => {
             setSignupData({ ...signupData, [name]: value })
         }
     }
-
 
     const {
         username,

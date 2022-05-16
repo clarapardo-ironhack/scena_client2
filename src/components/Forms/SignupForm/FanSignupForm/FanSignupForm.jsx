@@ -1,14 +1,18 @@
 import { Container, Col, Row, FloatingLabel, Form, FormControl, InputGroup, Button } from 'react-bootstrap'
 import './FanSignupForm.css'
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import authService from "./../../../../services/auth.service"
 import uploadService from "./../../../../services/upload.service"
 import Loader from "./../../../Loader/Loader"
 import fansService from '../../../../services/fan.service'
+import { AuthContext } from './../../..//../context/auth.context'
+
 
 
 const FanSignupForm = ({ edit }) => {
+
+    const { storeToken, authenticateUser } = useContext(AuthContext)
 
     const [loadingAvatar, setLoadingAvatar] = useState(false)
     const [signupData, setSignupData] = useState({
@@ -45,7 +49,11 @@ const FanSignupForm = ({ edit }) => {
             :
             authService
                 .fanRegister(signupData)
-                .then(() => navigate('/'))
+                .then(({data}) => {
+                    storeToken(data.authToken)
+                    authenticateUser()
+                    navigate('/')
+                })
                 .catch(err => console.log(err))
     }
 
