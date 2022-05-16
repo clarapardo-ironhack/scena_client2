@@ -4,6 +4,8 @@ import LoginPage from "../pages/basics/LoginPage/LoginPage"
 import SignupPage from "../pages/basics/SignupPage/SignupPage"
 import ProfileEditPage from "../pages/basics/ProfileEditPage/ProfileEditPage"
 import FavoritesPage from "../pages/basics/FavoritesPage/FavoritesPage"
+import MessagesPage from "../pages/basics/MessagesPage/MessagesPage"
+
 
 const BasicRoutes = () => {
 
@@ -14,6 +16,7 @@ const BasicRoutes = () => {
             <Route path="/register" element={<SignupPage />} />
             <Route path="/my-profile" element={<ProfileEditPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/my-messages" element={<MessagesPage />} />
         </Routes>
     )
 }

@@ -1,11 +1,14 @@
 import { Container, Col, Row, FloatingLabel, Form, FormControl, InputGroup, Button } from 'react-bootstrap'
 import './FanSignupForm.css'
 import { useNavigate } from 'react-router-dom'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import authService from "./../../../../services/auth.service"
 import uploadService from "./../../../../services/upload.service"
+import Loader from "./../../../Loader/Loader"
+import fansService from '../../../../services/fan.service'
 
-const FanSignupForm = () => {
+
+const FanSignupForm = ({ edit }) => {
 
     const [loadingAvatar, setLoadingAvatar] = useState(false)
     const [signupData, setSignupData] = useState({
@@ -13,20 +16,37 @@ const FanSignupForm = () => {
         email: '',
         password: '',
         avatar: '',
-        likedEvents: [],
-        likedArtists: [],
-        likedVenues: []
     })
+
+    useEffect(() => {
+        editInfoCall()
+    }, [])
+
+    const editInfoCall = () => {
+        if (edit) {
+            fansService
+                .getOneFan(edit)
+                .then(({ data }) => setSignupData(data))
+                .catch(err => console.log(err))
+        }
+    }
 
     const navigate = useNavigate()
 
     const handleSubmit = e => {
         e.preventDefault()
 
-        authService
-            .fanRegister(signupData)
-            .then(() => navigate('/'))
-            .catch(err => res.json(err))
+        edit
+            ?
+            fansService
+                .editFan(signupData)
+                .then(() => navigate('/'))
+                .catch(err => console.log(err))
+            :
+            authService
+                .fanRegister(signupData)
+                .then(() => navigate('/'))
+                .catch(err => console.log(err))
     }
 
     const handleInputChange = e => {
@@ -34,6 +54,7 @@ const FanSignupForm = () => {
         const { value, name } = e.currentTarget
         setSignupData({ ...signupData, [name]: value })
     }
+    console.log(signupData)
 
     const {
         username,
@@ -47,7 +68,7 @@ const FanSignupForm = () => {
 
     const handleAvatarUpload = (e) => {
 
-        setLoadingImage(true)
+        // setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -58,26 +79,30 @@ const FanSignupForm = () => {
                 setLoadingAvatar(false)
                 setSignupData({ ...signupData, avatar: data.cloudinary_url })
             })
-            .catch(err => res.json(err))
+            .catch(err => console.log(err))
     }
 
     return (
         <Container>
-            <h1>Registro de fan</h1>
-            <hr />
-
             <Form onSubmit={handleSubmit}>
 
                 <Form.Group as={Row}>
                     <Col sm={{ span: 6 }}>
+
                         <FloatingLabel controlId="username" label="Usuario" className="mb-3">
-                            <Form.Control type="text" placeholder="Usuario" name="username" value={username} onChange={handleInputChange} />
+                            <Form.Control type="text" name="username" placeholder="Usuario" value={username} onChange={handleInputChange} />
                         </FloatingLabel>
+
                     </Col>
 
                     <Col sm={{ span: 6 }}>
                         <FloatingLabel controlId="password" label="Contraseña" className="mb-3">
-                            <Form.Control type="password" placeholder="Contraseña" name="password" value={password} onChange={handleInputChange} />
+                            {edit
+                                ?
+                                <Form.Control type="password" placeholder="Contraseña" name="password" value={password} disabled onChange={handleInputChange} />
+                                :
+                                <Form.Control type="password" placeholder="Contraseña" name="password" value={password} onChange={handleInputChange} />
+                            }
                         </FloatingLabel>
                     </Col>
 
@@ -96,7 +121,11 @@ const FanSignupForm = () => {
                     ?
                     <Button variant="dark" type="submit" disabled><Loader /></Button>
                     :
-                    <Button variant="dark" type="submit">Registrarme</Button>
+                    <>
+                        {edit && <Button variant="dark" type="submit">Guardar cambios</Button>}
+                        {!edit && <Button variant="dark" type="submit">Registrarme</Button>}
+
+                    </>
                 }
             </Form>
         </Container>

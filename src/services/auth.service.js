@@ -13,6 +13,7 @@ class AuthService {
     }
 
     venueRegister = user => {
+        console.log(user)
         return this.app.post('/register/venue', user)
     }
 

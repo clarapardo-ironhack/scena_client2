@@ -32,10 +32,13 @@ class LabelsService {
         return this.app.get(`/search/${labelName}`)
     }
 
-    
-
     searchLabelByStyle = labelId => {
         return this.app.post(`/delete/${labelId}`)
+    }
+
+    editLabel = (editedData) => {
+        const { _id } = editedData
+        return this.app.post(`/edit/${_id}`, editedData)
     }
 
 }

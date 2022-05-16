@@ -1,49 +1,84 @@
 import { Container, Col, Row, FloatingLabel, Form, FormControl, InputGroup, Button } from 'react-bootstrap'
 import './LabelSignupForm.css'
 import { useNavigate } from 'react-router-dom'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import authService from "./../../../../services/auth.service"
 import uploadService from "./../../../../services/upload.service"
+import Loader from '../../../Loader/Loader'
+import labelsService from '../../../../services/label.service'
 
 
-const LabelSignupForm = () => {
+const LabelSignupForm = ({ edit }) => {
 
     const [loadingAvatar, setLoadingAvatar] = useState(false)
     const [signupData, setSignupData] = useState({
         username: '',
         email: '',
         password: '',
-        instagram: '',
-        twitter: '',
+        networks: {
+            instagram: '',
+            twitter: '',
+        },
         phoneNumber: '',
         avatar: '',
         description: '',
         duty: 'RecordLabel'
     })
 
+    useEffect(() => {
+        editInfoCall()
+    }, [])
+
+    const editInfoCall = () => {
+        if (edit) {
+            labelsService
+                .getOneLabel(edit)
+                .then(({ data }) => setSignupData(data))
+                .catch(err => console.log(err))
+        }
+    }
+
     const navigate = useNavigate()
 
     const handleSubmit = e => {
         e.preventDefault()
 
-        authService
-            .labelRegister(signupData)
-            .then(() => navigate('/'))
-            .catch(err => res.json(err))
+        edit
+            ?
+            labelsService
+                .editLabel(signupData)
+                .then(() => navigate('/'))
+                .catch(err => console.log(err))
+            :
+            authService
+                .labelRegister(signupData)
+                .then(() => navigate('/'))
+                .catch(err => console.log(err))
     }
 
     const handleInputChange = e => {
 
         const { value, name } = e.currentTarget
-        setSignupData({ ...signupData, [name]: value })
+
+        if (name === 'instagram' || name === 'twitter') {
+            setSignupData({
+                ...signupData,
+                networks: {
+                    ...signupData.networks,
+                    [name]: value
+                }
+            })
+        } else {
+            setSignupData({ ...signupData, [name]: value })
+        }
     }
+
 
     const {
         username,
         email,
         password,
-        instagram,
-        twitter,
+        networks: { instagram, twitter },
         phoneNumber,
         avatar,
         description,
@@ -52,7 +87,7 @@ const LabelSignupForm = () => {
 
     const handleAvatarUpload = (e) => {
 
-        setLoadingImage(true)
+        // setLoadingImage(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -63,14 +98,11 @@ const LabelSignupForm = () => {
                 setLoadingAvatar(false)
                 setSignupData({ ...signupData, avatar: data.cloudinary_url })
             })
-            .catch(err => res.json(err))
+            .catch(err => console.log(err))
     }
 
     return (
         <Container>
-            <h1>REGISTRO DE LABEL</h1>
-            <hr />
-
             <Form onSubmit={handleSubmit}>
 
                 <Form.Group as={Col} controlId="duty" className="mb-3">
@@ -89,7 +121,12 @@ const LabelSignupForm = () => {
 
                     <Col sm={{ span: 6 }}>
                         <FloatingLabel controlId="password" label="Contraseña" className="mb-3">
-                            <Form.Control type="password" placeholder="Contraseña" name="password" value={password} onChange={handleInputChange} />
+                            {edit
+                                ?
+                                <Form.Control type="password" placeholder="Contraseña" name="password" value={password} disabled onChange={handleInputChange} />
+                                :
+                                <Form.Control type="password" placeholder="Contraseña" name="password" value={password} onChange={handleInputChange} />
+                            }
                         </FloatingLabel>
                     </Col>
                 </Form.Group>
@@ -114,8 +151,12 @@ const LabelSignupForm = () => {
                             ?
                             <Button variant="dark" type="submit" disabled><Loader /></Button>
                             :
-                            <Button variant="dark" type="submit">Registrarme</Button>
-                        }                    </Col>
+                            <>
+                                {edit && <Button variant="dark" type="submit">Guardar cambios</Button>}
+                                {!edit && <Button variant="dark" type="submit">Registrarme</Button>}
+                            </>
+                        }
+                    </Col>
 
                     <Col sm={{ span: 6 }}>
                         <InputGroup className="mb-3">

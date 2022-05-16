@@ -29,7 +29,7 @@ const ArtistPage = () => {
                 setArtist(data)
                 setIsLoaded(true)
             })
-            .catch(err => res.json(err))
+            .catch(err => console.log(err))
     }
     return (
         <>
