@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Form, Button, FloatingLabel, Container, Col, Row, InputGroup } from "react-bootstrap"
 import authService from "./../../../../services/auth.service"
 import uploadService from "./../../../../services/upload.service"
@@ -6,10 +6,13 @@ import { useNavigate } from 'react-router-dom'
 import './VenueSignupForm.css'
 import Loader from '../../../Loader/Loader'
 import venuesService from '../../../../services/venue.service'
-
+import artistsService from '../../../../services/artist.service'
+import { AuthContext } from './../../../../context/auth.context'
 
 
 const VenueSignupForm = ({ edit }) => {
+
+    const { storeToken, authenticateUser } = useContext(AuthContext)
 
     const [loadingAvatar, setLoadingAvatar] = useState(false)
     const [loadingImages, setLoadingImages] = useState(false)
@@ -62,7 +65,11 @@ const VenueSignupForm = ({ edit }) => {
             :
             authService
                 .venueRegister(signupData)
-                .then(() => navigate('/'))
+                .then(({ data }) => {
+                    storeToken(data.authToken)
+                    authenticateUser()
+                    navigate('/')
+                })
                 .catch(err => console.log(err))
     }
 
