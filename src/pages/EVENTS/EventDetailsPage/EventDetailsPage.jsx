@@ -41,7 +41,7 @@ const EventDetailsPage = () => {
 
     function addEvent() {
         authService
-            .addEvent({ role, artistId, loggedUserId })
+            .addEvent({ role, eventId, loggedUserId })
     }
 
     return (

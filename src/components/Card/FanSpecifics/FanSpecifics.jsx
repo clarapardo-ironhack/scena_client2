@@ -1,32 +1,33 @@
 import { Col } from "react-bootstrap"
 import TinyCard from "../TinyCard/TinyCard"
+import TinyEventCard from "../../EventCard/TinyEventCard/TinyEventCard"
 
-const LikedByFan = ({ LikedEvents, LikedArtists, LikedVenues }) => {
+const likedByFan = ({ likedEvents, likedArtists, likedVenues }) => {
 
     return (
         <>
             {
-                LikedArtists
+                likedArtists
                 &&
                 <Col>
                     {
-                        LikedArtists.map((artist,index) => {
-                            console.log(artist)
+                        likedArtists.map((artist, index) => {
+
                             return (
-                                <TinyCard {...artist}/>
+                                <TinyCard {...artist} />
                             )
                         })
                     }
                 </Col>
             }
 
-            {/* {
-                LikedVenues
+            {
+                likedVenues
                 &&
                 <Col>
                     {
-                            LikedVenues.map((venue, index) => {
-                                console.log(venue)
+                        likedVenues.map((venue, index) => {
+                            console.log(venue)
                             return (
                                 <TinyCard {...venue} />
                             )
@@ -36,22 +37,22 @@ const LikedByFan = ({ LikedEvents, LikedArtists, LikedVenues }) => {
             }
 
             {
-                LikedEvents
+                likedEvents
                 &&
                 <Col>
                     {
-                            LikedEvents.map((event, index) => {
-                                console.log(event)
+                        likedEvents.map((event, index) => {
+                            console.log(event)
                             return (
-                                <TinyCard {...event} />
+                                <TinyEventCard {...event} />
                             )
                         })
                     }
                 </Col>
-            } */}
+            }
         </>
     )
 
 }
 
-export default LikedByFan
+export default likedByFan

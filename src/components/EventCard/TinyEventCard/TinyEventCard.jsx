@@ -9,7 +9,7 @@ const TinyEventCard = ({ _id, title, image }) => {
         <>
             <Link to={`/event/${_id}`}>
                 <Card>
-                    <Card.Img variant="top" src={image} />
+                    <Card.Img className="imageCard" variant="top" src={image} />
                     <Card.Body>
                         <Card.Title>{title}</Card.Title>
                     </Card.Body>

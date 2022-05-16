@@ -6,15 +6,16 @@ import ArtistSpecifics from '../ArtistSpecifics/ArtistSpecifics'
 import GeneralInfoCard from '../GeneralInfoCard/GeneralInfoCard'
 import VenueSpecifics from '../VenueSpecifics/VenueSpecifics'
 
-const BigCard = ({ image,images, avatar, style1, style2, style3, username, networks,
-    label, description, likedVenues, likeEvents, likedArtists, role, address,
+const BigCard = ({ image, images, avatar, style1, style2, style3, username, networks,
+    label, description, likedVenues, likedEvents, likedArtists, role, address,
     capacity, title }) => {
 
-    const packGeneral = { image,images, avatar, username, networks, description, role, title }
-    const packFan = { likedVenues, likeEvents, likedArtists }
+    const packGeneral = { image, images, avatar, username, networks, description, role, title }
+    const packFan = { likedVenues, likedEvents, likedArtists }
     const packArtist = { style1, style2, style3, label }
     const packVenue = { address, capacity }
 
+    console.log(packFan)
 
     return (
 
