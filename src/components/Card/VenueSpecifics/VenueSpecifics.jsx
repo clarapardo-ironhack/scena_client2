@@ -10,8 +10,8 @@ const VenueSpecifics = ({ address, capacity }) => {
 
     mapsService
         .getCords(address.street, address.number, address.city)
-        .then((data) => res.json(data) )
-        .catch(err => res.json(err))
+        .then((data) => console.log(data) )
+        .catch(err => console.log(err))
 
  {/* {latitude && longitude &&
                 <Map
