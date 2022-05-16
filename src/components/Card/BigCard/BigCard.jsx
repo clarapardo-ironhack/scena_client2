@@ -7,13 +7,13 @@ import GeneralInfoCard from '../GeneralInfoCard/GeneralInfoCard'
 import VenueSpecifics from '../VenueSpecifics/VenueSpecifics'
 
 const BigCard = ({ images, avatar, style1, style2, style3, username, networks,
-    label, description, likedVenues, likeEvents, likedArtists, role, adress,
+    label, description, likedVenues, likeEvents, likedArtists, role, address,
     capacity, title }) => {
 
     const packGeneral = { images, avatar, username, networks, description, role, title }
     const packFan = { likedVenues, likeEvents, likedArtists }
     const packArtist = { style1, style2, style3, label }
-    const packVenue = { adress, capacity }
+    const packVenue = { address, capacity }
 
 
     return (

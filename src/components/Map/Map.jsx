@@ -5,8 +5,6 @@ import mapsService from '../../services/maps.service'
 
 const Map = withScriptjs(withGoogleMap(() => {
 
-    mapsService
-        .getCords()
 
 
     return (

@@ -1,4 +1,7 @@
 import axios from "axios";
+import coordinatesMachine from "../utils/coordinatesMachine";
+
+
 
 class MapsService {
 
@@ -7,23 +10,14 @@ class MapsService {
         this.app = axios.create({
             baseURL: `https://maps.googleapis.com/maps/api/`
         })
-
-        // this.app.interceptors.request.use((config) => {
-
-        //     const storedToken = localStorage.getItem("authToken");
-
-        //     if (storedToken) {
-        //         config.headers = { Authorization: `Bearer ${storedToken}` }
-        //     }
-
-        //     return config
-        // })
     }
 
-    getCords = () => {
-        this.app
-            .get('geocode/json?address=C/%20de%20las%20eras%209%20-%20Iscar&key=AIzaSyBIi25v4-JoTyK0y0BM2wVKxutNUwqDb8w')
-            .then(({data}) => console.log(data))
+    getCords = (street, number, city) => {
+
+        const address = coordinatesMachine(street, number, city)
+
+        const prueba = this.app.get(`geocode/json?address=${address}&key=AIzaSyBIi25v4-JoTyK0y0BM2wVKxutNUwqDb8w`)
+        return prueba
     }
 
 }

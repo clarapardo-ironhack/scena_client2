@@ -28,7 +28,7 @@ const VenueDetailsPage = () => {
             .catch(err => console.log(err))
 
     }
-    console.log(venue)
+    
 
     return (
         !venue
