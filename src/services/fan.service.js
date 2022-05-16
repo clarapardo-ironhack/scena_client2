@@ -32,6 +32,10 @@ class FansService {
         return this.app.post(`/delete/${fanId}`)
     }
 
+    editFan = (editedData) => {
+        const { _id } = editedData
+        return this.app.post(`/edit/${_id}`, editedData)
+    }
 }
 
 const fansService = new FansService()

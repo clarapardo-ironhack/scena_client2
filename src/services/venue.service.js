@@ -40,8 +40,9 @@ class VenuesService {
         return this.app.post(`/delete/${venueId}`)
     }
 
-    editVenue = (venueId, venueBody) => {
-        return this.app.post(`/edit/${venueId}`,venueBody)
+    editVenue = (editedData) => {
+        const { _id } = editedData
+        return this.app.post(`/edit/${_id}`, editedData)
     }
 
 }

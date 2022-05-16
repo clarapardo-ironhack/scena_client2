@@ -1,13 +1,15 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Form, Button, FloatingLabel, Container, Col, Row, InputGroup } from "react-bootstrap"
 import authService from "./../../../../services/auth.service"
 import uploadService from "./../../../../services/upload.service"
 import { useNavigate } from 'react-router-dom'
 import './VenueSignupForm.css'
 import Loader from '../../../Loader/Loader'
+import venuesService from '../../../../services/venue.service'
 
 
-const VenueSignupForm = () => {
+
+const VenueSignupForm = ({ edit }) => {
 
     const [loadingAvatar, setLoadingAvatar] = useState(false)
     const [loadingImages, setLoadingImages] = useState(false)
@@ -16,37 +18,76 @@ const VenueSignupForm = () => {
         username: '',
         password: '',
         email: '',
-        instagram: '',
-        twitter: '',
-        phoneNumber: '',
-        role: '',
-        figures: {
-            avatar: '',
-            images: []          //image1, image2, image3, image4
+        networks: {
+            instagram: '',
+            twitter: '',
         },
-        street: '',
-        number: '',
-        postalCode: '',
-        city: '',
-        capactiy: '',
+        phoneNumber: '',
+        avatar: '',
+        images: [],         //image1, image2, image3, image4
+        address: {
+            street: '',
+            number: '',
+            postalCode: '',
+            city: ''
+        },
+        capacity: '',
         description: ''
+    })
+
+    useEffect(() => {
+        editInfoCall()
+    }, [])
+
+    const editInfoCall = () => {
+        if (edit) {
+            venuesService
+                .getOneVenue(edit)
+                .then(({ data }) => setSignupData(data))
+                .catch(err => console.log(err))
+        }
     }
-    )
 
     const navigate = useNavigate()
 
     const handleSubmit = e => {
         e.preventDefault()
 
-        authService
-            .venueRegister(signupData)
-            .then(() => { navigate('/') })
-            .catch(err => res.json(err))
+        edit
+            ?
+            venuesService
+                .editVenue(signupData)
+                .then(() => navigate('/'))
+                .catch(err => console.log(err))
+            :
+            authService
+                .venueRegister(signupData)
+                .then(() => navigate('/'))
+                .catch(err => console.log(err))
     }
 
     const handleInputChange = e => {
         const { value, name } = e.currentTarget
-        setSignupData({ ...signupData, [name]: value })
+
+        if (name === 'instagram' || name === 'twitter') {
+            setSignupData({
+                ...signupData,
+                networks: {
+                    ...signupData.networks,
+                    [name]: value
+                }
+            })
+        } else if (name === 'street' || name === 'number' || name === 'postalCode' || name === 'city') {
+            setSignupData({
+                ...signupData,
+                address: {
+                    ...signupData.address,
+                    [name]: value
+                }
+            })
+        } else {
+            setSignupData({ ...signupData, [name]: value })
+        }
     }
 
     const handleAvatarUpload = (e) => {
@@ -88,40 +129,49 @@ const VenueSignupForm = () => {
         username,
         password,
         email,
-        instagram,
-        twitter,
+        networks: {
+            instagram,
+            twitter,
+        },
         phoneNumber,
-        role,
-        figures: { avatar, images },
-        street,
-        number,
-        postalCode,
+        avatar,
+        images,
+        address: {
+            street,
+            number,
+            postalCode,
+            city
+        },
         capacity,
-        city,
         description
     } = signupData
 
     return (
         <Container>
-
-            <h1>Venue Sign up</h1>
-            <hr />
-
             <Form onSubmit={handleSubmit}>
 
 
                 <Form.Group as={Row}>
                     <Col sm={{ span: 6 }}>
-                        <FloatingLabel controlId="floating-username" label="username" className="mb-3">
+                        <FloatingLabel controlId="floating-username" label="Usuario" className="mb-3">
                             <Form.Control type="text" onChange={handleInputChange} name="username" value={username} placeholder="Username" />
                         </FloatingLabel>
                     </Col>
 
                     <Col sm={{ span: 6 }}>
-                        <FloatingLabel controlId="floating-password" label="password" className="mb-3">
-                            <Form.Control type="password" onChange={handleInputChange} name="password" value={password} placeholder="password" />
+                        <FloatingLabel controlId="floating-password" label="Contraseña" className="mb-3">
+                            {edit
+                                ?
+                                <Form.Control type="password" placeholder="Contraseña" name="password" value={password} disabled onChange={handleInputChange} />
+                                :
+                                <Form.Control type="password" placeholder="Contraseña" name="password" value={password} onChange={handleInputChange} />
+                            }
                         </FloatingLabel>
                     </Col>
+
+                    <FloatingLabel controlId="email" label="Email" className="mb-3">
+                        <Form.Control type="email" placeholder="Email" name="email" value={email} onChange={handleInputChange} />
+                    </FloatingLabel>
                 </Form.Group>
 
                 <Form.Group as={Row}>
@@ -132,7 +182,7 @@ const VenueSignupForm = () => {
                         </FloatingLabel>
 
                         <Form.Group className="mb-3" controlId="capacity">
-                            <FloatingLabel controlId="floating-capacity" label="capacity">
+                            <FloatingLabel controlId="floating-capacity" label="Máx. capacidad">
                                 <Form.Control type="text" onChange={handleInputChange} name="capacity" value={capacity} placeholder="capacity" />
                             </FloatingLabel>
                         </Form.Group>
@@ -140,32 +190,25 @@ const VenueSignupForm = () => {
 
                         <h4>ADDRESS</h4>
 
-
-                        <Form.Group className="mb-3" controlId="phoneNumber">
-                            <FloatingLabel controlId="floating-phoneNumber" label="phoneNumber">
-                                <Form.Control type="text" onChange={handleInputChange} name="phoneNumber" value={phoneNumber} placeholder="Phone Number" />
-                            </FloatingLabel>
-                        </Form.Group>
-
                         <Form.Group className="mb-3" controlId="street">
-                            <FloatingLabel controlId="floating-street" label="street">
+                            <FloatingLabel controlId="floating-street" label="Calle">
                                 <Form.Control type="text" onChange={handleInputChange} name="street" value={street} placeholder="Street" />
                             </FloatingLabel>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="number">
-                            <FloatingLabel controlId="floating-number" label="number">
+                            <FloatingLabel controlId="floating-number" label="Número">
                                 <Form.Control type="text" onChange={handleInputChange} name="number" value={number} placeholder="number" />
                             </FloatingLabel>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="postalCode">
-                            <FloatingLabel controlId="floating-postalCode" label="postalCode">
+                            <FloatingLabel controlId="floating-postalCode" label="CP">
                                 <Form.Control type="text" onChange={handleInputChange} name="postalCode" value={postalCode} placeholder="postalCode" />
                             </FloatingLabel>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="city">
-                            <FloatingLabel controlId="floating-city" label="city">
+                            <FloatingLabel controlId="floating-city" label="Ciudad">
                                 <Form.Control type="text" onChange={handleInputChange} name="city" value={city} placeholder="city" />
                             </FloatingLabel>
                         </Form.Group>
@@ -174,14 +217,10 @@ const VenueSignupForm = () => {
                     <Col sm={{ span: 6 }}>
 
                         <Form.Group className="mb-3" controlId="phoneNumber" >
-                            <FloatingLabel controlId="floating-phoneNumber" label="phoneNumber">
+                            <FloatingLabel controlId="floating-phoneNumber" label="Teléfono">
                                 <Form.Control type="text" onChange={handleInputChange} name="phoneNumber" value={phoneNumber} placeholder="Phone Number" />
                             </FloatingLabel>
                         </Form.Group>
-
-                        <FloatingLabel controlId="floating-email" label="email" className="mb-3">
-                            <Form.Control type="email" onChange={handleInputChange} name="email" value={email} placeholder="email" />
-                        </FloatingLabel>
 
                         <h4>SOCIALS</h4>
 
@@ -219,7 +258,10 @@ const VenueSignupForm = () => {
                     ?
                     <Button variant="dark" type="submit" disabled><Loader /></Button>
                     :
-                    <Button variant="dark" type="submit">Registrarme</Button>
+                    <>
+                        {edit && <Button variant="dark" type="submit">Guardar cambios</Button>}
+                        {!edit && <Button variant="dark" type="submit">Registrarme</Button>}
+                    </>
                 }
             </Form>
         </Container>

@@ -2,6 +2,8 @@ import './CreateEventForm.css'
 import { Container, Col, Row, FloatingLabel, Form, FormControl, InputGroup, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from "react"
+import { AuthContext } from './../../../context/auth.context'
+import { useContext } from 'react'
 import authService from "./../../../services/auth.service"
 import uploadService from "./../../../services/upload.service"
 import artistsService from './../../../services/artist.service'
@@ -11,6 +13,9 @@ import eventsService from '../../../services/events.service'
 
 
 const CreateEventForm = () => {
+
+    const { user } = useContext(AuthContext)
+
 
     const [allArtist, setAllArtist] = useState([])
     const [allVenues, setAllVenues] = useState([])
@@ -24,6 +29,7 @@ const CreateEventForm = () => {
         aprovedArtist: false,
         aprovedVenue: false,
         description: '',
+        creator: user
     })
 
     useEffect(() => {

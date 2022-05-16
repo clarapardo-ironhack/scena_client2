@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Form, Button, FloatingLabel, Container, Row, Col, InputGroup } from "react-bootstrap"
 import authService from "./../../../../services/auth.service"
 import uploadService from "./../../../../services/upload.service"
@@ -6,8 +6,10 @@ import { useNavigate } from 'react-router-dom'
 import './ArtistSignupForm.css'
 import stylesList from "../../../../utils/stylesList"
 import Loader from '../../../Loader/Loader'
+import artistsService from '../../../../services/artist.service'
 
-const ArtistSignupForm = () => {
+
+const ArtistSignupForm = ({ edit }) => {
 
     const [loadingAvatar, setLoadingAvatar] = useState(false)
     const [loadingImages, setLoadingImages] = useState(false)
@@ -18,32 +20,62 @@ const ArtistSignupForm = () => {
         email: '',
         phoneNumber: '',
         description: '',
-        instagram: '',
-        spotify: '',
-        soundcloud: '',
-        bandcamp: '',
-        twitter: '',
+        networks: {
+            instagram: '',
+            spotify: '',
+            soundcloud: '',
+            bandcamp: '',
+            twitter: ''
+        },
         styles: [],
-        figures: {
-            avatar: '',
-            images: []          //image1, image2, image3, image4
-        }
+        avatar: '',
+        images: []
     })
+
+    useEffect(() => {
+        editInfoCall()
+    }, [])
+
+    const editInfoCall = () => {
+        if (edit) {
+            artistsService
+                .getOneArtist(edit)
+                .then(({ data }) => setSignupData(data))
+                .catch(err => console.log(err))
+        }
+    }
 
     const navigate = useNavigate()
 
     const handleSubmit = e => {
         e.preventDefault()
 
-        authService
-            .artistRegister(signupData)
-            .then(() => { navigate('/') })
-            .catch(err => console.log(err))
+        edit
+            ?
+            artistsService
+                .editArtist(signupData)
+                .then(() => navigate('/'))
+                .catch(err => console.log(err))
+            :
+            authService
+                .artistRegister(signupData)
+                .then(() => navigate('/'))
+                .catch(err => console.log(err))
     }
 
     const handleInputChange = e => {
         const { value, name } = e.currentTarget
-        setSignupData({ ...signupData, [name]: value })
+        if (name === 'instagram' || name === 'twitter' || name === 'spotify' || name === 'soundcloud' || name === 'bandcamp') {
+            setSignupData({
+                ...signupData,
+                networks: {
+                    ...signupData.networks,
+                    [name]: value
+                }
+            })
+        } else {
+            setSignupData({ ...signupData, [name]: value })
+        }
     }
 
     const handleAvatarUpload = (e) => {
@@ -86,39 +118,36 @@ const ArtistSignupForm = () => {
         email,
         phoneNumber,
         description,
-        instagram,
-        spotify,
-        soundcloud,
-        bandcamp,
-        twitter,
+        networks: { instagram, spotify, soundcloud, bandcamp, twitter },
         styles,
-        figures: { avatar, images },
+        avatar,
+        images
     } = signupData
 
 
     return (
         <Container>
-
-            <h1>Artist Sign up</h1>
-            <hr />
-
             <Form onSubmit={handleSubmit}>
 
                 <Form.Group as={Row}>
                     <Col sm={{ span: 6 }}>
-                        <FloatingLabel controlId="floating-username" label="username" className="mb-3">
+                        <FloatingLabel controlId="floating-username" label="Usuario" className="mb-3">
                             <Form.Control type="text" onChange={handleInputChange} name="username" value={username} placeholder="Username" />
                         </FloatingLabel>
                     </Col>
 
                     <Col sm={{ span: 6 }}>
-                        <FloatingLabel controlId="floating-password" label="password" className="mb-3">
-                            <Form.Control type="password" onChange={handleInputChange} name="password" value={password} placeholder="password" />
-                        </FloatingLabel>
+                        <FloatingLabel controlId="floating-password" label="Contraseña" className="mb-3">
+                            {edit
+                                ?
+                                <Form.Control type="password" placeholder="Contraseña" name="password" value={password} disabled onChange={handleInputChange} />
+                                :
+                                <Form.Control type="password" placeholder="Contraseña" name="password" value={password} onChange={handleInputChange} />
+                            }                        </FloatingLabel>
                     </Col>
                 </Form.Group>
 
-                <FloatingLabel controlId="floating-email" label="email" className="mb-3">
+                <FloatingLabel controlId="floating-email" label="Email" className="mb-3">
                     <Form.Control type="email" onChange={handleInputChange} name="email" value={email} placeholder="email" />
                 </FloatingLabel>
 
@@ -157,7 +186,7 @@ const ArtistSignupForm = () => {
                     <Col sm={{ span: 6 }}>
 
                         <Form.Group className="mb-3" controlId="phoneNumber" >
-                            <FloatingLabel controlId="floating-phoneNumber" label="phoneNumber">
+                            <FloatingLabel controlId="floating-phoneNumber" label="Teléfono">
                                 <Form.Control type="text" onChange={handleInputChange} name="phoneNumber" value={phoneNumber} placeholder="Phone Number" />
                             </FloatingLabel>
                         </Form.Group>
@@ -194,15 +223,13 @@ const ArtistSignupForm = () => {
 
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="bandcamp"></InputGroup.Text>
-                            <FloatingLabel controlId="bandcamp" label="bandcamp">
+                            <FloatingLabel controlId="bandcamp" label="Bandcamp">
                                 <Form.Control type="text" placeholder="bandcamp" style={{ width: '204px' }} name="bandcamp" value={bandcamp} onChange={handleInputChange} />
                             </FloatingLabel>
                         </InputGroup>
                     </Col>
 
                 </Form.Group>
-
-                {/* Avatar y fotoss */}
 
                 <Form.Group className="mb-3" controlId="avatar">
                     <Form.Label>AVATAR</Form.Label>
@@ -220,8 +247,10 @@ const ArtistSignupForm = () => {
                     ?
                     <Button variant="dark" type="submit" disabled><Loader /></Button>
                     :
-                    <Button variant="dark" type="submit">Registrarme</Button>
-                }
+                    <>
+                        {edit && <Button variant="dark" type="submit">Guardar cambios</Button>}
+                        {!edit && <Button variant="dark" type="submit">Registrarme</Button>}
+                    </>}
             </Form>
         </Container>
     )

@@ -36,6 +36,11 @@ class ArtistsService {
         return this.app.get(`/search/style/${style}`)
     }
 
+    editArtist = (editedData) => {
+        const { _id } = editedData
+        return this.app.post(`/edit/${_id}`, editedData)
+    }
+
 }
 
 const artistsService = new ArtistsService()

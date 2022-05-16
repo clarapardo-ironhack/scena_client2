@@ -1,5 +1,5 @@
 import './App.css'
-import AppRoutes from '../src/routes/AppRoutes'
+import AppRoutes from './routes/AppRoutes'
 import ScenaNav from './components/Navbar/ScenaNav'
 
 
