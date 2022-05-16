@@ -1,12 +1,23 @@
 import { Card, Image, Row, Col } from 'react-bootstrap'
 
-const CommonCard = ({ username, networks, avatar, images, description, title }) => {
+const CommonCard = ({ image, username, networks, avatar, images, description, title }) => {
     return (
         <>
             <Row>
-                <Col md={3}>
-                    <Image className="profileImg" src={avatar} alt="Profile Picture" />
-                </Col>
+
+                {
+
+                    avatar
+                        ?
+                        <Col md={3}>
+                            <Image className="profileImg" src={avatar} alt="Profile Picture" />
+                        </Col>
+                        :
+                        <Col md={3}>
+                            <Image className="profileImg" src={image} alt="Profile Picture" />
+                        </Col>
+
+                }
                 <Col md={9}>
                     {username && <Card.Title>{username}</Card.Title>}
                     {title && <Card.Title>{title}</Card.Title>}

@@ -32,6 +32,18 @@ class AuthService {
     verify = token => {
         return this.app.get('/verify', { headers: { Authorization: `Bearer ${token}` } })
     }
+
+    addArtist = ({ role, artistId, loggedUserId }) => {
+        return this.app.post(`/${role}/addArtist/${artistId}`, { loggedUserId })
+    }
+
+    addEvent = ({ role, eventId, loggedUserId }) => {
+        return this.app.post(`/${role}/addEvent/${eventId}`, { loggedUserId })
+    }
+
+    addVenue = ({ role, venueId, loggedUserId }) => {
+        return this.app.post(`/${role}/addVenue/${venueId}`, { loggedUserId })
+    }
 }
 
 const authService = new AuthService()

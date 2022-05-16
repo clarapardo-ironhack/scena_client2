@@ -25,6 +25,7 @@ class FansService {
     }
 
     getOneFan = fanId => {
+        console.log(fanId)
         return this.app.get(`/details/${fanId}`)
     }
 
