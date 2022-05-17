@@ -3,7 +3,7 @@ import './SearchBar.css'
 
 const SearchBar = ({ handler, task }) => {
 
-const placeholderText = `Búsqueda por ${task}`
+const placeholderText = `Búsqueda de ${task}`
 
     return (
         <div className="search">

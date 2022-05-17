@@ -9,13 +9,19 @@ import uploadService from "./../../../services/upload.service"
 import artistsService from './../../../services/artist.service'
 import venuesService from '../../../services/venue.service'
 import eventsService from '../../../services/events.service'
+import Loader from './../../Loader/Loader'
+import SearchBar from '../../SearchBar/SearchBar'
+import filterMachine from '../../../utils/filterMachine'
 
 
 const CreateEventForm = () => {
 
     const { user } = useContext(AuthContext)
 
+    const [loadingPoster, setLoadingPoster] = useState(false)
+
     const [allArtist, setAllArtist] = useState([])
+    const [allArtistBackUp, setAllArtistBackUp] = useState([])
     const [allVenues, setAllVenues] = useState([])
     const [newEventData, setNewEventData] = useState({
         title: '',
@@ -34,6 +40,32 @@ const CreateEventForm = () => {
         artistsCall()
         venuesCall()
     }, [])
+
+    const [maininputText, setmainInputText] = useState("")
+    const [suppinputText, setsuppInputText] = useState("")
+    const [venueinputText, setvenueInputText] = useState("")
+
+    const filteredMain = filterMachine(allArtist, maininputText)
+    const filteredSupporting = filterMachine(allArtistBackUp, suppinputText)
+    const filteredVenues = filterMachine(allVenues, venueinputText)
+
+
+    let inputHandler = (e) => {
+        let lowerCase = e.target.value.toLowerCase();
+        setmainInputText(lowerCase);
+    }
+
+    let suppInputHandler = (e) => {
+        let lowerCase = e.target.value.toLowerCase();
+        setsuppInputText(lowerCase);
+    }
+
+    let venuesInputHandler = (e) => {
+        let lowerCase = e.target.value.toLowerCase();
+        setvenueInputText(lowerCase);
+    }
+
+
 
     const artistsCall = () => {
         artistsService
@@ -67,16 +99,23 @@ const CreateEventForm = () => {
     const handleInputChange = e => {
         const { value, name } = e.currentTarget
 
+
         if (name === 'supportingArtists') {
             setNewEventData({ ...newEventData, [name]: [...newEventData.supportingArtists, value] })
         } else {
+            artistsCall()
+            let artistArr = allArtist.filter(e => {
+                return e._id !== value
+            })
+            setAllArtistBackUp(artistArr)
             setNewEventData({ ...newEventData, [name]: value })
+
         }
     }
 
     const handleImageUpload = (e) => {
 
-        // setLoadingImage(true)
+        setLoadingPoster(true)
 
         const uploadData = new FormData()
         uploadData.append('imageData', e.target.files[0])
@@ -84,7 +123,7 @@ const CreateEventForm = () => {
         uploadService
             .uploadImage(uploadData)
             .then(({ data }) => {
-                // setLoadingImage(false)
+                setLoadingPoster(false)
                 setNewEventData({ ...newEventData, image: data.cloudinary_url })
             })
             .catch(err => console.log(err))
@@ -109,17 +148,27 @@ const CreateEventForm = () => {
 
                 <Form.Group as={Row}>
                     <Col sm={{ span: 6 }}>
-                        <FloatingLabel controlId="mainArtist" label="Main artist">
-                            <Form.Select aria-label="mainArtist" onChange={handleInputChange} value={mainArtist} name="mainArtist">
-                                <option>Selecciona el artista principal</option>
-                                {allArtist.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
-                            </Form.Select>
+                        <SearchBar handler={inputHandler} task={'artista principal'} />
+
+                        <FloatingLabel controlId="mainArtist" label={filteredMain.length ? "Main artist" : ''}>
+                            {filteredMain.length
+                                ?
+                                <Form.Select aria-label="mainArtist" onClick={handleInputChange} onChange={handleInputChange} value={mainArtist} name="mainArtist">
+                                    {filteredMain.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
+                                </Form.Select>
+                                :
+                                <h2>No hay resultados</h2>}
                         </FloatingLabel>
 
-                        <FloatingLabel controlId="supportingArtists" label="Supporting artists">
-                            <Form.Select multiple={true} aria-label="supportingArtists" onChange={handleInputChange} value={supportingArtists} name="supportingArtists">
-                                {allArtist.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
-                            </Form.Select>
+                        <SearchBar handler={suppInputHandler} task={'otros artistas'} />
+                        <FloatingLabel controlId="supportingArtists" label={filteredSupporting.length ? "Supporting artists" : ''}>
+                            {filteredSupporting.length
+                                ?
+                                <Form.Select multiple={true} aria-label="supportingArtists" onChange={handleInputChange} value={supportingArtists} name="supportingArtists">
+                                    {filteredSupporting.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
+                                </Form.Select>
+                                :
+                                <></>}
                         </FloatingLabel>
 
                     </Col>
@@ -134,16 +183,24 @@ const CreateEventForm = () => {
                             <Form.Control type="datetime-local" placeholder="Fecha y hora" name="date" value={date} onChange={handleInputChange} />
                         </FloatingLabel>
 
-                        <FloatingLabel controlId="venue" label="Lugar">
-                            <Form.Select aria-label="venue" onChange={handleInputChange} value={venue} name="venue">
-                                <option>Lugar</option>
-                                {allVenues.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
-                            </Form.Select>
+                        <SearchBar handler={venuesInputHandler} task={'salas de concierto'} />
+                        <FloatingLabel controlId="supportingArtists" label={filteredVenues.length ? "Lugar del evento" : ''}>
+                            {filteredVenues.length
+                                ?
+                                <Form.Select aria-label="venue" onChange={handleInputChange} value={venue} name="venue">
+                                    {filteredVenues.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
+                                </Form.Select>
+                                :
+                                <h2>No hay resultados</h2>}
                         </FloatingLabel>
                     </Col>
                 </Form.Group>
 
-                <Button variant="dark" type="submit">Crear</Button>
+                {loadingPoster
+                    ?
+                    <Loader />
+                    :
+                    <Button variant="dark" type="submit">Crear</Button>}
 
             </Form>
         </Container >

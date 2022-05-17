@@ -14,8 +14,6 @@ const coordinatesMachine = (street, number, city, postalCode) => {
 
     address += `-${city}`
 
-    console.log (address)
-
 
     return address
 

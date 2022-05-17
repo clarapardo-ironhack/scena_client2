@@ -13,14 +13,18 @@ const GeneralList = ({ infoType, input }) => {
             ?
             <Row>
                 {filteredData?.map(element => {
-                        return (
-                            <Col md={{ span: 4 }} key={element._id}>
-                                <TinyCard {...element} />
-                            </Col>
-                        )})}
+                    return (
+                        <Col md={{ span: 4 }} key={element._id}>
+                            <TinyCard {...element} />
+                        </Col>
+                    )
+                })
+                }
             </Row>
             :
-            <Loader />
+            <h2>No hay resultados</h2>
+
+
     )
 }
 

@@ -1,5 +1,5 @@
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from '../../context/auth.context'
 import './ScenaNav.css'
@@ -19,17 +19,17 @@ const ScenaNav = () => {
                         <Nav className="me-auto">
 
                             <NavDropdown title="Artist" id="basic-nav-dropdown">
-                                <NavLink className="nav-link" to="/artists">Artists List</NavLink>
+                                <Link className="nav-link" to="/artists">Artists List</Link>
                             </NavDropdown>
                             <NavDropdown title="Venue" id="basic-nav-dropdown">
-                                <NavLink className="nav-link" to="/venues">Venues List</NavLink>
+                                <Link className="nav-link" to="/venues">Venues List</Link>
                             </NavDropdown>
                             <NavDropdown title="Label" id="basic-nav-dropdown">
-                                <NavLink className="nav-link" to="/labels">Labels List</NavLink>
+                                <Link className="nav-link" to="/labels">Labels List</Link>
                             </NavDropdown>
                             <NavDropdown title="Event" id="basic-nav-dropdown">
-                                <NavLink className="nav-link" to="/events">Events List</NavLink>
-                                <NavLink className="nav-link" to="/event/create">Create an event</NavLink>
+                                <Link className="nav-link" to="/events">Events List</Link>
+                                <Link className="nav-link" to="/event/create">Create an event</Link>
                             </NavDropdown>
 
 

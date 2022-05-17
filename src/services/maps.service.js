@@ -12,10 +12,8 @@ class MapsService {
         })
     }
 
-    getCords = (street, number, city) => {
-
-        const address = coordinatesMachine(street, number, city)
-
+    getCords = ({street, number, city, postalCode}) => {
+        const address = coordinatesMachine(street, number, city, postalCode)
         const prueba = this.app.get(`geocode/json?address=${address}&key=AIzaSyBIi25v4-JoTyK0y0BM2wVKxutNUwqDb8w`)
         return prueba
     }

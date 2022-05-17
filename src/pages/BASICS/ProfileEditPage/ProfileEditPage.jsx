@@ -8,8 +8,6 @@ import VenueSignupForm from '../../../components/Forms/SignupForm/VenueSignupFor
 import { Container } from 'react-bootstrap'
 
 
-
-
 const ProfileEditPage = () => {
 
     const { user, logOutUser, isLoggedIn } = useContext(AuthContext)
