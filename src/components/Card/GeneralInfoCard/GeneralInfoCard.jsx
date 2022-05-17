@@ -2,9 +2,18 @@ import { Card, Image, Row, Col } from 'react-bootstrap'
 
 const CommonCard = ({ image, username, networks, avatar, images, description, title }) => {
 
-    const instagramURL = `https://www.instagram.com/${networks.instagram}`
-    const twitterURL = `https://www.twitter.com/${networks.twitter}`
 
+    let instagramURL = ""
+    let twitterURL = ""
+
+    if (networks) {
+        instagramURL = `https://www.instagram.com/${networks.instagram}`
+        twitterURL = `https://www.twitter.com/${networks.twitter}`
+    }
+    else {
+        instagramURL = ""
+        twitterURL = ""
+    }
     return (
         <>
             <Row>
