@@ -1,9 +1,21 @@
 import { Card, Image, Row, Col } from 'react-bootstrap'
+import NewMessageForm from '../../Forms/NewMessageForm/NewMessageForm'
+import { AuthContext } from "../../../context/auth.context"
+import { useContext, useState } from "react"
 
-const CommonCard = ({ image, username, networks, avatar, images, description, title }) => {
 
-    const instagramURL = `https://www.instagram.com/${networks.instagram}`
-    const twitterURL = `https://www.twitter.com/${networks.twitter}`
+const CommonCard = ({ _id, image, username, networks, avatar, images, description, title }) => {
+
+    const { user, isLoggedIn } = useContext(AuthContext)
+
+    let instagramURL
+    let twitterURL
+
+    if (networks) {
+        instagramURL = `https://www.instagram.com/${networks.instagram}`
+        twitterURL = `https://www.twitter.com/${networks.twitter}`
+    }
+
 
     return (
         <>
@@ -48,13 +60,15 @@ const CommonCard = ({ image, username, networks, avatar, images, description, ti
                         images
                         &&
                         Object.entries(images).map(([key, value]) => {
-                            console.log(value)
                             return (
                                 <img key={key} className="otherImages" src={value} alt="Other Profile photos" />
                             )
                         })
                     }
                 </Col>
+            </Row>
+            <Row>
+                {isLoggedIn && <NewMessageForm destinationId={_id} username={username} />}
             </Row>
         </>
     )
