@@ -1,10 +1,23 @@
 import { Card } from "react-bootstrap"
+import NewMessageForm from "../Forms/NewMessageForm/NewMessageForm"
 
 
 
+const MessageCard = ({ message }) => {
 
-const MessageCard = (message) => {
+    let destinationMess
+    let usernameMess
 
+    if (message.originArtist) {
+        destinationMess = message.originArtist._id
+        usernameMess = message.originArtist.username
+    } else if (message.originVenue) {
+        destinationMess = message.originVenue._id
+        usernameMess = message.originVenue.username
+    } else if (message.originLabel) {
+        destinationMess = message.originLabel._id
+        usernameMess = message.originLabel.username
+    }
 
     return (
         <>
@@ -16,6 +29,7 @@ const MessageCard = (message) => {
                     <p>{message.textContent}</p>
                 </Card.Body>
             </Card>
+            <NewMessageForm destinationId={destinationMess} username={usernameMess} />
         </>
     )
 }
