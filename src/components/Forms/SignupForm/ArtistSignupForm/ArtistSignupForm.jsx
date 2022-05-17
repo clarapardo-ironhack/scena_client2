@@ -8,6 +8,8 @@ import stylesList from "../../../../utils/stylesList"
 import Loader from '../../../Loader/Loader'
 import artistsService from '../../../../services/artist.service'
 import { AuthContext } from './../../..//../context/auth.context'
+import SearchBar from "../../../SearchBar/SearchBar"
+import filterMachine from "../../../../utils/filterMachine"
 
 
 
@@ -39,6 +41,14 @@ const ArtistSignupForm = ({ edit }) => {
     useEffect(() => {
         editInfoCall()
     }, [])
+
+    const [inputText, setInputText] = useState("")
+    const filteredGenres = filterMachine(stylesList, inputText)
+
+    let inputHandler = (e) => {
+        let lowerCase = e.target.value.toLowerCase();
+        setInputText(lowerCase);
+    }
 
     const editInfoCall = () => {
         if (edit) {
@@ -82,7 +92,14 @@ const ArtistSignupForm = ({ edit }) => {
                 }
             })
         } else if (name === 'styles') {
-            setSignupData({ ...signupData, [name]: [...signupData.styles, value] })
+            if (signupData.styles.includes(value)) {
+                const styleOut = signupData.styles.filter(e => {
+                    return e !== value
+                })
+                setSignupData({ ...signupData, styles: styleOut })
+            } else {
+                setSignupData({ ...signupData, [name]: [...signupData.styles, value] })
+            }
         } else {
             setSignupData({ ...signupData, [name]: value })
         }
@@ -134,7 +151,6 @@ const ArtistSignupForm = ({ edit }) => {
         images
     } = signupData
 
-
     return (
         <Container>
             <Form onSubmit={handleSubmit}>
@@ -171,11 +187,17 @@ const ArtistSignupForm = ({ edit }) => {
 
                         <h4>STYLES</h4>
 
-                        <FloatingLabel controlId="floating-style1" label="Estilo 1" className="mb-3">
-                            <Form.Select multiple={true} aria-label="styles" onChange={handleInputChange} value={styles} name="styles">
-                                <option>Selecciona tu estilo</option>
-                                {stylesList.map(style => <option key={`1 ${style}`} >{style}</option>)}
-                            </Form.Select>
+                        <SearchBar handler={inputHandler} task={'estilos'} />
+
+                        <FloatingLabel controlId="floating-style1" className="mb-3">
+
+                            {inputText.length
+                                ?
+                                <Form.Select multiple={true} style={{ height: '200px' }} aria-label="styles" onChange={handleInputChange} value={styles} name="styles">
+                                    {filteredGenres.map(style => <option key={`1 ${style}`} >{style}</option>)}
+                                </Form.Select>
+                                :
+                                <></>}
                         </FloatingLabel>
 
 

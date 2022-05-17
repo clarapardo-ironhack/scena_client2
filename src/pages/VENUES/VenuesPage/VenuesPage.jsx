@@ -34,7 +34,7 @@ const VenuesPage = () => {
     return (
         <>
             <Container>
-                <SearchBar handler={inputHandler} />
+                <SearchBar handler={inputHandler} task='eventos' />
                 {isLoaded && <GeneralList infoType={infoType} input={inputText} />}
             </Container>
         </>

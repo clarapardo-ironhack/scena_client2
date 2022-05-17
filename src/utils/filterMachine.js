@@ -5,6 +5,8 @@ const filterMachine = (infoType, input) => {
         } else {
             if (element.username) {
                 return element.username.toLowerCase().includes(input)
+            } else if (element.title) {
+                return element.title.toLowerCase().includes(input)
             } else {
                 return element.toLowerCase().includes(input)
             }

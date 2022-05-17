@@ -1,17 +1,17 @@
 import { Card, Col } from "react-bootstrap"
 
-const ArtistSpecifics = ({ style1, style2, style3, label }) => {
+const ArtistSpecifics = ({ styles, label }) => {
 
 
     return (
         <Col>
             {
-                style1
+                styles
                 &&
                 <ul>
-                    <li>{style1}</li>
-                    {style2 && <li>{style2}</li>}
-                    {style3 && <li>{style3}</li>}
+                    {styles.map(e => {
+                        return <li>{e}</li>
+                    })}
                 </ul>
             }
 

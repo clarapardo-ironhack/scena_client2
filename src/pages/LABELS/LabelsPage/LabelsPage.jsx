@@ -21,7 +21,6 @@ const LabelPage = () => {
     }, [])
 
     const loadLabels = () => {
-
         labelService
             .getAllLabels()
             .then(({ data }) => {
@@ -34,7 +33,7 @@ const LabelPage = () => {
     return (
         <>
             <Container>
-                <SearchBar handler={inputHandler} />
+                <SearchBar handler={inputHandler} task='sellos discográficos y agencias de management' />
                 {isLoaded && <GeneralList infoType={infoType} input={inputText} />}
             </Container>
         </>
