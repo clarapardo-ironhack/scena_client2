@@ -1,6 +1,10 @@
 import { Card, Image, Row, Col } from 'react-bootstrap'
 
 const CommonCard = ({ image, username, networks, avatar, images, description, title }) => {
+
+    const instagramURL = `https://www.instagram.com/${networks.instagram}`
+    const twitterURL = `https://www.twitter.com/${networks.twitter}`
+
     return (
         <>
             <Row>
@@ -27,10 +31,10 @@ const CommonCard = ({ image, username, networks, avatar, images, description, ti
                             networks
                             &&
                             <div className="networksLinks">
-                                {networks.instagram && <a target="_blank" rel="noreferrer" href={networks.instagram}>Instagram </a>}
+                                {networks.instagram && <a target="_blank" rel="noreferrer" href={instagramURL}>Instagram </a>}
                                 {networks.spotify && <a target="_blank" rel="noreferrer" href={networks.spotify}>Spotify </a>}
                                 {networks.soundcloud && <a target="_blank" rel="noreferrer" href={networks.soundcloud}>SoundCloud </a>}
-                                {networks.twitter && <a target="_blank" rel="noreferrer" href={networks.twitter}>Twitter </a>}
+                                {networks.twitter && <a target="_blank" rel="noreferrer" href={twitterURL}>Twitter </a>}
                                 {networks.bandcamp && <a target="_blank" rel="noreferrer" href={networks.bandcamp}> BandCamp </a>}
 
                             </div>

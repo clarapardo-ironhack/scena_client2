@@ -1,3 +1,3 @@
-const stylesList = ['ROCK', 'POP', 'DANCE', 'KARAOKE', 'HIPHOP', 'BLUES', 'MENEITOS']
+const stylesList = ['ROCK', 'POP', 'DANCE', 'KARAOKE', 'HIPHOP', 'BLUES', 'PUNK', 'MENEITOS']
 
 export default stylesList
