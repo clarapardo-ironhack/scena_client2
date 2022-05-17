@@ -68,7 +68,7 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                 </Col>
             </Row>
             <Row>
-                {isLoggedIn && <NewMessageForm destinationId={_id} username={username} />}
+                {isLoggedIn && (user.role !== 'Fan') && <NewMessageForm destinationId={_id} username={username} />}
             </Row>
         </>
     )
