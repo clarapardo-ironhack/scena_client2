@@ -55,15 +55,15 @@ const MessagesPage = () => {
     const venueInfoCall = () => {
         venuesService
             .getOneVenue(user._id)
-            .then(({data}) => {
+            .then(({ data }) => {
 
-                console.log('soy el DATA-------------------', data)
-                // data.myEvents.map(element => {
+                data.myEvents.map(element => {
+                    console.log('soy el ELEMENT-------------------', element)
 
-                //     if (element.isAproved.venueCheck === false && element.venue === user._id) {
-                //         setToBeApproved([...toBeApproved, element])
-                //     }
-                // })
+                    if (element.isAproved.venueCheck === false && element.venue === user._id) {
+                        setToBeApproved([...toBeApproved, element])
+                    }
+                })
             })
             .catch(err => console.log(err))
     }
