@@ -20,7 +20,6 @@ const MessagesPage = () => {
         if (user.role === 'Artist') {
             artistInfoCall()
         } else if (user.role === 'Venue') {
-            console.log('-SOY UN VENUEEEEE....................')
             venueInfoCall()
         }
     }, [isTrue])
@@ -52,19 +51,19 @@ const MessagesPage = () => {
             })
             .catch(err => console.log(err))
     }
-    console.log(receivedMessages)
+
     const venueInfoCall = () => {
         venuesService
             .getOneVenue(user._id)
-            .then(({ data }) => {
+            .then(({data}) => {
 
-                console.log(element)
-                data.myEvents.map(element => {
+                console.log('soy el DATA-------------------', data)
+                // data.myEvents.map(element => {
 
-                    if (element.isAproved.venueCheck === false && element.venue === user._id) {
-                        setToBeApproved([...toBeApproved, element])
-                    }
-                })
+                //     if (element.isAproved.venueCheck === false && element.venue === user._id) {
+                //         setToBeApproved([...toBeApproved, element])
+                //     }
+                // })
             })
             .catch(err => console.log(err))
     }
