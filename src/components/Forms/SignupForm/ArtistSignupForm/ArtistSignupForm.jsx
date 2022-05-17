@@ -54,7 +54,9 @@ const ArtistSignupForm = ({ edit }) => {
         if (edit) {
             artistsService
                 .getOneArtist(edit)
-                .then(({ data }) => setSignupData(data))
+                .then(({ data }) => {
+                    setSignupData(data)
+                })
                 .catch(err => console.log(err))
         }
     }
@@ -256,10 +258,10 @@ const ArtistSignupForm = ({ edit }) => {
                     <Form.Control type="file" onChange={handleAvatarUpload} />
                 </Form.Group>
 
-                {!loadingAvatar && <Form.Group className="mb-3" controlId="pages">
+                <Form.Group className="mb-3" controlId="pages">
                     <Form.Label>Imágenes</Form.Label>
                     <Form.Control type="file" onChange={handleImagesUpload} multiple />
-                </Form.Group>}
+                </Form.Group>
 
                 <input id="role" name="role" type="hidden" value="Artist"></input>
 
