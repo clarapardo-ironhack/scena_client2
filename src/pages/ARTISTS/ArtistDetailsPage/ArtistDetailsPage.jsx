@@ -13,20 +13,20 @@ import TinyEventCard from '../../../components/EventCard/TinyEventCard/TinyEvent
 import EventList from '../../../components/EventList/EventList'
 
 
+
 const ArtistDetailsPage = () => {
 
     const { user, isLoggedIn } = useContext(AuthContext)
     const [artist, setArtist] = useState([])
+    const [eventsAttended, setEventsAttended] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
-    const [eventWithCurrentArtist, setPresentEvents] = useState([])
-    const [eventLoaded, setEventLoaded] = useState(false)
+    const [isPresent, setIsPresent] = useState(false)
 
 
     const { artistId } = useParams()
 
     useEffect(() => {
         loadArtist()
-        attendingOn()
     }, [])
 
     const loadArtist = () => {
@@ -36,33 +36,17 @@ const ArtistDetailsPage = () => {
             .then(({ data }) => {
                 setArtist(data)
                 setIsLoaded(true)
-            })
-            .catch(err => console.log(err))
-
-    }
-
-    const attendingOn = () => {
-
-        let returnable = []
-        eventsService
-            .getAllEvents()
-            .then(({ data }) => {
-                return data
-            })
-            .then((data) => {
-                data.map((elem) => {
-                    if (elem.mainArtist._id === artistId) {
-                        returnable.push(elem)
-                    }
+                let arrEvent = []
+                data.myEvents.map((elem, index) => {
+                    arrEvent.push(elem)
                 })
+                setEventsAttended(arrEvent)
+                checkArtistAdded()
 
-                return returnable
             })
-            .then((event) => setPresentEvents(event))
             .catch(err => console.log(err))
-    }
 
-    console.log(eventWithCurrentArtist)
+    }
 
 
     if (user !== null) {
@@ -70,9 +54,19 @@ const ArtistDetailsPage = () => {
         var role = user.role
     }
 
+
     function addArtist() {
         authService
             .addArtist({ role, artistId, loggedUserId })
+    }
+
+    function checkArtistAdded() {
+        authService.checkArtist({ role, artistId, loggedUserId }).then(({ data }) => {
+            // setIsPresent(data)
+
+            console.log(data)
+        })
+
     }
 
 
@@ -84,7 +78,7 @@ const ArtistDetailsPage = () => {
                 :
                 <Container>
                     {isLoaded && <BigCard {...artist} />}
-                    <EventList infoType={eventWithCurrentArtist} />
+                    <EventList infoType={eventsAttended} />
                 </Container>
             }
             {

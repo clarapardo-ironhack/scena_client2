@@ -43,6 +43,9 @@ class AuthService {
     addVenue = ({ role, venueId, loggedUserId }) => {
         return this.app.post(`/${role}/addVenue/${venueId}`, { loggedUserId })
     }
+    checkArtist = ({ role, artistId, loggedUserId }) => {
+        return this.app.post(`/${role}/checkArtist/${artistId}`, { loggedUserId })
+    }
 }
 
 const authService = new AuthService()

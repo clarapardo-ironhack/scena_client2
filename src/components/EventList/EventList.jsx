@@ -7,13 +7,29 @@ const EventList = ({ infoType, input }) => {
 
     const filteredData = filterMachine(infoType, input)
 
-
+    
     return (
         filteredData.length
             ?
+            infoType.length
+                ?
+                <Row>
+                    {
+                        filteredData?.map(elem => {
+                            return (
+                                <Col md={{ span: 4 }} key={elem._id}>
+                                    <TinyEventCard {...elem} />
+                                </Col>
+                            )
+                        })
+                    }
+                </Row>
+                :
+                <Loader />
+            :
             <Row>
                 {
-                    filteredData?.map(elem => {
+                    infoType?.map(elem => {
                         return (
                             <Col md={{ span: 4 }} key={elem._id}>
                                 <TinyEventCard {...elem} />
@@ -22,8 +38,6 @@ const EventList = ({ infoType, input }) => {
                     })
                 }
             </Row>
-            :
-            <Loader />
     )
 }
 
