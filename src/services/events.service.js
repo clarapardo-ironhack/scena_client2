@@ -27,8 +27,8 @@ class EventsService {
     }
 
     editEvent = eventInfo => {
-        console.log('--------', eventInfo)
-        // return this.app.post(`/${eventId}/edit`, eventInfo)
+        const eventId = eventInfo._id
+        return this.app.post(`/${eventId}/edit`, eventInfo)
     }
 
 }
