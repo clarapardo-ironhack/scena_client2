@@ -14,12 +14,14 @@ const EventDetailsPage = () => {
     const { user, isLoggedIn } = useContext(AuthContext)
     const [event, setEvent] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
+    const [isPresent, setIsPresent] = useState(false)
 
     const { eventId } = useParams()
 
     useEffect(() => {
+        checkEventAdded()
         loadEvent()
-    }, [])
+    }, [isPresent])
 
 
     const loadEvent = () => {
@@ -42,6 +44,22 @@ const EventDetailsPage = () => {
     function addEvent() {
         authService
             .addEvent({ role, eventId, loggedUserId })
+
+        setIsPresent(true)
+    }
+
+    function deleteEvent() {
+        authService
+            .deleteEvent({ role, eventId, loggedUserId })
+
+        setIsPresent(false)
+    }
+
+    function checkEventAdded() {
+        authService.checkEvent({ role, eventId, loggedUserId }).then(({ data }) => {
+            setIsPresent(data)
+        })
+
     }
 
     return (
@@ -53,13 +71,20 @@ const EventDetailsPage = () => {
                     :
                     <Container>
                         {isLoaded && <BigCard {...event} />}
-                    </Container>}
+                    </Container>
+            }
             {
                 isLoggedIn
                     ?
-                    <Button onClick={addEvent}>Añadir Evento a tu lista de Favoritos</Button>
+                    !isPresent
+                        ?
+                        <Button onClick={addEvent}>💙 Me gusta 💙 </Button>
+                        :
+                        <Button onClick={deleteEvent}> ☠ Ya no mola ☠ </Button>
+
                     :
-                    <p>Logueate para añadir un eventos a tu lista de favoritos!!!</p>
+                    <p>logueate payaso</p>
+
             }
         </>
     )

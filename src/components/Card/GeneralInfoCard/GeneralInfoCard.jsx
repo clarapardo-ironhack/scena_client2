@@ -1,6 +1,8 @@
 import { Card, Image, Row, Col } from 'react-bootstrap'
+import TinyEventCard from '../../EventCard/TinyEventCard/TinyEventCard'
 
-const CommonCard = ({ image, username, networks, avatar, images, description, title }) => {
+
+const CommonCard = ({ image, username, networks, avatar, images, description, title, likedArtists, likedEvents, likedVenues }) => {
 
 
     let instagramURL = ""
@@ -65,6 +67,48 @@ const CommonCard = ({ image, username, networks, avatar, images, description, ti
                     }
                 </Col>
             </Row>
+            {
+                likedArtists?.length
+                &&
+                <Col>
+                    {
+                        likedArtists.map((artist, index) => {
+
+                            return (
+                                <TinyCard {...artist} />
+                            )
+                        })
+                    }
+                </Col>
+            }
+
+            {
+                likedVenues?.length
+                &&
+                <Col>
+                    {
+                        likedVenues.map((venue, index) => {
+                            return (
+                                <TinyCard {...venue} />
+                            )
+                        })
+                    }
+                </Col>
+            }
+
+            {
+                likedEvents?.length
+                &&
+                <Col>
+                    {
+                        likedEvents.map((event, index) => {
+                            return (
+                                <TinyEventCard {...event} />
+                            )
+                        })
+                    }
+                </Col>
+            }
         </>
     )
 }

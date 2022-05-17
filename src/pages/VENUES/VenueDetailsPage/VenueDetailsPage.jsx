@@ -44,13 +44,15 @@ const VenueDetailsPage = () => {
     function addVenue() {
         authService
             .addVenue({ role, venueId, loggedUserId })
-        checkVenueAdded()
+        setIsPresent(true)
+
     }
 
     function deleteVenue() {
         authService
             .deleteVenue({ role, venueId, loggedUserId })
-        checkVenueAdded()
+        setIsPresent(false)
+
     }
 
 
@@ -71,20 +73,21 @@ const VenueDetailsPage = () => {
                     :
                     <Container>
                         {isLoaded && <BigCard {...venue} />}
-                        {
-                            isLoggedIn
-                                ?
-                                !isPresent
-                                    ?
-                                    <Button onClick={addVenue}>💙 Me gusta 💙 </Button>
-                                    :
-                                    <Button onClick={deleteVenue}> ☠ Ya no mola ☠ </Button>
 
-                                :
-                                <p>logueate payaso</p>
-
-                        }
                     </Container>
+            }
+            {
+                isLoggedIn
+                    ?
+                    !isPresent
+                        ?
+                        <Button onClick={addVenue}>💙 Me gusta 💙 </Button>
+                        :
+                        <Button onClick={deleteVenue}> ☠ Ya no mola ☠ </Button>
+
+                    :
+                    <p>logueate payaso</p>
+
             }
 
         </>
