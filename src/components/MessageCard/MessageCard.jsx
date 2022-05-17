@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap"
+import { Button, Card } from "react-bootstrap"
 import NewMessageForm from "../Forms/NewMessageForm/NewMessageForm"
 
 
@@ -30,6 +30,7 @@ const MessageCard = ({ message }) => {
                 </Card.Body>
             </Card>
             <NewMessageForm destinationId={destinationMess} username={usernameMess} />
+
         </>
     )
 }

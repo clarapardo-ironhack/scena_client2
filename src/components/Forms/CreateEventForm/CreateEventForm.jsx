@@ -41,6 +41,8 @@ const CreateEventForm = () => {
         venuesCall()
     }, [])
 
+    console.log(newEventData)
+
     const [maininputText, setmainInputText] = useState("")
     const [suppinputText, setsuppInputText] = useState("")
     const [venueinputText, setvenueInputText] = useState("")
@@ -184,11 +186,12 @@ const CreateEventForm = () => {
                         </FloatingLabel>
 
                         <SearchBar handler={venuesInputHandler} task={'salas de concierto'} />
-                        <FloatingLabel controlId="supportingArtists" label={filteredVenues.length ? "Lugar del evento" : ''}>
+                        <FloatingLabel controlId="venue" label={filteredVenues.length ? "Lugar del evento" : ''}>
                             {filteredVenues.length
                                 ?
                                 <Form.Select aria-label="venue" onChange={handleInputChange} value={venue} name="venue">
                                     {filteredVenues.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
+                                    <option></option>
                                 </Form.Select>
                                 :
                                 <h2>No hay resultados</h2>}
