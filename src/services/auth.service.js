@@ -35,6 +35,9 @@ class AuthService {
     addArtist = ({ role, artistId, loggedUserId }) => {
         return this.app.post(`/${role}/addArtist/${artistId}`, { loggedUserId })
     }
+    deleteArtist = ({ role, artistId, loggedUserId }) => {
+        return this.app.post(`/${role}/deleteArtist/${artistId}`, { loggedUserId })
+    }
 
     addEvent = ({ role, eventId, loggedUserId }) => {
         return this.app.post(`/${role}/addEvent/${eventId}`, { loggedUserId })
@@ -45,6 +48,10 @@ class AuthService {
     }
     checkArtist = ({ role, artistId, loggedUserId }) => {
         return this.app.post(`/${role}/checkArtist/${artistId}`, { loggedUserId })
+    }
+
+    checkVenue = ({ role, venueId, loggedUserId }) => {
+        return this.app.post(`/${role}/checkVenue/${venueId}`, { loggedUserId })
     }
 }
 
