@@ -28,7 +28,6 @@ const LabelDetailsPage = () => {
             .catch(err => console.log(err))
 
     }
-    console.log(label)
 
     return (
         !label

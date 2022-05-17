@@ -4,6 +4,7 @@ import Loader from "../Loader/Loader.jsx"
 
 const EventList = ({ infoType }) => {
 
+
     return (
         infoType?.length
             ?

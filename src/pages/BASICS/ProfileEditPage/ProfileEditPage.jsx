@@ -14,8 +14,6 @@ const ProfileEditPage = () => {
 
     const { user, logOutUser, isLoggedIn } = useContext(AuthContext)
 
-    console.log(user)
-
     return (
         <>
             <h1>profaileditpeich</h1>

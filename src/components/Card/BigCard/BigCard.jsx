@@ -1,6 +1,5 @@
 import './BigCard.css'
 import { Card, Container, Image, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import FanSpecifics from '../FanSpecifics/FanSpecifics'
 import ArtistSpecifics from '../ArtistSpecifics/ArtistSpecifics'
 import GeneralInfoCard from '../GeneralInfoCard/GeneralInfoCard'
@@ -14,8 +13,6 @@ const BigCard = ({ image, images, avatar, style1, style2, style3, username, netw
     const packFan = { likedVenues, likedEvents, likedArtists }
     const packArtist = { style1, style2, style3, label }
     const packVenue = { address, capacity }
-
-    console.log(packFan)
 
     return (
 

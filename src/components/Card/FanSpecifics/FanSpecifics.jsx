@@ -27,7 +27,6 @@ const likedByFan = ({ likedEvents, likedArtists, likedVenues }) => {
                 <Col>
                     {
                         likedVenues.map((venue, index) => {
-                            console.log(venue)
                             return (
                                 <TinyCard {...venue} />
                             )
@@ -42,7 +41,6 @@ const likedByFan = ({ likedEvents, likedArtists, likedVenues }) => {
                 <Col>
                     {
                         likedEvents.map((event, index) => {
-                            console.log(event)
                             return (
                                 <TinyEventCard {...event} />
                             )

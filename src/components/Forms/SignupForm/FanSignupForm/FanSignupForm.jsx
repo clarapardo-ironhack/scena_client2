@@ -62,7 +62,6 @@ const FanSignupForm = ({ edit }) => {
         const { value, name } = e.currentTarget
         setSignupData({ ...signupData, [name]: value })
     }
-    console.log(signupData)
 
     const {
         username,

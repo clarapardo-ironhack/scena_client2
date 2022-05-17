@@ -19,7 +19,6 @@ const EventPage = () => {
             .getAllEvents()
             .then(({ data }) => {
                 setEvent(data)
-                console.log(data)
                 setIsLoaded(true)
             })
             .catch(err => console.log(err))

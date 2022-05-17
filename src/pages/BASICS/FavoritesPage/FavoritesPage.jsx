@@ -40,7 +40,7 @@ const FavoritesPage = () => {
         loadSearch = () => {
 
             artistsService
-                .getOneArtists(user._id)
+                .getOneArtist(user._id)
                 .then(({ data }) => {
                     setCurrentUser(data)
                     setIsLoaded(true)
