@@ -5,13 +5,15 @@ import filterMachine from "../../utils/filterMachine"
 
 const EventList = ({ infoType, input }) => {
 
-    const filteredData = filterMachine(infoType, input)
+    let approvedEvents = infoType.filter(element => element.isAproved.mainArtistCheck === true && element.isAproved.venueCheck === true)
+
+    const filteredData = filterMachine(approvedEvents, input)
 
     
     return (
         filteredData.length
             ?
-            infoType.length
+            approvedEvents.length
                 ?
                 <Row>
                     {
@@ -29,7 +31,7 @@ const EventList = ({ infoType, input }) => {
             :
             <Row>
                 {
-                    infoType?.map(elem => {
+                    approvedEvents?.map(elem => {
                         return (
                             <Col md={{ span: 4 }} key={elem._id}>
                                 <TinyEventCard {...elem} />

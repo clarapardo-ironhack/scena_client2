@@ -10,6 +10,7 @@ import { AuthContext } from '../../../context/auth.context'
 import { useContext } from 'react'
 import TinyCard from '../../../components/Card/TinyCard/TinyCard'
 import GeneralList from '../../../components/GeneralList/GeneralList'
+import { Link } from 'react-router-dom'
 
 const EventDetailsPage = () => {
 
@@ -99,8 +100,10 @@ const EventDetailsPage = () => {
 
                     :
                     <p>logueate payaso</p>
-
             }
+            <Link to={`/event/${event._id}/edit`}>
+                <Button>Editar el evento</Button>
+            </Link>
         </>
     )
 }

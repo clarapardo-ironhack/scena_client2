@@ -33,7 +33,7 @@ const HomePage = () => {
         if (user) {
             messageInfoCall()
         }
-    }, [])
+    }, [receivedMessages])
 
     useEffect(() => {
         if (user) {

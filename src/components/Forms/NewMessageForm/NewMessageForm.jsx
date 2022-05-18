@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap"
 import { AuthContext } from "../../../context/auth.context"
 import messagesService from "../../../services/messages.service"
 
-const NewMessageForm = ({ destinationId, username, answer, fireFinalActions }) => {
+const NewMessageForm = ({ destinationId, username, answer, fireFinalActions, setAnswered }) => {
 
     const { user, isLoggedIn } = useContext(AuthContext)
 
@@ -33,6 +33,9 @@ const NewMessageForm = ({ destinationId, username, answer, fireFinalActions }) =
         messagesService
             .createNewMessage(signupData)
             .then(({ data }) => {
+                if (answer) {
+                    setAnswered(true)
+                }
                 fireFinalActions()
             })
             .catch(err => console.log(err))

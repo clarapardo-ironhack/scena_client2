@@ -14,6 +14,7 @@ const MessagesPage = () => {
     const [toBeApproved, setToBeApproved] = useState([])
     const [receivedMessages, setReceivedMessages] = useState([])
     const [isTrue, setIsTrue] = useState()
+    const [isLoading, setIsLoading] = useState(false)
 
 
     useEffect(() => {
@@ -23,8 +24,6 @@ const MessagesPage = () => {
             venueInfoCall()
         }
     }, [isTrue])
-
-    console.log('------------///', isTrue)
 
     useEffect(() => {
         messageInfoCall()
@@ -45,6 +44,8 @@ const MessagesPage = () => {
 
                     if (element.isAproved.mainArtistCheck === false && element.mainArtist === user._id) {
                         setToBeApproved([...toBeApproved, element])
+                    } else {
+                        setToBeApproved([])
                     }
                 })
             })
@@ -60,6 +61,8 @@ const MessagesPage = () => {
 
                     if (element.isAproved.venueCheck === false && element.venue === user._id) {
                         setToBeApproved([...toBeApproved, element])
+                    } else {
+                        setToBeApproved([])
                     }
                 })
             })
@@ -78,11 +81,25 @@ const MessagesPage = () => {
 
             <h1>MENSAJERIA</h1>
 
+            <h3>Sin contestar</h3>
+
             {receivedMessages.map(element => {
-                return <MessageCard message={element} />
+                if (!element.answered) {
+                    return <MessageCard message={element} messageInfoCall={messageInfoCall}
+                        setIsLoading={setIsLoading} isLoading={isLoading}
+                    />
+                }
             })}
 
+            <h3>Contestados</h3>
 
+            {receivedMessages.map(element => {
+                if (element.answered) {
+                    return <MessageCard message={element} messageInfoCall={messageInfoCall}
+                        setIsLoading={setIsLoading} isLoading={isLoading}
+                    />
+                }
+            })}
         </>
     )
 }

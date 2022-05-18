@@ -22,8 +22,8 @@ class MessagesService {
         return this.app.post(`/edit/${messageId}`)
     }
 
-    deleteAMessage = (messageId) => {
-        return this.app.post(`/delete/${messsageId}`)
+    deleteMessage = (messageId) => {
+        return this.app.post(`/delete/${messageId}`)
     }
 
 }
