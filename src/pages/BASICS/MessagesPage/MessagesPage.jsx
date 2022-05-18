@@ -47,7 +47,6 @@ const MessagesPage = () => {
                         setToBeApproved([...toBeApproved, element])
                     }
                 })
-
             })
             .catch(err => console.log(err))
     }
@@ -58,7 +57,6 @@ const MessagesPage = () => {
             .then(({ data }) => {
 
                 data.myEvents.map(element => {
-                    console.log('soy el ELEMENT-------------------', element)
 
                     if (element.isAproved.venueCheck === false && element.venue === user._id) {
                         setToBeApproved([...toBeApproved, element])
