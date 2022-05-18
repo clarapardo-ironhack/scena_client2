@@ -3,24 +3,20 @@ import './SearchBar.css'
 
 const SearchBar = ({ handler, task }) => {
 
-const placeholderText = `Búsqueda de ${task}`
+    const placeholderText = `Búsqueda de ${task}`
 
     return (
-        <div className="search">
-            <FormControl
-                id="outlined-basic"
+        <div className="searchBarDiv">
+            <input
                 onChange={handler}
-                variant="outlined"
-                fullWidth
                 label="Search"
-                placeholder = {placeholderText}
-            />
+                placeholder={placeholderText}
+                className="searchBar"
+            ></input>
+
         </div>
 
     )
 };
 
 export default SearchBar;
-
-
-

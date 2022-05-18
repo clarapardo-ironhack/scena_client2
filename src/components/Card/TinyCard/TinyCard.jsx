@@ -2,32 +2,34 @@ import './TinyCard.css'
 import { Card } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 
+
+
 const TinyCard = ({ _id, avatar, username, role, styles, alterRole }) => {
 
     const path = role
 
+
+
     return (
 
-        <>
-            <Link to={`/${path.toLowerCase()}s/details/${_id}`}>
-                <Card >
-                    <Card.Img className="avatar" variant="top" src={avatar} />
-                    <Card.Body>
-                        {username && <Card.Title>{username}</Card.Title>}
+        <div className='tinyCard'>
+            <Link to={`/${path.toLowerCase()}s/details/${_id}`} className='tinyCardLink'>
+                <div  >
+                    <div className='avatar'
+                        style={{
+                            backgroundImage: `url(${avatar})`
+                        }}>
 
-                    </Card.Body>
-                    {styles &&
+                        {username && <h2 className='userName'>{username}</h2>}
 
-                        styles.map(style => {
-                            return <p>{style}</p>
+                    </div>
 
-                        })
-                    }
-                </Card>
+
+                </div>
             </Link>
 
 
-        </>
+        </div >
     )
 }
 

@@ -1,10 +1,5 @@
-import SearchBar from '../../../components/SearchBar/SearchBar'
 import './HomePage.css'
-import filterMachine from '../../../utils/filterMachine'
 import { useState, useEffect, useContext } from 'react'
-import artistsService from '../../../services/artist.service'
-import Map from '../../../components/Map/Map'
-import { Container } from 'react-bootstrap'
 import Section from '../../../components/Section/Section'
 import { AuthContext } from '../../../context/auth.context'
 import messagesService from '../../../services/messages.service'
@@ -48,17 +43,13 @@ const HomePage = () => {
     }
 
 
-    return (<>
-        <h1>jompeich</h1>
-
-        <p>Mensjaes sin leer: {unansweredMessages.length} </p>
+    return (<div className='homePage'>
 
         <Section kind='event' />
         <Section kind='artist' />
 
-    </>
+    </div >
     )
 }
 
 export default HomePage
-
