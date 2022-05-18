@@ -103,7 +103,7 @@ const ScenaNav = () => {
             </Navbar >
 
             <Modal className="loginModal" show={showLoginModal} onHide={() => setShowLoginModal(false)}>
-                <Modal.Header closeButton className="cositas"></Modal.Header>
+                <Modal.Header closeButton className="modal-header-li-si"></Modal.Header>
                 <LoginPage fireFinalActions={fireFinalActionsLogin}/>
             </Modal>
 

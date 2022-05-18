@@ -6,7 +6,7 @@ Cerulean Blue #3454D1 */
 
 /* .loginModal .modal-dialog{
     width: 800px;
-} */ 
+} */
 
 .loginPage {
     background-color: #C9DAEA;
@@ -46,6 +46,6 @@ Cerulean Blue #3454D1 */
     color: white
 }
 
-.cositas{
- background-color: red;
+.modal-header-li-si {
+    background-color: #C9DAEA;
 }
