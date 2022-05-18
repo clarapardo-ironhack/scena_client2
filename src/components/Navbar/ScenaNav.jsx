@@ -1,15 +1,60 @@
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
+import { Navbar, Container, Nav, NavDropdown, Button, Modal } from 'react-bootstrap'
 import { NavLink, Link } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/auth.context'
 import './ScenaNav.css'
 import messagesService from '../../services/messages.service'
+import LoginPage from '../../pages/basics/LoginPage/LoginPage'
+import SignupPage from './../../pages/basics/SignupPage/SignupPage'
 
 
 const ScenaNav = () => {
 
     const { user, logOutUser, isLoggedIn } = useContext(AuthContext)
 
+    const [receivedMessages, setReceivedMessages] = useState([])
+    const [unansweredMessages, setUnansweredMessages] = useState([])
+
+    const unaFuncion = () => {
+        setUnansweredMessages(receivedMessages.map((element) => {
+            if (element.answered === false) {
+                return element
+            }
+        }))
+
+    }
+
+
+    const [showLoginModal, setShowLoginModal] = useState(false)
+    const [showRegisterModal, setShowRegisterModal] = useState(false)
+
+    const fireFinalActionsLogin = () => {
+        setShowLoginModal(false)
+        showMessage('HOLA', 'mensaje enviado!')
+    }
+
+    const fireFinalActionsRegister = () => {
+        setShowRegisterModal(false)
+        showMessage('HOLA', 'mensaje enviado!')
+    }
+
+    useEffect(() => {
+        if (user) {
+            messageInfoCall()
+        }
+    }, [])
+
+    useEffect(() => {
+        if (user) {
+            unaFuncion()
+        }
+    }, [])
+
+    const messageInfoCall = () => {
+        messagesService
+            .getAllUserMessages(user._id)
+            .then(({ data }) => setReceivedMessages(data))
+    }
 
     return (
         <div>
@@ -46,8 +91,8 @@ const ScenaNav = () => {
                                 </>
                                 :
                                 <>
-                                    <NavLink className="nav-link" to="/login">Iniciar sesión</NavLink>
-                                    <NavLink className="nav-link" to="/register">Registro</NavLink>
+                                    <Button className="nav-link" onClick={() => setShowLoginModal(true)}>Iniciar sesión</Button>
+                                    <Button className="nav-link" onClick={() => setShowRegisterModal(true)}>Registro</Button>
                                 </>
                             }
 
@@ -55,6 +100,16 @@ const ScenaNav = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar >
+
+            <Modal className="loginModal" show={showLoginModal} onHide={() => setShowLoginModal(false)}>
+                <Modal.Header closeButton className="cositas"></Modal.Header>
+                <LoginPage fireFinalActions={fireFinalActionsLogin}/>
+            </Modal>
+
+            <Modal className="registerModal" show={showRegisterModal} onHide={() => setShowRegisterModal(false)}>
+                <Modal.Header closeButton></Modal.Header>
+                <SignupPage fireFinalActions={fireFinalActionsRegister} />
+            </Modal>
         </div>
     )
 }

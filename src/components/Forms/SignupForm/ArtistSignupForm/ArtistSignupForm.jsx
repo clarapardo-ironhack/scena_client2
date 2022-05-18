@@ -13,7 +13,7 @@ import filterMachine from "../../../../utils/filterMachine"
 
 
  
-const ArtistSignupForm = ({ edit }) => {
+const ArtistSignupForm = ({ edit, fireFinalActions }) => {
 
     const { storeToken, authenticateUser } = useContext(AuthContext)
 
@@ -78,6 +78,7 @@ const ArtistSignupForm = ({ edit }) => {
                 .then(({ data }) => {
                     storeToken(data.authToken)
                     authenticateUser()
+                    fireFinalActions()
                     navigate('/')
                 })
                 .catch(err => console.log(err))

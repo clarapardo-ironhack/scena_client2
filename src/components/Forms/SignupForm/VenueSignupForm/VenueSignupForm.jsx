@@ -10,7 +10,7 @@ import artistsService from '../../../../services/artist.service'
 import { AuthContext } from './../../../../context/auth.context'
 
 
-const VenueSignupForm = ({ edit }) => {
+const VenueSignupForm = ({ edit, fireFinalActions }) => {
 
     const { storeToken, authenticateUser } = useContext(AuthContext)
 
@@ -68,6 +68,7 @@ const VenueSignupForm = ({ edit }) => {
                 .then(({ data }) => {
                     storeToken(data.authToken)
                     authenticateUser()
+                    fireFinalActions()
                     navigate('/')
                 })
                 .catch(err => console.log(err))

@@ -10,7 +10,7 @@ import { AuthContext } from './../../..//../context/auth.context'
 
 
 
-const LabelSignupForm = ({ edit }) => {
+const LabelSignupForm = ({ edit, fireFinalActions }) => {
 
     const { storeToken, authenticateUser } = useContext(AuthContext)
 
@@ -59,6 +59,7 @@ const LabelSignupForm = ({ edit }) => {
                 .then(({data}) => {
                     storeToken(data.authToken)
                     authenticateUser()
+                    fireFinalActions()
                     navigate('/')
                 })
                 .catch(err => console.log(err))
