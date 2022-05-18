@@ -45,6 +45,8 @@ const MessagesPage = () => {
 
                     if (element.isAproved.mainArtistCheck === false && element.mainArtist === user._id) {
                         setToBeApproved([...toBeApproved, element])
+                    } else {
+                        setToBeApproved([])
                     }
                 })
             })
@@ -60,6 +62,8 @@ const MessagesPage = () => {
 
                     if (element.isAproved.venueCheck === false && element.venue === user._id) {
                         setToBeApproved([...toBeApproved, element])
+                    } else {
+                        setToBeApproved([])
                     }
                 })
             })

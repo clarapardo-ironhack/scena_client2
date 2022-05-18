@@ -12,7 +12,7 @@ import SearchBar from "../../../SearchBar/SearchBar"
 import filterMachine from "../../../../utils/filterMachine"
 
 
-
+ 
 const ArtistSignupForm = ({ edit }) => {
 
     const { storeToken, authenticateUser } = useContext(AuthContext)
