@@ -8,8 +8,6 @@ import Loader from '../../../components/Loader/Loader'
 import { Button, Container } from 'react-bootstrap'
 import { AuthContext } from '../../../context/auth.context'
 import { useContext } from 'react'
-import eventsService from '../../../services/events.service'
-import TinyEventCard from '../../../components/EventCard/TinyEventCard/TinyEventCard'
 import EventList from '../../../components/EventList/EventList'
 
 
@@ -26,8 +24,9 @@ const ArtistDetailsPage = () => {
     const { artistId } = useParams()
 
     useEffect(() => {
+        checkArtistAdded()
         loadArtist()
-    }, [])
+    }, [isPresent])
 
     const loadArtist = () => {
 
@@ -41,7 +40,6 @@ const ArtistDetailsPage = () => {
                     arrEvent.push(elem)
                 })
                 setEventsAttended(arrEvent)
-                checkArtistAdded()
 
             })
             .catch(err => console.log(err))
@@ -58,13 +56,19 @@ const ArtistDetailsPage = () => {
     function addArtist() {
         authService
             .addArtist({ role, artistId, loggedUserId })
+        setIsPresent(true)
     }
+
+    function deleteArtist() {
+        authService
+            .deleteArtist({ role, artistId, loggedUserId })
+        setIsPresent(false)
+    }
+
 
     function checkArtistAdded() {
         authService.checkArtist({ role, artistId, loggedUserId }).then(({ data }) => {
-            // setIsPresent(data)
-
-            console.log(data)
+            setIsPresent(data)
         })
 
     }
@@ -84,10 +88,17 @@ const ArtistDetailsPage = () => {
             {
                 isLoggedIn
                     ?
-                    <Button onClick={addArtist}>Añadir Artista a tu lista de Favoritos</Button>
+                    !isPresent
+                        ?
+                        <Button onClick={addArtist}>💙 Me gusta 💙 </Button>
+                        :
+                        <Button onClick={deleteArtist}> ☠ Ya no mola ☠ </Button>
+
                     :
-                    <p>Logueate para añadir a artistas!!!</p>
+                    <p>logueate payaso</p>
+
             }
+
         </>
     )
 }

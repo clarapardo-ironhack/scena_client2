@@ -1,11 +1,13 @@
 import { Card, Image, Row, Col, Modal, Button } from 'react-bootstrap'
+import TinyEventCard from '../../EventCard/TinyEventCard/TinyEventCard'
 import NewMessageForm from '../../Forms/NewMessageForm/NewMessageForm'
 import { AuthContext } from "../../../context/auth.context"
 import { useContext, useState } from "react"
 import { MessageContext } from '../../../context/message.context'
+import TinyCard from '../TinyCard/TinyCard'
 
+const CommonCard = ({ _id, image, username, networks, avatar, images, description, title, likedArtists, likedEvents, likedVenues }) => {
 
-const CommonCard = ({ _id, image, username, networks, avatar, images, description, title }) => {
 
     const { user, isLoggedIn } = useContext(AuthContext)
     const { showMessage } = useContext(MessageContext)
@@ -20,15 +22,17 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
         showMessage('HOLA', 'mensaje enviado!')
     }
 
-    let instagramURL
-    let twitterURL
+    let instagramURL = ""
+    let twitterURL = ""
 
     if (networks) {
         instagramURL = `https://www.instagram.com/${networks.instagram}`
         twitterURL = `https://www.twitter.com/${networks.twitter}`
     }
-
-
+    else {
+        instagramURL = ""
+        twitterURL = ""
+    }
     return (
         <>
             <Row>
@@ -79,6 +83,48 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                     }
                 </Col>
             </Row>
+            {
+                likedArtists?.length
+                &&
+                <Col>
+                    {
+                        likedArtists.map((artist, index) => {
+
+                            return (
+                                <TinyCard {...artist} />
+                            )
+                        })
+                    }
+                </Col>
+            } 
+
+            {
+                likedVenues?.length
+                &&
+                <Col>
+                    {
+                        likedVenues.map((venue, index) => {
+                            return (
+                                <TinyCard {...venue} />
+                            )
+                        })
+                    }
+                </Col>
+            }
+
+            {
+                likedEvents?.length
+                &&
+                <Col>
+                    {
+                        likedEvents.map((event, index) => {
+                            return (
+                                <TinyEventCard {...event} />
+                            )
+                        })
+                    }
+                </Col>
+            }
 
             {isLoggedIn && (user.role !== 'Fan') && <Button onClick={openModal}>Mandar mensaje a {username}</Button>}
 

@@ -14,12 +14,15 @@ const VenueDetailsPage = () => {
     const { user, isLoggedIn } = useContext(AuthContext)
     const [venue, setVenue] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
+    const [isPresent, setIsPresent] = useState(false)
+
 
     const { venueId } = useParams()
 
     useEffect(() => {
+        checkVenueAdded()
         loadVenue()
-    }, [])
+    }, [isPresent])
 
     const loadVenue = () => {
 
@@ -41,25 +44,52 @@ const VenueDetailsPage = () => {
     function addVenue() {
         authService
             .addVenue({ role, venueId, loggedUserId })
+        setIsPresent(true)
+
+    }
+
+    function deleteVenue() {
+        authService
+            .deleteVenue({ role, venueId, loggedUserId })
+        setIsPresent(false)
+
+    }
+
+
+    function checkVenueAdded() {
+        authService.checkVenue({ role, venueId, loggedUserId }).then(({ data }) => {
+            setIsPresent(data)
+        })
+
     }
 
 
     return (
         <>
-            {!venue
-                ?
-                <Loader />
-                :
-                <Container>
-                    {isLoaded && <BigCard {...venue} />}
-                </Container>}
+            {
+                !venue
+                    ?
+                    <Loader />
+                    :
+                    <Container>
+                        {isLoaded && <BigCard {...venue} />}
+
+                    </Container>
+            }
             {
                 isLoggedIn
                     ?
-                    <Button onClick={addVenue}>Añadir Venue a tu lista de Favoritos</Button>
+                    !isPresent
+                        ?
+                        <Button onClick={addVenue}>💙 Me gusta 💙 </Button>
+                        :
+                        <Button onClick={deleteVenue}> ☠ Ya no mola ☠ </Button>
+
                     :
-                    <p>Logueate para añadir un Venue a tu lista de favoritos!!!</p>
+                    <p>logueate payaso</p>
+
             }
+
         </>
     )
 }

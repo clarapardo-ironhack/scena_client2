@@ -14,15 +14,15 @@ import SearchBar from '../../SearchBar/SearchBar'
 import filterMachine from '../../../utils/filterMachine'
 
 
-const CreateEventForm = () => {
+const CreateEventForm = ({ edit }) => {
 
     const { user } = useContext(AuthContext)
 
     const [loadingPoster, setLoadingPoster] = useState(false)
-
     const [allArtist, setAllArtist] = useState([])
     const [allArtistBackUp, setAllArtistBackUp] = useState([])
     const [allVenues, setAllVenues] = useState([])
+    
     const [newEventData, setNewEventData] = useState({
         title: '',
         date: '',
