@@ -14,6 +14,7 @@ const MessagesPage = () => {
     const [toBeApproved, setToBeApproved] = useState([])
     const [receivedMessages, setReceivedMessages] = useState([])
     const [isTrue, setIsTrue] = useState()
+    const [isLoading, setIsLoading] = useState(false)
 
 
     useEffect(() => {
@@ -78,11 +79,25 @@ const MessagesPage = () => {
 
             <h1>MENSAJERIA</h1>
 
+            <h3>Sin contestar</h3>
+
             {receivedMessages.map(element => {
-                return <MessageCard message={element} />
+                if (!element.answered) {
+                    return <MessageCard message={element} messageInfoCall={messageInfoCall}
+                        setIsLoading={setIsLoading} isLoading={isLoading}
+                    />
+                }
             })}
 
+            <h3>Contestados</h3>
 
+            {receivedMessages.map(element => {
+                if (element.answered) {
+                    return <MessageCard message={element} messageInfoCall={messageInfoCall}
+                        setIsLoading={setIsLoading} isLoading={isLoading}
+                    />
+                }
+            })}
         </>
     )
 }

@@ -35,7 +35,7 @@ const ScenaNav = () => {
         if (user) {
             unaFuncion()
         }
-    }, [receivedMessages])
+    }, [])
 
     const messageInfoCall = () => {
         messagesService

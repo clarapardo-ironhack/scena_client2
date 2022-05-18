@@ -2,11 +2,13 @@ import { Card, Image, Row, Col, Modal, Button } from 'react-bootstrap'
 import NewMessageForm from '../../Forms/NewMessageForm/NewMessageForm'
 import { AuthContext } from "../../../context/auth.context"
 import { useContext, useState } from "react"
+import { MessageContext } from '../../../context/message.context'
 
 
 const CommonCard = ({ _id, image, username, networks, avatar, images, description, title }) => {
 
     const { user, isLoggedIn } = useContext(AuthContext)
+    const { showMessage } = useContext(MessageContext)
 
     const [showModal, setShowModal] = useState(false)
 
@@ -15,6 +17,7 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
 
     const fireFinalActions = () => {
         closeModal()
+        showMessage('HOLA', 'mensaje enviado!')
     }
 
     let instagramURL
