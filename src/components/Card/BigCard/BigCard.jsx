@@ -1,6 +1,5 @@
 import './BigCard.css'
 import { Card, Container, Image, Row, Col } from 'react-bootstrap'
-import FanSpecifics from '../FanSpecifics/FanSpecifics'
 import ArtistSpecifics from '../ArtistSpecifics/ArtistSpecifics'
 import GeneralInfoCard from '../GeneralInfoCard/GeneralInfoCard'
 import VenueSpecifics from '../VenueSpecifics/VenueSpecifics'

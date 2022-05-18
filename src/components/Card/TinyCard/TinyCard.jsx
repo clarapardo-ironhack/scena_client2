@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 const TinyCard = ({ _id, avatar, username, role, styles }) => {
     const path = role
+
     return (
 
         <>

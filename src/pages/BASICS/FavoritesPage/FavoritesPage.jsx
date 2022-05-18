@@ -23,7 +23,6 @@ const FavoritesPage = () => {
     }, [])
 
     if (user.role === 'Fan') {
-
         loadSearch = () => {
 
             fansService
@@ -43,6 +42,7 @@ const FavoritesPage = () => {
                 .getOneArtist(user._id)
                 .then(({ data }) => {
                     setCurrentUser(data)
+                    console.log('hola bebe', data)
                     setIsLoaded(true)
                 })
                 .catch(err => console.log(err))

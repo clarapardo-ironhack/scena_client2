@@ -93,7 +93,7 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                         })
                     }
                 </Col>
-            }
+            } 
 
             {
                 likedVenues?.length
