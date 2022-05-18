@@ -9,6 +9,7 @@ import { Button, Container } from 'react-bootstrap'
 import { AuthContext } from '../../../context/auth.context'
 import { useContext } from 'react'
 import EventList from '../../../components/EventList/EventList'
+import GeneralList from '../../../components/GeneralList/GeneralList'
 
 
 
@@ -73,6 +74,7 @@ const ArtistDetailsPage = () => {
 
     }
 
+    console.log(eventsAttended)
 
     return (
         <>

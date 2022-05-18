@@ -9,8 +9,8 @@ const ArtistSpecifics = ({ styles, label }) => {
                 styles
                 &&
                 <ul>
-                    {styles.map(e => {
-                        return <li>{e}</li>
+                    {styles.map((e,index) => {
+                        return <li key={index}>{e}</li>
                     })}
                 </ul>
             }

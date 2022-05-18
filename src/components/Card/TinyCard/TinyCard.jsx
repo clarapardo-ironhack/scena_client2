@@ -2,7 +2,8 @@ import './TinyCard.css'
 import { Card } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 
-const TinyCard = ({ _id, avatar, username, role, styles }) => {
+const TinyCard = ({ _id, avatar, username, role, styles, alterRole }) => {
+
     const path = role
 
     return (
