@@ -45,7 +45,6 @@ const EventDetailsPage = () => {
                 setArtistLoaded(true)
             })
             .catch(err => console.log(err))
-
     }
 
     if (user !== null) {
@@ -71,39 +70,39 @@ const EventDetailsPage = () => {
         authService.checkEvent({ role, eventId, loggedUserId }).then(({ data }) => {
             setIsPresent(data)
         })
-
     }
 
-    console.log(attendingArtists)
+    console.log(event.creator?._id)
+    console.log(user._id)
 
 
     return (
         <>
-            {
-                !event
-                    ?
-                    <Loader />
-                    :
-                    <Container>
-                        {isLoaded && <BigCard {...event} />}
-                        {artistLoaded && <GeneralList infoType={attendingArtists} />}
-                    </Container>
+            {!event
+                ?
+                <Loader />
+                :
+                <Container>
+                    {isLoaded && <BigCard {...event} />}
+                    {artistLoaded && <GeneralList infoType={attendingArtists} />}
+                </Container>
             }
-            {
-                isLoggedIn
+            {isLoggedIn
+                ?
+                !isPresent
                     ?
-                    !isPresent
-                        ?
-                        <Button onClick={addEvent}>💙 Me gusta 💙 </Button>
-                        :
-                        <Button onClick={deleteEvent}> ☠ Ya no mola ☠ </Button>
-
+                    <Button onClick={addEvent}>💙 Me gusta 💙 </Button>
                     :
-                    <p>logueate payaso</p>
+                    <Button onClick={deleteEvent}> ☠ Ya no mola ☠ </Button>
+                :
+                <p>logueate payaso</p>
             }
-            <Link to={`/event/${event._id}/edit`}>
-                <Button>Editar el evento</Button>
-            </Link>
+            {isLoggedIn && (user._id === event.creator?._id)
+                ?
+                <Link to={`/event/${event._id}/edit`}><Button>Editar el evento</Button></Link>
+                :
+                null
+            }
         </>
     )
 }

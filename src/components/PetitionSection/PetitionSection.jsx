@@ -34,7 +34,9 @@ const PetitionSection = () => {
                         setToBeApproved([])
                     }
                 })
+                return data
             })
+            .then((data) => console.log(data.myEvents))
             .catch(err => console.log(err))
     }
 

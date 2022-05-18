@@ -74,7 +74,7 @@ const EventModerationCard = ({ event, setState, state, role }) => {
                 <hr />
                 <Row>
                     <h6>Fecha: {fullDate} ~ {fullTime} h</h6>
-                    <h6>Sala: {event.venue}</h6>
+                    <h6>Sala: {event.venue.username}</h6>
                 </Row>
             </Col>
 
