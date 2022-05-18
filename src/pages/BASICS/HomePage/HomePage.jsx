@@ -51,7 +51,7 @@ const HomePage = () => {
     return (<>
         <h1>jompeich</h1>
 
-        <p>Tienes {unansweredMessages.length} mensajes nuevos</p>
+        <p>Mensjaes sin leer: {unansweredMessages.length} </p>
 
         <Section kind='event' />
         <Section kind='artist' />
