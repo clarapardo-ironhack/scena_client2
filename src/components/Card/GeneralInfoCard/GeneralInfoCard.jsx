@@ -1,17 +1,12 @@
-<<<<<<< HEAD
-import { Card, Image, Row, Col } from 'react-bootstrap'
-import TinyEventCard from '../../EventCard/TinyEventCard/TinyEventCard'
-
-
-const CommonCard = ({ image, username, networks, avatar, images, description, title, likedArtists, likedEvents, likedVenues }) => {
-=======
 import { Card, Image, Row, Col, Modal, Button } from 'react-bootstrap'
+import TinyEventCard from '../../EventCard/TinyEventCard/TinyEventCard'
 import NewMessageForm from '../../Forms/NewMessageForm/NewMessageForm'
 import { AuthContext } from "../../../context/auth.context"
 import { useContext, useState } from "react"
+import TinyCard from '../TinyCard/TinyCard'
 
+const CommonCard = ({ _id, image, username, networks, avatar, images, description, title, likedArtists, likedEvents, likedVenues }) => {
 
-const CommonCard = ({ _id, image, username, networks, avatar, images, description, title }) => {
 
     const { user, isLoggedIn } = useContext(AuthContext)
 
@@ -23,17 +18,6 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
     const fireFinalActions = () => {
         closeModal()
     }
-
-    let instagramURL
-    let twitterURL
-
-    if (networks) {
-        instagramURL = `https://www.instagram.com/${networks.instagram}`
-        twitterURL = `https://www.twitter.com/${networks.twitter}`
-    }
-
->>>>>>> fde5ccae6d3600765d0e7de6b08dddd0ff4ee427
-
 
     let instagramURL = ""
     let twitterURL = ""
@@ -96,7 +80,6 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                     }
                 </Col>
             </Row>
-<<<<<<< HEAD
             {
                 likedArtists?.length
                 &&
@@ -139,7 +122,6 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                     }
                 </Col>
             }
-=======
 
             {isLoggedIn && (user.role !== 'Fan') && <Button onClick={openModal}>Mandar mensaje a {username}</Button>}
 
@@ -151,7 +133,6 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                     <NewMessageForm fireFinalActions={fireFinalActions} destinationId={_id} username={username} answer={false} />
                 </Modal.Body>
             </Modal>
->>>>>>> fde5ccae6d3600765d0e7de6b08dddd0ff4ee427
         </>
     )
 }

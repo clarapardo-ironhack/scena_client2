@@ -7,11 +7,11 @@ import VenueSpecifics from '../VenueSpecifics/VenueSpecifics'
 import EventSpecifics from '../EventSpecifics/EventSpecifics'
 
 
-const BigCard = ({ image, images, avatar, styles, username, networks,
+const BigCard = ({ _id, image, images, avatar, styles, username, networks,
     label, description, likedVenues, likedEvents, likedArtists, role, address,
     capacity, title, mainArtist, supportingArtists }) => {
 
-    const packGeneral = { image, images, avatar, username, networks, description, role, title, likedVenues, likedEvents, likedArtists }
+    const packGeneral = { _id, image, images, avatar, username, networks, description, role, title, likedVenues, likedEvents, likedArtists }
     const packArtist = { styles, label }
     const packVenue = { address, capacity }
     const packEvent = { mainArtist, supportingArtists }
