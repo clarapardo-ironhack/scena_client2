@@ -15,7 +15,6 @@ const BigCard = ({ image, images, avatar, styles, username, networks,
     const packArtist = { styles, label }
     const packVenue = { address, capacity }
     const packEvent = { mainArtist, supportingArtists }
-    console.log('dime tu rol guarra', role)
     return (
 
         <Container>

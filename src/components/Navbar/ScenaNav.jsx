@@ -1,13 +1,47 @@
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import { NavLink, Link } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/auth.context'
 import './ScenaNav.css'
+import messagesService from '../../services/messages.service'
+
 
 
 const ScenaNav = () => {
 
     const { user, logOutUser, isLoggedIn } = useContext(AuthContext)
+
+    const [receivedMessages, setReceivedMessages] = useState([])
+    const [unansweredMessages, setUnansweredMessages] = useState([])
+
+    const unaFuncion = () => {
+        setUnansweredMessages(receivedMessages.map((element) => {
+            if (element.answered === false) {
+                return element
+            }
+        }))
+
+    }
+
+    console.log('AQUIIIIII', unansweredMessages.length)
+
+    useEffect(() => {
+        if (user) {
+            messageInfoCall()
+        }
+    }, [])
+
+    useEffect(() => {
+        if (user) {
+            unaFuncion()
+        }
+    }, [receivedMessages])
+
+    const messageInfoCall = () => {
+        messagesService
+            .getAllUserMessages(user._id)
+            .then(({ data }) => setReceivedMessages(data))
+    }
 
     return (
         <div>
@@ -40,7 +74,7 @@ const ScenaNav = () => {
                                     <div className="nav-link" onClick={logOutUser}>Cerrar sesión</div>
                                     <NavLink className="nav-link" to="/my-profile">Editar perfil</NavLink>
                                     <NavLink className="nav-link" to="/favorites">Mis favoritos</NavLink>
-                                    <NavLink className="nav-link" to="/my-messages">Mis mensajes</NavLink>
+                                    <NavLink className="nav-link" to="/my-messages">Mis mensajes ({unansweredMessages.length})</NavLink>
                                 </>
                                 :
                                 <>

@@ -26,7 +26,8 @@ const EventPage = () => {
         eventsService
             .getAllEvents()
             .then(({ data }) => {
-                setEvent(data)
+                let approvedEvents = data.filter(element => element.isAproved.mainArtistCheck === true && element.isAproved.venueCheck === true)
+                setEvent(approvedEvents)
                 setIsLoaded(true)
             })
             .catch(err => console.log(err))

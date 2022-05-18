@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react'
 import { useEffect } from 'react'
 import authService from '../services/auth.service'
 
+
 const AuthContext = createContext()
 
 function AuthProviderWrapper(props) {
@@ -50,6 +51,9 @@ function AuthProviderWrapper(props) {
         setUser(null)
     }
 
+    useEffect(() => {
+        authenticateUser()
+    }, [])
 
     return (
         <AuthContext.Provider value={{ isLoggedIn, isLoading, user, storeToken, authenticateUser, logOutUser }}>
