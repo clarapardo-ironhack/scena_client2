@@ -6,13 +6,12 @@ import NewMessageForm from "../Forms/NewMessageForm/NewMessageForm"
 
 
 
-const MessageCard = ({ message, messageInfoCall, setIsLoading, isLoading }) => {
+const MessageCard = ({ message, messageInfoCall, isLoading, setIsLoading }) => {
 
     let destinationMess
     let usernameMess
 
     const [answered, setAnswered] = useState()
-
     const { showMessage } = useContext(MessageContext)
 
     const [showModal, setShowModal] = useState(false)
@@ -28,10 +27,6 @@ const MessageCard = ({ message, messageInfoCall, setIsLoading, isLoading }) => {
     }
 
     useEffect((() => {
-        messageInfoCall()
-    }), [isLoading])
-
-    useEffect((() => {
         checkIfAnswered()
     }), [answered])
 
@@ -40,12 +35,11 @@ const MessageCard = ({ message, messageInfoCall, setIsLoading, isLoading }) => {
 
         messagesService
             .deleteMessage(message._id)
-            .then(() => setIsLoading(false))
-            .then(() => messageInfoCall())
+            .then(() => {
+                setIsLoading(false)
+                messageInfoCall()
+            })
             .catch(err => console.log(err))
-
-
-
     }
 
     const checkIfAnswered = () => {
@@ -85,12 +79,9 @@ const MessageCard = ({ message, messageInfoCall, setIsLoading, isLoading }) => {
             </Card>
 
             <Button onClick={openModal}>Mandar mensaje a {usernameMess}</Button>
-            {isLoading
-                ?
-                <Button onClick={deleteMessage} disabled={true}>Eliminar mensaje</Button>
-                :
-                <Button onClick={deleteMessage}>Eliminar mensaje</Button>
-            }
+
+            <Button onClick={deleteMessage} disabled={isLoading}>Eliminar mensaje</Button>
+
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Mensaje para {usernameMess}</Modal.Title>

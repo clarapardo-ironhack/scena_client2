@@ -14,6 +14,10 @@ class MessagesService {
         return this.app.get(`/${userId}`)
     }
 
+    getTotalUserMessages = (userId) => {
+        return this.app.get(`/${userId}/total`)
+    }
+
     createNewMessage = (message) => {
         return this.app.post(`/create`, message)
     }

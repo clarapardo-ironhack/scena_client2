@@ -1,4 +1,50 @@
+/* Beau Blue #C9DAEA
+Fluorescent Blue #03F7EB
+Jungle Green #00B295 rgba(0, 178, 149, .7);
+Eerie Black #191516 rgba(25, 21, 22, .7);
+Cerulean Blue #3454D1 */
+
+.tinyCard {
+    height: 350px;
+    width: 350px;
+    margin: 50px 50px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.tinyCardLink {
+    text-decoration: none;
+}
+
 .avatar {
-    height: 150px;
-    width: 150px;
+    height: 350px;
+    width: 350px;
+    background-color: rgba(0, 0, 0, 0);
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    transition: 1s ease;
+}
+
+.avatar:hover {
+    transition: 1s ease;
+    opacity: 1;
+    box-shadow: 0 0 0 10px #03F7EB;
+}
+
+.userName {
+    opacity: 1;
+    text-decoration: none;
+    text-align: center;
+    padding: 20px 0;
+    color: #03F7EB;
+    background-color: #191516;
+    transition: 1s ease;
+
+}
+
+.userName:hover {
+    transition: 1s ease;
+    color: #191516;
+    background-color: #03F7EB;
+
 }

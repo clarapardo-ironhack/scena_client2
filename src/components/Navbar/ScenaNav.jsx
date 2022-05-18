@@ -8,7 +8,6 @@ import LoginPage from '../../pages/basics/LoginPage/LoginPage'
 import SignupPage from './../../pages/basics/SignupPage/SignupPage'
 
 
-
 const ScenaNav = () => {
 
     const { user, logOutUser, isLoggedIn } = useContext(AuthContext)
@@ -88,7 +87,7 @@ const ScenaNav = () => {
                                     <div className="nav-link" onClick={logOutUser}>Cerrar sesión</div>
                                     <NavLink className="nav-link" to="/my-profile">Editar perfil</NavLink>
                                     <NavLink className="nav-link" to="/favorites">Mis favoritos</NavLink>
-                                    <NavLink className="nav-link" to="/my-messages">Mis mensajes ({unansweredMessages.length})</NavLink>
+                                    <NavLink className="nav-link" to="/my-messages">Mis mensajes</NavLink>
                                 </>
                                 :
                                 <>

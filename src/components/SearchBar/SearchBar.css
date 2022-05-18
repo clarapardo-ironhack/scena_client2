@@ -1,0 +1,26 @@
+/* Beau Blue #C9DAEA
+Fluorescent Blue #03F7EB
+Jungle Green #00B295
+Eerie Black #191516
+Cerulean Blue #3454D1 */
+
+.searchBar {
+    background-color: #03F7EB;
+    transition: .3s ease;
+    box-decoration-break: unset;
+}
+
+.searchBar:hover {
+    transition: .3s ease;
+    background-color: #191516;
+}
+
+.searchBar::placeholder {
+    color: #191516;
+    transition: .3s ease;
+}
+
+.searchBar:hover::placeholder {
+    /* transition: .3s ease; */
+    color: #03F7EB
+}
