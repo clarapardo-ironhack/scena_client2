@@ -47,16 +47,15 @@ const MessagesPage = () => {
                         setToBeApproved([...toBeApproved, element])
                     }
                 })
-
             })
             .catch(err => console.log(err))
     }
+
     const venueInfoCall = () => {
         venuesService
             .getOneVenue(user._id)
             .then(({ data }) => {
 
-                console.log(element)
                 data.myEvents.map(element => {
 
                     if (element.isAproved.venueCheck === false && element.venue === user._id) {

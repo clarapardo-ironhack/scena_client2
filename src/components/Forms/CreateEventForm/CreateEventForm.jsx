@@ -41,8 +41,6 @@ const CreateEventForm = () => {
         venuesCall()
     }, [])
 
-    console.log(newEventData)
-
     const [maininputText, setmainInputText] = useState("")
     const [suppinputText, setsuppInputText] = useState("")
     const [venueinputText, setvenueInputText] = useState("")

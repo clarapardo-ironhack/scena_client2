@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap"
 import { Button } from "react-bootstrap"
 import { Navigate, useNavigate } from "react-router-dom"
 import eventsService from "../../../services/events.service"
+import venuesService from "../../../services/venue.service"
 const { getFullDate, getFullTime } = require("./../../../utils/dateFormatter")
 
 
@@ -10,9 +11,15 @@ const EventModerationCard = ({ event, setState, state, role }) => {
 
     const fullDate = getFullDate(event.date)
     const fullTime = getFullTime(event.date)
-    console.log(':) :) :) :) ', event.description)
 
     const [eventData, setEventData] = useState(event)
+
+    // venuesService
+    //     .getOneVenue(event.venue)
+    //     .then(response => {
+
+    //     })
+    //     .catch(err => console.log(err))
 
     const approveEvent = () => {
         if (role === 'Artist') {
@@ -25,7 +32,9 @@ const EventModerationCard = ({ event, setState, state, role }) => {
                 }
             })
             setState(true)
+
         } else if (role === 'Venue') {
+
             setEventData({
                 ...eventData,
                 isAproved: {
@@ -33,6 +42,7 @@ const EventModerationCard = ({ event, setState, state, role }) => {
                     venueCheck: true
                 }
             })
+            setState(true)
         }
     }
 
@@ -45,7 +55,7 @@ const EventModerationCard = ({ event, setState, state, role }) => {
         if (role === 'Artist') {
             eventsService.editEvent(eventData)
         } else if (role === 'Venue') {
-            console.log('aqui iría el venueService')
+            eventsService.editEvent(eventData)
         }
     }), [state])
 
@@ -57,8 +67,8 @@ const EventModerationCard = ({ event, setState, state, role }) => {
 
     return (
         <Container>
-            <Col sm={{ span: 9 }}>
 
+            <Col sm={{ span: 9 }}>
                 <h5>{event.title}</h5>
                 <h6>Creado por: {event.creator.username}</h6>
                 <hr />
@@ -66,18 +76,15 @@ const EventModerationCard = ({ event, setState, state, role }) => {
                     <h6>Fecha: {fullDate} ~ {fullTime} h</h6>
                     <h6>Sala: {event.venue}</h6>
                 </Row>
-
             </Col>
+
             <Col sm={{ span: 3 }}>
-                <Button variant="dark" onClick={() => {
-                    approveEvent()
-                    navigatetohome()
-                }} >Aprobar</Button>
+                <Button variant="dark" onClick={approveEvent} >Aprobar</Button>
                 <Button variant="dark" onClick={denyEvent} >Rechazar</Button>
             </Col>
+
         </Container>
     )
-
 }
 
 export default EventModerationCard
