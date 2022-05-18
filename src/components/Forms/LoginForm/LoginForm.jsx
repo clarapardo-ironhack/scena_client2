@@ -6,7 +6,7 @@ import authService from '../../../services/auth.service'
 import { AuthContext } from '../../../context/auth.context'
 
 
-const LoginForm = ({ role }) => {
+const LoginForm = ({ role, fireFinalActions }) => {
 
     const [loginData, setLoginData] = useState({
         email: '',
@@ -26,6 +26,7 @@ const LoginForm = ({ role }) => {
             .then(({ data }) => {
                 storeToken(data.authToken)
                 authenticateUser()
+                fireFinalActions()
                 navigate('/')
             })
             .catch(err => console.log(err))

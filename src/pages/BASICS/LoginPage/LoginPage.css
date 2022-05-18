@@ -1,0 +1,51 @@
+/* Beau Blue #C9DAEA
+Fluorescent Blue #03F7EB
+Jungle Green #00B295
+Eerie Black #191516
+Cerulean Blue #3454D1 */
+
+/* .loginModal .modal-dialog{
+    width: 800px;
+} */ 
+
+.loginPage {
+    background-color: #C9DAEA;
+    text-align: center;
+    padding-bottom: 50px;
+    margin: 0px
+}
+
+.login-bigTitle {
+    color: #00B295;
+    font-size: 2.5rem;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.one-option-user {
+    background-image: url('./../../../../public/concierto.jpg');
+    margin-bottom: 20px;
+    height: 75px;
+    border-radius: 20px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -webkit-transition: all 0.5s ease;
+}
+
+.one-option-user:hover {
+    filter: grayscale(0%);
+    filter: gray;
+    -webkit-filter: grayscale(0%);
+    filter: none;
+    transition: 0.5s ease;
+    font-size: 35px;
+    color: white
+}
+
+.cositas{
+ background-color: red;
+}

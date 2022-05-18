@@ -1,12 +1,14 @@
 import LoginForm from '../../../components/Forms/LoginForm/LoginForm'
 import './LoginPage.css'
-import { Button } from 'react-bootstrap'
+import { Button, Col, Row } from 'react-bootstrap'
 import { useState } from 'react'
 
 
-const LoginPage = ({ state }) => {
-    
-    const [showButtons, setShowButtons] = useState(state)
+
+
+const LoginPage = ({fireFinalActions}) => {
+
+    const [showButtons, setShowButtons] = useState(true)
     const [showForm, setShowForm] = useState('')
 
     const openLoginForm = role => {
@@ -15,28 +17,44 @@ const LoginPage = ({ state }) => {
     }
 
     return (
-        <>
-            <h1>loguinpeich</h1>
+        <div className="loginPage">
+            <h1 className="login-bigTitle">¿?</h1>
 
             {showButtons
                 ?
-                <>
-                    <Button onClick={() => openLoginForm('fan')}>Fan</Button>
-                    <Button onClick={() => openLoginForm('venue')}>Venue</Button>
-                    <Button onClick={() => openLoginForm('artist')}>Artist</Button>
-                    <Button onClick={() => openLoginForm('label')}>Label</Button>
-                </>
+                <Row > 
+                    <Col sm={{ span: 4, offset: 2 }}>
+                        <div className="one-option-user li-option1" onClick={() => openLoginForm('fan')}>
+                            fan
+                        </div>
+                    </Col>
+                    <Col sm={{ span: 4 }}>
+                        <div className="one-option-user li-option2" onClick={() => openLoginForm('venue')}>
+                            local
+                        </div>
+                    </Col>
+                    <Col sm={{ span: 4, offset: 2 }}>
+                        <div className="one-option-user li-option3" onClick={() => openLoginForm('artist')}>
+                            artista
+                        </div>
+                    </Col>
+                    <Col sm={{ span: 4}}>
+                        <div className="one-option-user li-option4" onClick={() => openLoginForm('label')}>
+                            sello
+                        </div>
+                    </Col>
+                </Row>
                 :
                 <>
-                    {showForm === 'fan' && <LoginForm role={showForm} />}
-                    {showForm === 'venue' && <LoginForm role={showForm} />}
-                    {showForm === 'artist' && <LoginForm role={showForm} />}
-                    {showForm === 'label' && <LoginForm role={showForm} />}
+                    {showForm === 'fan' && <LoginForm role={showForm} fireFinalActions={fireFinalActions} />}
+                    {showForm === 'venue' && <LoginForm role={showForm} fireFinalActions={fireFinalActions} />}
+                    {showForm === 'artist' && <LoginForm role={showForm} fireFinalActions={fireFinalActions} />}
+                    {showForm === 'label' && <LoginForm role={showForm} fireFinalActions={fireFinalActions} />}
                 </>
 
             }
 
-        </>
+        </div>
     )
 }
 

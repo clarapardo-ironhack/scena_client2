@@ -10,7 +10,7 @@ import { AuthContext } from './../../..//../context/auth.context'
 
 
 
-const FanSignupForm = ({ edit }) => {
+const FanSignupForm = ({ edit, fireFinalActions }) => {
 
     const { storeToken, authenticateUser } = useContext(AuthContext)
 
@@ -52,6 +52,7 @@ const FanSignupForm = ({ edit }) => {
                 .then(({data}) => {
                     storeToken(data.authToken)
                     authenticateUser()
+                    fireFinalActions()
                     navigate('/')
                 })
                 .catch(err => console.log(err))
