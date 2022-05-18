@@ -6,8 +6,7 @@ import { useContext, useState } from "react"
 import { MessageContext } from '../../../context/message.context'
 import TinyCard from '../TinyCard/TinyCard'
 
-const CommonCard = ({ _id, image, username, networks, avatar, images, description, title, likedArtists, likedEvents, likedVenues }) => {
-
+const CommonCard = ({ _id, image, username, networks, avatar, images, description, title, likedArtists, likedEvents, likedVenues, role }) => {
 
     const { user, isLoggedIn } = useContext(AuthContext)
     const { showMessage } = useContext(MessageContext)
@@ -91,12 +90,12 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                         likedArtists.map((artist, index) => {
 
                             return (
-                                <TinyCard {...artist} />
+                                <TinyCard alterRole={role} {...artist} />
                             )
                         })
                     }
                 </Col>
-            } 
+            }
 
             {
                 likedVenues?.length
@@ -105,7 +104,7 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                     {
                         likedVenues.map((venue, index) => {
                             return (
-                                <TinyCard {...venue} />
+                                <TinyCard alterRole={role} {...venue} />
                             )
                         })
                     }

@@ -8,12 +8,16 @@ import eventsService from '../../../services/events.service'
 import authService from '../../../services/auth.service'
 import { AuthContext } from '../../../context/auth.context'
 import { useContext } from 'react'
+import TinyCard from '../../../components/Card/TinyCard/TinyCard'
+import GeneralList from '../../../components/GeneralList/GeneralList'
 import { Link } from 'react-router-dom'
 
 const EventDetailsPage = () => {
 
     const { user, isLoggedIn } = useContext(AuthContext)
     const [event, setEvent] = useState([])
+    const [attendingArtists, setAttendingArtists] = useState([])
+    const [artistLoaded, setArtistLoaded] = useState(false)
     const [isLoaded, setIsLoaded] = useState(false)
     const [isPresent, setIsPresent] = useState(false)
 
@@ -32,6 +36,13 @@ const EventDetailsPage = () => {
             .then(({ data }) => {
                 setEvent(data)
                 setIsLoaded(true)
+                let arrArtists = []
+                data.supportingArtists.map((elem, index) => {
+                    arrArtists.push(elem)
+                })
+                arrArtists.unshift(data.mainArtist)
+                setAttendingArtists(arrArtists)
+                setArtistLoaded(true)
             })
             .catch(err => console.log(err))
 
@@ -63,6 +74,9 @@ const EventDetailsPage = () => {
 
     }
 
+    console.log(attendingArtists)
+
+
     return (
         <>
             {
@@ -72,6 +86,7 @@ const EventDetailsPage = () => {
                     :
                     <Container>
                         {isLoaded && <BigCard {...event} />}
+                        {artistLoaded && <GeneralList infoType={attendingArtists} />}
                     </Container>
             }
             {

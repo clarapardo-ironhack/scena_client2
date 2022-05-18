@@ -9,23 +9,38 @@ const GeneralList = ({ infoType, input }) => {
     const filteredData = filterMachine(infoType, input)
 
     return (
-        filteredData?.length
+        filteredData.length
             ?
+            infoType.length
+                ?
+                <Row>
+                    {
+                        filteredData?.map(elem => {
+                            return (
+                                <Col md={{ span: 4 }} key={elem._id}>
+                                    <TinyCard {...elem} />
+                                </Col>
+                            )
+                        })
+                    }
+                </Row>
+                :
+                <Loader />
+            :
             <Row>
-                {filteredData?.map(element => {
-                    return (
-                        <Col md={{ span: 4 }} key={element._id}>
-                            <TinyCard {...element} />
-                        </Col>
-                    )
-                })
+                {
+                    infoType?.map(elem => {
+                        return (
+                            <Col md={{ span: 4 }} key={elem._id}>
+                                <TinyCard {...elem} />
+                            </Col>
+                        )
+                    })
                 }
             </Row>
-            :
-            <h2>No hay resultados</h2>
-
-
     )
 }
 
 export default GeneralList
+
+
