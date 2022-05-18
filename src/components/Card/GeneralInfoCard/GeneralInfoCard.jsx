@@ -1,4 +1,4 @@
-import { Card, Image, Row, Col } from 'react-bootstrap'
+import { Card, Image, Row, Col, Modal, Button } from 'react-bootstrap'
 import NewMessageForm from '../../Forms/NewMessageForm/NewMessageForm'
 import { AuthContext } from "../../../context/auth.context"
 import { useContext, useState } from "react"
@@ -7,6 +7,15 @@ import { useContext, useState } from "react"
 const CommonCard = ({ _id, image, username, networks, avatar, images, description, title }) => {
 
     const { user, isLoggedIn } = useContext(AuthContext)
+
+    const [showModal, setShowModal] = useState(false)
+
+    const openModal = () => setShowModal(true)
+    const closeModal = () => setShowModal(false)
+
+    const fireFinalActions = () => {
+        closeModal()
+    }
 
     let instagramURL
     let twitterURL
@@ -67,9 +76,17 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                     }
                 </Col>
             </Row>
-            <Row>
-                {isLoggedIn && (user.role !== 'Fan') && <NewMessageForm destinationId={_id} username={username} />}
-            </Row>
+
+            {isLoggedIn && (user.role !== 'Fan') && <Button onClick={openModal}>Mandar mensaje a {username}</Button>}
+
+            <Modal show={showModal} onHide={closeModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Mensaje para {username}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <NewMessageForm fireFinalActions={fireFinalActions} destinationId={_id} username={username} answer={false} />
+                </Modal.Body>
+            </Modal>
         </>
     )
 }

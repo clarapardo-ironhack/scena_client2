@@ -20,7 +20,6 @@ const MessagesPage = () => {
         if (user.role === 'Artist') {
             artistInfoCall()
         } else if (user.role === 'Venue') {
-            console.log('-SOY UN VENUEEEEE....................')
             venueInfoCall()
         }
     }, [isTrue])
@@ -52,7 +51,6 @@ const MessagesPage = () => {
             })
             .catch(err => console.log(err))
     }
-    console.log(receivedMessages)
     const venueInfoCall = () => {
         venuesService
             .getOneVenue(user._id)

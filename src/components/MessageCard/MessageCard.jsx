@@ -29,7 +29,7 @@ const MessageCard = ({ message }) => {
                     <p>{message.textContent}</p>
                 </Card.Body>
             </Card>
-            <NewMessageForm destinationId={destinationMess} username={usernameMess} />
+            <NewMessageForm destinationId={destinationMess} username={usernameMess} answer={message} />
 
         </>
     )

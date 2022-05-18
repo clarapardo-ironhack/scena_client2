@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap"
 import { AuthContext } from "../../../context/auth.context"
 import messagesService from "../../../services/messages.service"
 
-const NewMessageForm = ({ destinationId, username }) => {
+const NewMessageForm = ({ destinationId, username, answer, fireFinalActions }) => {
 
     const { user, isLoggedIn } = useContext(AuthContext)
 
@@ -14,7 +14,8 @@ const NewMessageForm = ({ destinationId, username }) => {
         originVenue: `${_id}`,
         originLabel: `${_id}`,
         destination: `${destinationId}`,
-        textContent: ''
+        textContent: '',
+        answered: false
     })
 
     const { origin, destination, textContent } = signupData
@@ -32,9 +33,20 @@ const NewMessageForm = ({ destinationId, username }) => {
         messagesService
             .createNewMessage(signupData)
             .then(({ data }) => {
-                console.log(data)
+                fireFinalActions()
             })
             .catch(err => console.log(err))
+
+        console.log('e------------------------', answer)
+
+        if (answer) {
+            messagesService
+                .answerMessage(answer._id)
+                .then(({ data }) => {
+                    console.log(data)
+                })
+                .catch(err => console.log(err))
+        }
     }
 
     return (

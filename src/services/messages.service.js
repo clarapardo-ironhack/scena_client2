@@ -18,6 +18,10 @@ class MessagesService {
         return this.app.post(`/create`, message)
     }
 
+    answerMessage = (messageId) => {
+        return this.app.post(`/edit/${messageId}`)
+    }
+
     deleteAMessage = (messageId) => {
         return this.app.post(`/delete/${messsageId}`)
     }
