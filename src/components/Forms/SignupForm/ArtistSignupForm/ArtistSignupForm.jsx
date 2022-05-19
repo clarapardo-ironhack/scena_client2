@@ -12,7 +12,7 @@ import SearchBar from "../../../SearchBar/SearchBar"
 import filterMachine from "../../../../utils/filterMachine"
 
 
- 
+
 const ArtistSignupForm = ({ edit, fireFinalActions }) => {
 
     const { storeToken, authenticateUser } = useContext(AuthContext)
@@ -156,9 +156,49 @@ const ArtistSignupForm = ({ edit, fireFinalActions }) => {
 
     return (
         <Container>
+            <h1 className="login-title">ARTISTA ¿?</h1>
+            <hr />
+
             <Form onSubmit={handleSubmit}>
 
                 <Form.Group as={Row}>
+                    <Col sm={{ span: 6 }}>
+                        <Form.Group className="mb-3" controlId="avatar">
+                            <Form.Label>AQUI VA LA FOTO</Form.Label>
+                            <Form.Control type="file" onChange={handleAvatarUpload} />
+                        </Form.Group>
+                    </Col>
+                    <Col sm={{ span: 6 }}>
+                        <FloatingLabel controlId="floating-username" label="Usuario" className="mb-3">
+                            <Form.Control type="text" onChange={handleInputChange} name="username" value={username} placeholder="Username" />
+                        </FloatingLabel>
+
+                        <FloatingLabel controlId="floating-password" label="Contraseña" className="mb-3">
+                            {edit
+                                ?
+                                <Form.Control type="password" placeholder="Contraseña" name="password" value={password} disabled onChange={handleInputChange} />
+                                :
+                                <Form.Control type="password" placeholder="Contraseña" name="password" value={password} onChange={handleInputChange} />
+                            }
+                        </FloatingLabel>
+
+                        <FloatingLabel controlId="floating-email" label="Email" className="mb-3">
+                            <Form.Control type="email" onChange={handleInputChange} name="email" value={email} placeholder="email" />
+                        </FloatingLabel>
+
+                        <Form.Group className="mb-3" controlId="phoneNumber" >
+                            <FloatingLabel controlId="floating-phoneNumber" label="Teléfono">
+                                <Form.Control type="text" onChange={handleInputChange} name="phoneNumber" value={phoneNumber} placeholder="Phone Number" />
+                            </FloatingLabel>
+                        </Form.Group>
+                    </Col>
+                </Form.Group>
+
+                <FloatingLabel controlId="description" label="Cuéntanos algo sobre ti" className="mb-3">
+                    <Form.Control as="textarea" style={{ height: '120px' }} placeholder="Descripción del evento" name="description" value={description} onChange={handleInputChange} />
+                </FloatingLabel>
+
+                {/* <Form.Group as={Row}>
                     <Col sm={{ span: 6 }}>
                         <FloatingLabel controlId="floating-username" label="Usuario" className="mb-3">
                             <Form.Control type="text" onChange={handleInputChange} name="username" value={username} placeholder="Username" />
@@ -172,56 +212,49 @@ const ArtistSignupForm = ({ edit, fireFinalActions }) => {
                                 <Form.Control type="password" placeholder="Contraseña" name="password" value={password} disabled onChange={handleInputChange} />
                                 :
                                 <Form.Control type="password" placeholder="Contraseña" name="password" value={password} onChange={handleInputChange} />
-                            }                        </FloatingLabel>
+                            }
+                        </FloatingLabel>
                     </Col>
                 </Form.Group>
 
                 <FloatingLabel controlId="floating-email" label="Email" className="mb-3">
                     <Form.Control type="email" onChange={handleInputChange} name="email" value={email} placeholder="email" />
-                </FloatingLabel>
+                </FloatingLabel> */}
 
                 <Form.Group as={Row}>
 
-                    <Col sm={{ span: 6 }}>
-                        <FloatingLabel controlId="description" label="Cuéntanos algo sobre ti" className="mb-3">
+                    {/* <FloatingLabel controlId="description" label="Cuéntanos algo sobre ti" className="mb-3">
                             <Form.Control as="textarea" style={{ height: '200px' }} placeholder="Descripción del evento" name="description" value={description} onChange={handleInputChange} />
-                        </FloatingLabel>
+                        </FloatingLabel> */}
 
+                    <h5>Géneros musicales</h5>
 
-                        <h4>STYLES</h4>
+                    <SearchBar handler={inputHandler} task={'estilos'} />
 
-                        <SearchBar handler={inputHandler} task={'estilos'} />
+                    <FloatingLabel controlId="floating-style1" className="mb-3">
 
-                        <FloatingLabel controlId="floating-style1" className="mb-3">
+                        {inputText.length
+                            ?
+                            <Form.Select multiple={true} style={{ height: '200px' }} aria-label="styles" onChange={handleInputChange} value={styles} name="styles">
+                                {filteredGenres.map(style => <option key={`1 ${style}`} >{style}</option>)}
+                            </Form.Select>
+                            :
+                            <></>}
+                    </FloatingLabel>
 
-                            {inputText.length
-                                ?
-                                <Form.Select multiple={true} style={{ height: '200px' }} aria-label="styles" onChange={handleInputChange} value={styles} name="styles">
-                                    {filteredGenres.map(style => <option key={`1 ${style}`} >{style}</option>)}
-                                </Form.Select>
-                                :
-                                <></>}
-                        </FloatingLabel>
-
-
-                    </Col>
-
+                    <h5>Tus redes</h5>
                     <Col sm={{ span: 6 }}>
 
-                        <Form.Group className="mb-3" controlId="phoneNumber" >
-                            <FloatingLabel controlId="floating-phoneNumber" label="Teléfono">
-                                <Form.Control type="text" onChange={handleInputChange} name="phoneNumber" value={phoneNumber} placeholder="Phone Number" />
-                            </FloatingLabel>
-                        </Form.Group>
 
-                        <h4>SOCIALS</h4>
+                        <Col sm={{ span: 6 }}>
 
-                        <InputGroup className="mb-3">
-                            <InputGroup.Text id="instagram"></InputGroup.Text>
-                            <FloatingLabel controlId="instagram" label="Instagram">
-                                <Form.Control type="text" placeholder="Instagram" name="instagram" value={instagram} onChange={handleInputChange} />
-                            </FloatingLabel>
-                        </InputGroup>
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text id="instagram"></InputGroup.Text>
+                                <FloatingLabel controlId="instagram" label="Instagram">
+                                    <Form.Control type="text" placeholder="Instagram" name="instagram" value={instagram} onChange={handleInputChange} />
+                                </FloatingLabel>
+                            </InputGroup>
+                        </Col>
 
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="spotify"></InputGroup.Text>
@@ -254,10 +287,10 @@ const ArtistSignupForm = ({ edit, fireFinalActions }) => {
 
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="avatar">
+                {/* <Form.Group className="mb-3" controlId="avatar">
                     <Form.Label>AVATAR</Form.Label>
                     <Form.Control type="file" onChange={handleAvatarUpload} />
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Group className="mb-3" controlId="pages">
                     <Form.Label>Imágenes</Form.Label>
@@ -272,7 +305,23 @@ const ArtistSignupForm = ({ edit, fireFinalActions }) => {
                     :
                     <>
                         {edit && <Button variant="dark" type="submit">Guardar cambios</Button>}
-                        {!edit && <Button variant="dark" type="submit">Registrarme</Button>}
+                        {!edit && <button className="register-button">
+                            <p>Registrarme</p>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                                className="h-6 w-6"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                                ></path>
+                            </svg>
+                        </button>}
                     </>}
             </Form>
         </Container>

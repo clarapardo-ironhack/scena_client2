@@ -14,13 +14,7 @@ const EventModerationCard = ({ event, setState, state, role }) => {
 
     const [eventData, setEventData] = useState(event)
 
-    // venuesService
-    //     .getOneVenue(event.venue)
-    //     .then(response => {
-
-    //     })
-    //     .catch(err => console.log(err))
-    //Test
+        
     const approveEvent = () => {
         if (role === 'Artist') {
 
