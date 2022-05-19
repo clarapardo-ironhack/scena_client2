@@ -1,3 +1,7 @@
 .scenaNav {
     position: fixed;
 }
+
+.logo-navbar img {
+    width: 100%
+}
