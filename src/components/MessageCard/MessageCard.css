@@ -1,0 +1,24 @@
+/* Beau Blue #C9DAEA
+Fluorescent Blue #03F7EB
+Jungle Green #00B295
+Eerie Black #191516
+Cerulean Blue #3454D1 */
+
+.messageCard {
+    border: 6px solid #3454D1;
+    border-radius: 60px;
+    margin: 40px;
+    padding: 40px;
+}
+
+.messageCard h3 {
+    color: #03F7EB;
+    padding: 20px;
+    background-color: #191516;
+    text-decoration: overline;
+}
+
+.messageCard h3 {
+
+    text-decoration: underline;
+}

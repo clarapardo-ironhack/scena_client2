@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/auth.context"
 import messagesService from './../../services/messages.service'
 import MessageCard from './../MessageCard/MessageCard'
+import './ChatSection.css'
+
 
 
 
@@ -22,12 +24,10 @@ const ChatSection = () => {
             .then(({ data }) => setReceivedMessages(data))
     }
 
-    return (<>
-        <h2>--------</h2>
-
+    return (<div className="chatSection">
         <h1>MENSAJERIA</h1>
 
-        <h3>Sin contestar</h3>
+        <h2>Sin contestar</h2>
 
         {
             receivedMessages.map(element => {
@@ -39,7 +39,7 @@ const ChatSection = () => {
             })
         }
 
-        <h3>Contestados</h3>
+        <h2>Contestados</h2>
 
         {
             receivedMessages.map(element => {
@@ -50,7 +50,7 @@ const ChatSection = () => {
                 }
             })
         }
-    </>)
+    </div>)
 }
 
 export default ChatSection

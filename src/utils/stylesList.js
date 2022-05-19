@@ -1,3 +1,3 @@
-const stylesList = ['ROCK', 'POP', 'DANCE', 'KARAOKE', 'HIPHOP', 'BLUES', 'PUNK', 'MENEITOS']
+const stylesList = ['ROCK', 'POP', 'DANCE', 'KARAOKE', 'HIPHOP', 'BLUES', 'PUNK', 'TRAP', 'WORLD MUSIC', 'TECHNO', 'SYNTHPOP', 'SUBNOPOP', 'DARK WAVE', 'METAL', 'POST PUNK', 'PUNK ROCK', 'CUMBIA', 'REGGEA', 'DUBSTEP', 'RAP', 'K-POP', 'INDIE', 'CLÁSICA', 'COUNTRY', 'CANTAUTOR/A', 'FOLK', 'FLAMENCO', 'JAZZ', 'SALSA', 'R&B', 'SOUL', 'DISCO', 'HOUSE', 'GRUNGE', 'FUNK', 'TANGO', 'SKA', 'OTROS']
 
 export default stylesList

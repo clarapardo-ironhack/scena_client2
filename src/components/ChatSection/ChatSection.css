@@ -1,0 +1,23 @@
+/* Beau Blue #C9DAEA
+Fluorescent Blue #03F7EB
+Jungle Green #00B295
+Eerie Black #191516
+Cerulean Blue #3454D1 */
+
+.chatSection{
+    margin: 0 30px;
+}
+
+.chatSection h1 {
+    color: #03F7EB;
+    border: 2px solid #03F7EB;
+    border-radius: 60px;
+    padding: 10px;
+}
+
+.chatSection h2 {
+    color: #3454D1;
+    margin-top: 70px;
+       text-decoration: overline;
+    
+}

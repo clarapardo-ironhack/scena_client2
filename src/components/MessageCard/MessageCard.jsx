@@ -3,6 +3,7 @@ import { Button, Card, Modal } from "react-bootstrap"
 import { MessageContext } from "../../context/message.context"
 import messagesService from "../../services/messages.service"
 import NewMessageForm from "../Forms/NewMessageForm/NewMessageForm"
+import './MessageCard.css'
 
 
 
@@ -64,11 +65,11 @@ const MessageCard = ({ message, messageInfoCall, isLoading, setIsLoading }) => {
 
     return (
         <>
-            <Card>
+            <div className="messageCard">
                 <Card.Body>
-                    {message.originArtist && <Card.Title>Mensaje de {message.originArtist.username}</Card.Title>}
-                    {message.originVenue && <Card.Title>Mensaje de {message.originVenue.username}</Card.Title>}
-                    {message.originLabel && <Card.Title>Mensaje de {message.originLabel.username}</Card.Title>}
+                    {message.originArtist && <h3>Mensaje de <b>{message.originArtist.username}</b></h3>}
+                    {message.originVenue && <h3>Mensaje de <b>{message.originVenue.username}</b></h3>}
+                    {message.originLabel && <h3>Mensaje de <b>{message.originLabel.username}</b></h3>}
                     <p>{message.textContent}</p>
                     {answered
                         ?
@@ -76,11 +77,13 @@ const MessageCard = ({ message, messageInfoCall, isLoading, setIsLoading }) => {
                         :
                         <b>'Mensaje sin contestar'</b>}
                 </Card.Body>
-            </Card>
 
-            <Button onClick={openModal}>Mandar mensaje a {usernameMess}</Button>
+                <Button onClick={openModal}>Mandar mensaje a {usernameMess}</Button>
 
-            <Button onClick={deleteMessage} disabled={isLoading}>Eliminar mensaje</Button>
+                <Button onClick={deleteMessage} disabled={isLoading}>Eliminar mensaje</Button>
+            </div>
+
+
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
