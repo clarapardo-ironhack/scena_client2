@@ -34,134 +34,130 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
         twitterURL = ""
     }
     return (
-
-        <Container >
+        <>
             <Row className='pageUsername'>
                 <Col>
                     {username && <h1>{username}</h1>}
                 </Col>
 
             </Row>
-            <Container className='generalInfoCard'>
-                <Row>
-                    <Col md={{ span: 4, offset: 1 }}>
-                        {
+            <Row className="firstRow">
+                <Col md={{ span: 4, offset: 1 }}>
+                    {
 
-                            avatar
-                                ?
-
+                        avatar
+                            ?
+                            <Col md={3}>
                                 <Image className="profileImg" src={avatar} alt="Profile Picture" />
 
-                                :
+                            </Col>
+                            :
+                            <Col md={3}>
+                                <Image className="poster" src={image} alt="Profile Picture" />
+                            </Col>
 
-                                <Image className="profileImg" src={image} alt="Profile Picture" />
+                    }
+                </Col>
+                <Col md={{ span: 6 }}>
 
+                    {title && <Card.Title className="pageUsername">{title}</Card.Title>}
+                    {description && <Card.Text className="description">{description}</Card.Text>}
 
-                        }
+                </Col>
+                <Card.Text>
+                    {
+                        networks
+                        &&
+                        <div className="networksLinks">
+                            {networks.instagram && <a target="_blank" rel="noreferrer" href={instagramURL}>Instagram </a>}
+                            {networks.spotify && <a target="_blank" rel="noreferrer" href={networks.spotify}>Spotify </a>}
+                            {networks.soundcloud && <a target="_blank" rel="noreferrer" href={networks.soundcloud}>SoundCloud </a>}
+                            {networks.twitter && <a target="_blank" rel="noreferrer" href={twitterURL}>Twitter </a>}
+                            {networks.bandcamp && <a target="_blank" rel="noreferrer" href={networks.bandcamp}> BandCamp </a>}
 
-                    </Col>
-                    <Col md={{ span: 6 }}>
-                        {title && <Card.Title>{title}</Card.Title>}
-                        {description && <Card.Text>{description}</Card.Text>}
+                        </div>
+                    }
+                </Card.Text>
 
-                    </Col>
-                    <Card.Text>
+                {isLoggedIn && (user.role !== 'Fan') && !title && <Button onClick={openModal}>Mandar mensaje a {username}</Button>}
+
+            </Row>
+
+            <>
+                {
+                    images
+                    &&
+                    <Row>
                         {
-                            networks
-                            &&
-                            <div className="networksLinks">
-                                {networks.instagram && <a target="_blank" rel="noreferrer" href={instagramURL}>Instagram </a>}
-                                {networks.spotify && <a target="_blank" rel="noreferrer" href={networks.spotify}>Spotify </a>}
-                                {networks.soundcloud && <a target="_blank" rel="noreferrer" href={networks.soundcloud}>SoundCloud </a>}
-                                {networks.twitter && <a target="_blank" rel="noreferrer" href={twitterURL}>Twitter </a>}
-                                {networks.bandcamp && <a target="_blank" rel="noreferrer" href={networks.bandcamp}> BandCamp </a>}
-
-                            </div>
+                            Object.entries(images).map(([key, value]) => {
+                                return (
+                                    <img key={key} className="otherImages" src={value} alt="Other Profile photos" />
+                                )
+                            })
                         }
-                    </Card.Text>
+                    </Row>
+                }
+            </>
+            {
 
-                    {isLoggedIn && (user.role !== 'Fan') && !title && <Button onClick={openModal}>Mandar mensaje a {username}</Button>}
-
-                </Row>
-
+                likedArtists?.length
+                &&
+                user._id === _id
+                &&
                 <>
                     {
-                        images
-                        &&
-                        <Row>
-                            {
-                                Object.entries(images).map(([key, value]) => {
-                                    return (
-                                        <img key={key} className="otherImages" src={value} alt="Other Profile photos" />
-                                    )
-                                })
-                            }
-                        </Row>
+                        likedArtists.map((artist, index) => {
+
+                            return (
+                                <TinyCard alterRole={role} {...artist} />
+                            )
+                        })
                     }
                 </>
-                {
+            }
 
-                    likedArtists?.length
-                    &&
-                    user._id === _id
-                    &&
-                    <>
-                        {
-                            likedArtists.map((artist, index) => {
+            {
+                likedVenues?.length
+                &&
+                user._id === _id
+                &&
+                <>
+                    {
+                        likedVenues.map((venue, index) => {
+                            return (
+                                <TinyCard alterRole={role} {...venue} />
+                            )
+                        })
+                    }
+                </>
+            }
 
-                                return (
-                                    <TinyCard alterRole={role} {...artist} />
-                                )
-                            })
-                        }
-                    </>
-                }
-
-                {
-                    likedVenues?.length
-                    &&
-                    user._id === _id
-                    &&
-                    <>
-                        {
-                            likedVenues.map((venue, index) => {
-                                return (
-                                    <TinyCard alterRole={role} {...venue} />
-                                )
-                            })
-                        }
-                    </>
-                }
-
-                {
-                    likedEvents?.length
-                    &&
-                    user._id === _id
-                    &&
-                    <>
-                        {
-                            likedEvents.map((event, index) => {
-                                return (
-                                    <TinyEventCard {...event} />
-                                )
-                            })
-                        }
-                    </>
-                }
+            {
+                likedEvents?.length
+                &&
+                user._id === _id
+                &&
+                <>
+                    {
+                        likedEvents.map((event, index) => {
+                            return (
+                                <TinyEventCard {...event} />
+                            )
+                        })
+                    }
+                </>
+            }
 
 
-                <Modal show={showModal} onHide={closeModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Mensaje para {username}</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <NewMessageForm fireFinalActions={fireFinalActions} destinationId={_id} username={username} answer={false} />
-                    </Modal.Body>
-                </Modal>
-            </Container >
-        </Container>
-
-
+            <Modal show={showModal} onHide={closeModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Mensaje para {username}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <NewMessageForm fireFinalActions={fireFinalActions} destinationId={_id} username={username} answer={false} />
+                </Modal.Body>
+            </Modal>
+        </>
     )
 }
 export default CommonCard
