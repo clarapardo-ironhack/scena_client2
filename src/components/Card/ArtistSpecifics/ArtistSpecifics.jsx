@@ -1,5 +1,5 @@
 import { Card, Col } from "react-bootstrap"
-
+import "../ArtistSpecifics/ArtistSpecifics.css"
 const ArtistSpecifics = ({ styles, label }) => {
 
 
@@ -8,11 +8,13 @@ const ArtistSpecifics = ({ styles, label }) => {
             {
                 styles
                 &&
-                <ul>
-                    {styles.map((e,index) => {
-                        return <li key={index}>{e}</li>
-                    })}
-                </ul>
+                <span>
+                    {
+                        styles.map((element, index) => {
+                            return <span key={index}>{element}</span>
+                        })
+                    }
+                </span>
             }
 
             {label && <Card.Text>{label}</Card.Text>}

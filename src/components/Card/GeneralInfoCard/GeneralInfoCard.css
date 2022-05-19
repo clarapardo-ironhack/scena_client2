@@ -8,9 +8,21 @@ Cerulean Blue #3454D1 */
     align-items: center;
 }
 
+span a{
+    margin-left: 40px;
+}
+span {
+    list-style: none;
+    color: white;
+    margin-left: 15px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 .card {
     background-color: #191516 !important;
-    color:white !important;
+    color: white !important;
     font-family: Montserrat;
 }
 
@@ -33,7 +45,8 @@ Cerulean Blue #3454D1 */
 }
 
 .firstRow {
-    margin-top: 50px;}
+    margin-top: 50px;
+}
 
 .generalInfoCard {
     padding-top: 150px;
@@ -55,6 +68,7 @@ Cerulean Blue #3454D1 */
     font-size: 80px;
     /* text-align: center; */
 }
+
 .messageButton {
     width: 60px;
     height: 60px;
