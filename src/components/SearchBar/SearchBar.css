@@ -5,7 +5,7 @@ Eerie Black #191516
 Cerulean Blue #3454D1 */
 
 .searchBarDiv {
-    margin: auto 30px;
+    margin: auto ;
     width: 300px;
     height: 50px;
 }

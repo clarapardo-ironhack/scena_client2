@@ -60,7 +60,9 @@ const ScenaNav = () => {
         <div>
             < Navbar bg="light" expand="lg" className='scenaNav'>
                 <Container>
-                    <NavLink to="/" className="nav-link">SCENA</NavLink>
+                    <NavLink to="/" className="nav-link logo-navbar">
+                        <img src="./../../../img/logosSinFondo.png" alt="scena mini logo" />
+                    </NavLink>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">

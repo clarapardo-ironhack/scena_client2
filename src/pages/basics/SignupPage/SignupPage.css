@@ -103,9 +103,16 @@
 .profilePic-Signin{
     /* background-color: red; */
     height: 220px;
+    width: 220px;
     border-radius: 50%;
 }
 
-.searchBarArtistSignIn .searchBarDiv{
-    margin-top: 0px !important
+.small-title{
+    color: white
+}
+
+.icon-input {
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
