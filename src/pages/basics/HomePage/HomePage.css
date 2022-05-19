@@ -5,6 +5,50 @@ Eerie Black #191516
 Cerulean Blue #3454D1 */
 
 .homePage {
+    height: 100vh;
     background-color: #191516;
-    color: #C9DAEA
+    background-size: cover;
+    background-repeat: repeat-y;
+    /* background-image: url('./../../../../public/img/titulo.png'); */
+    color: #C9DAEA;
+    scroll-behavior: smooth;
+}
+
+.rowOne {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rowOne a {
+    height: 300px;
+    width: 300px;
+    border: 2px solid #03F7EB;
+        background-color: #191516;
+    transition: 1s ease;
+}
+
+.rowOne a:hover {
+    transition: 1s ease;
+    background-color: #03F7EB;
+    height: 300px;
+    width: 300px;
+    border: 2px solid #03F7EB;
+}
+
+.rowOne a img {
+    width: auto;
+    height: 200px;
+    margin-top: 40px;
+}
+
+.homeRow {
+    height: 100vh;
+    background-size: cover;
+    background-color: #191516;
+}
+
+.two {
+    background-image: url('./../../../../public/img/titulo.png');
 }
