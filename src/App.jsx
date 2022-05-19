@@ -1,7 +1,7 @@
 import './App.css'
 import ScenaNav from './components/Navbar/ScenaNav'
 import UserMessage from './components/UserMessage/UserMessage'
-import AppMain from "./routes/AppMain"
+import AppMain from "./routing_/AppMain"
 
 
 function App() {
