@@ -79,7 +79,7 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                     }
                 </Card.Text>
 
-                {isLoggedIn && (user.role !== 'Fan') && !title && <Button onClick={openModal}>Mandar mensaje a {username}</Button>}
+                {isLoggedIn && (user.role !== 'Fan') && !title && (user._id !== _id) && <div className="messageButton" onClick={openModal}>📫</div>}
 
             </Row>
 
@@ -98,56 +98,57 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                     </Row>
                 }
             </>
-            {
+            <Row>
+                {
 
-                likedArtists?.length
-                &&
-                user._id === _id
-                &&
-                <>
-                    {
-                        likedArtists.map((artist, index) => {
+                    likedArtists?.length
+                    &&
+                    user._id === _id
+                    &&
+                    <>
+                        {
+                            likedArtists.map((artist, index) => {
 
-                            return (
-                                <TinyCard alterRole={role} {...artist} />
-                            )
-                        })
-                    }
-                </>
-            }
+                                return (
+                                    <TinyCard alterRole={role} {...artist} />
+                                )
+                            })
+                        }
+                    </>
+                }
 
-            {
-                likedVenues?.length
-                &&
-                user._id === _id
-                &&
-                <>
-                    {
-                        likedVenues.map((venue, index) => {
-                            return (
-                                <TinyCard alterRole={role} {...venue} />
-                            )
-                        })
-                    }
-                </>
-            }
+                {
+                    likedVenues?.length
+                    &&
+                    user._id === _id
+                    &&
+                    <>
+                        {
+                            likedVenues.map((venue, index) => {
+                                return (
+                                    <TinyCard alterRole={role} {...venue} />
+                                )
+                            })
+                        }
+                    </>
+                }
 
-            {
-                likedEvents?.length
-                &&
-                user._id === _id
-                &&
-                <>
-                    {
-                        likedEvents.map((event, index) => {
-                            return (
-                                <TinyEventCard {...event} />
-                            )
-                        })
-                    }
-                </>
-            }
-
+                {
+                    likedEvents?.length
+                    &&
+                    user._id === _id
+                    &&
+                    <>
+                        {
+                            likedEvents.map((event, index) => {
+                                return (
+                                    <TinyEventCard {...event} />
+                                )
+                            })
+                        }
+                    </>
+                }
+            </Row>
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
