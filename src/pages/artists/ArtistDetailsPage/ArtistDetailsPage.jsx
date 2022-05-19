@@ -86,13 +86,13 @@ const ArtistDetailsPage = () => {
                 <Container>
                     {isLoaded && <BigCard {...artist} />}
 
-                    {isLoggedIn
+                    {isLoggedIn && (user._id !==artist._id)
                         ?
                         !isPresent
                             ?
-                            <Button className="fumadita" onClick={addArtist}>💙 Me gusta 💙 </Button>
+                            <div className="likeGeneral" onClick={addArtist}>❤️</div>
                             :
-                            <Button className="fumadita" onClick={deleteArtist}> ☠ Ya no mola ☠ </Button>
+                            <div className="likeGeneral" onClick={deleteArtist}>👎</div>
                         :
                         <p>logueate payaso</p>
                     }

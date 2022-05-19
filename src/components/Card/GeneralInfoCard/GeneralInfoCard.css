@@ -55,3 +55,48 @@ Cerulean Blue #3454D1 */
     font-size: 80px;
     /* text-align: center; */
 }
+.messageButton {
+    width: 60px;
+    height: 60px;
+    border: 1px solid white;
+    background-color: black;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 17px;
+    user-select: none;
+    position: absolute;
+    left: 490px;
+    top: 400px;
+    z-index: 2;
+}
+
+.messageButton:hover {
+    animation-name: messageButton-transform;
+    animation-duration: .25s;
+    animation-fill-mode: forwards;
+}
+
+.messageButton:active {
+    animation-name: btn2-onClick;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes messageButton-transform {
+    100% {
+        background-color: rgb(74, 174, 74);
+        color: white;
+        transform: scale(1.1);
+        font-size: 22px;
+    }
+}
+
+@keyframes messageButton-onClick {
+    0% {
+        background-color: #F87060;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

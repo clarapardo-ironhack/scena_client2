@@ -83,9 +83,9 @@ const VenueDetailsPage = () => {
                     ?
                     !isPresent
                         ?
-                        <Button onClick={addVenue}>💙 Me gusta 💙 </Button>
+                        <div className="likeGeneral" onClick={addVenue}>❤️</div>
                         :
-                        <Button onClick={deleteVenue}> ☠ Ya no mola ☠ </Button>
+                        <div className="likeGeneral" onClick={deleteVenue}>👎</div>
 
                     :
                     <p>logueate payaso</p>
