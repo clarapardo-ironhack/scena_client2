@@ -28,7 +28,7 @@ const MessageCard = ({ message, messageInfoCall, isLoading, setIsLoading }) => {
 
     useEffect((() => {
         checkIfAnswered()
-    }), [answered])
+    }), [])
 
     const deleteMessage = () => {
         setIsLoading(true)
