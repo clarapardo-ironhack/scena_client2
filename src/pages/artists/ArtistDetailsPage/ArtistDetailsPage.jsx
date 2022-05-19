@@ -86,7 +86,7 @@ const ArtistDetailsPage = () => {
                 <Container>
                     {isLoaded && <BigCard {...artist} />}
 
-                    {isLoggedIn && (user._id !==artist._id)
+                    {isLoggedIn && (user._id !== artist._id)
                         ?
                         !isPresent
                             ?
@@ -96,7 +96,14 @@ const ArtistDetailsPage = () => {
                         :
                         <p>logueate payaso</p>
                     }
-                    <EventList infoType={eventsAttended} />
+                    {eventsAttended
+                        &&
+                        <div className='nextEvents'>
+                            <h4>Próximos eventos de {artist.username}</h4>
+                            <EventList infoType={eventsAttended} />
+                        </div>
+
+                    }
                 </Container>
             }
 
