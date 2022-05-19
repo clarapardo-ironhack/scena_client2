@@ -1,14 +1,14 @@
 import './App.css'
 import ScenaNav from './components/Navbar/ScenaNav'
 import UserMessage from './components/UserMessage/UserMessage'
-import AppRoutesT from "./routes/AppRoutes"
+import AppMain from "./routes/AppMain"
 
 
 function App() {
   return (
     <div className="App">
       <ScenaNav />
-      <AppRoutesT />
+      <AppMain />
       <UserMessage />
     </div>
   )
