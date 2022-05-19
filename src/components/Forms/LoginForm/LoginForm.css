@@ -2,7 +2,9 @@
 Fluorescent Blue #03F7EB
 Jungle Green #00B295
 Eerie Black #191516
-Cerulean Blue #3454D1 */
+Cerulean Blue #3454D1
+Midnight #282D33 
+Verde #1EE49D */
 
 .login-register-button {
     padding: 0;
@@ -13,8 +15,8 @@ Cerulean Blue #3454D1 */
 }
 
 .login-register-button {
-    --primary-color: #BB9F06;
-    --hovered-color: #00B295;
+    --primary-color: #3454D1;
+    --hovered-color: #1EE49D;
     position: relative;
     display: flex;
     font-weight: 600;
@@ -75,5 +77,5 @@ Cerulean Blue #3454D1 */
 }
 
 .login-title{
-    color: #BB9F06
+    color: 1EE49D
 }

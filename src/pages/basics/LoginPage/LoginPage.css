@@ -2,7 +2,9 @@
 Fluorescent Blue #03F7EB
 Jungle Green #00B295
 Eerie Black #191516
-Cerulean Blue #3454D1 */
+Cerulean Blue #3454D1 
+Midnight #282D33 
+Verde #1EE49D */
 
 .modal-content {
     border-radius: 50px !important;
@@ -29,7 +31,7 @@ Cerulean Blue #3454D1 */
 }
 
 .one-option-user {
-    background-color: #BB9F06;
+    background-color: #1EE49D;
     margin-bottom: 20px;
     height: 75px;
     border-radius: 20px;
@@ -49,7 +51,7 @@ Cerulean Blue #3454D1 */
     filter: none;
     transition: 0.5s ease;
     font-size: 35px;
-    color: white
+    color: black
 }
 
 .modal-header-li-si {

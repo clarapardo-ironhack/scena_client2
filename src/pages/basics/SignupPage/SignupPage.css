@@ -30,7 +30,7 @@
 }
 
 .register-button {
-    --primary-color: #BB9F06;
+    --primary-color: #3454D1;
     --hovered-color: #00B295;
     position: relative;
     display: flex;
@@ -92,5 +92,20 @@
 }
 
 .login-title {
-    color: #BB9F06
+    color: #1EE49D
+}
+
+.input-group-text{
+    background-color: transparent !important;
+    border: 0px !important
+}
+
+.profilePic-Signin{
+    /* background-color: red; */
+    height: 220px;
+    border-radius: 50%;
+}
+
+.searchBarArtistSignIn .searchBarDiv{
+    margin-top: 0px !important
 }
