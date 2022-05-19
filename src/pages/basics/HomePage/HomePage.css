@@ -56,6 +56,7 @@ Cerulean Blue #3454D1 */
     height: 100vh;
     background-size: cover;
     background-color: #191516;
+    margin-right: 0 !important
 }
 
 .two {
