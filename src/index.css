@@ -5,12 +5,11 @@
      sans-serif;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
-  
+   background-color: #302c2d;
+
  }
 
  code {
    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
      monospace;
  }
-
- 
