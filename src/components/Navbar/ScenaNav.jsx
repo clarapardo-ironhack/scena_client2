@@ -58,7 +58,7 @@ const ScenaNav = () => {
 
     return (
         <div>
-            < Navbar bg="light" expand="lg" >
+            < Navbar bg="light" expand="lg" className='scenaNav'>
                 <Container>
                     <NavLink to="/" className="nav-link">SCENA</NavLink>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

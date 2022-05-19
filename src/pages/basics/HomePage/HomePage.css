@@ -25,16 +25,25 @@ Cerulean Blue #3454D1 */
     height: 300px;
     width: 300px;
     border: 2px solid #03F7EB;
-        background-color: #191516;
-    transition: 1s ease;
+    background-color: #191516;
+    background-image: url('./../../../../public/img/logosSinFondo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 2s ease;
 }
 
+
 .rowOne a:hover {
-    transition: 1s ease;
-    background-color: #03F7EB;
-    height: 300px;
-    width: 300px;
-    border: 2px solid #03F7EB;
+    transition: 2s ease;
+    /* background-color: #03F7EB; */
+    height: 500px;
+    width: 900px;
+    border: 10px solid #03F7EB;
+    background-image: url('./../../../../public/img/titulo.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .rowOne a img {
@@ -51,4 +60,88 @@ Cerulean Blue #3454D1 */
 
 .two {
     background-image: url('./../../../../public/img/titulo.png');
+}
+
+.mainTitle {
+    margin: 300px 40% 50px;
+}
+
+.quienEres {
+    color: #C9DAEA;
+    text-align: center;
+    transition: 1s ease;
+    padding: 40px;
+
+}
+
+.quienEres:hover {
+    transition: 1s ease;
+    color: #03F7EB;
+    text-align: center;
+
+}
+
+.notLoggedBtns {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.loginBtn,
+.signupBtn {
+    margin-bottom: 20px;
+    color: #03F7EB;
+    border: 0 solid black;
+    height: 75px;
+    font-size: 25px;
+    display: flex;
+    width: 40%;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.loginBtn:hover {
+    filter: none;
+    border-radius: 60px;
+    transition: 0.5s ease;
+    font-size: 35px;
+    color: #191516;
+    height: 200px;
+    background-color: #03F7EB;
+}
+
+.signupBtn:hover{
+        filter: none;
+        border-radius: 60px;
+        transition: 0.5s ease;
+        font-size: 35px;
+        color: #191516;
+        height: 200px;
+        background-color: #03F7EB;
+    }
+
+.homeSelections {
+    background-color: #BB9F06;
+    margin-bottom: 20px;
+    height: 75px;
+    border-radius: 20px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -webkit-transition: all 0.5s ease;
+}
+
+.homeSelections:hover {
+    filter: grayscale(0%);
+    filter: gray;
+    -webkit-filter: grayscale(0%);
+    filter: none;
+    transition: 0.5s ease;
+    font-size: 35px;
+    color: white
 }
