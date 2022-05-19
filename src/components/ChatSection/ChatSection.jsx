@@ -27,7 +27,8 @@ const ChatSection = () => {
     return (<div className="chatSection">
         <h1>MENSAJERIA</h1>
 
-        <h2>Sin contestar</h2>
+        <h2 id="notAnswered">Sin contestar</h2>
+        <a href='#answered'>Ir a mensajes contestados</a>
 
         {
             receivedMessages.map(element => {
@@ -39,7 +40,8 @@ const ChatSection = () => {
             })
         }
 
-        <h2>Contestados</h2>
+        <h2 id="answered">Contestados</h2>
+        <a href='#notAnswered'>Ir a mensajes sin contestar</a>
 
         {
             receivedMessages.map(element => {

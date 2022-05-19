@@ -11,14 +11,87 @@ Cerulean Blue #3454D1 */
     padding: 40px;
 }
 
-.messageCard h3 {
-    color: #03F7EB;
+.messageCard h4 {
+    color: #3454D1;
     padding: 20px;
     background-color: #191516;
-    text-decoration: overline;
 }
 
-.messageCard h3 {
+.messageCard h4 b {
 
-    text-decoration: underline;
+    color: #03F7EB;
+}
+
+.answerButton {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #03F7EB;
+    background-color: black;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 17px;
+    transition: .5s ease;
+    ;
+}
+
+.answerButton:hover {
+    transition: .5s ease;
+    width: 70px;
+    height: 70px;
+    border: 5px solid #03F7EB;
+    background-color: black;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 17px;
+}
+
+.deleteMessage {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #03F7EB;
+    background-color: black;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 17px;
+    transition: .5s ease;
+}
+
+.deleteMessage:hover {
+    transition: .5s ease;
+    width: 70px;
+    height: 70px;
+    border: 5px solid #03F7EB;
+    background-color: black;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 17px;
+}
+
+.btnRow {
+    display: flex;
+    justify-content: space-around;
+}
+
+.messageContent {
+    border: 1px solid #03F7EB;
+    background-color: black;
+    border-radius: 50px;
+    padding: 10px 0;
+    color: #03F7EB;
+    font-size: 15px;
+    transition: .5s ease;
+}
+
+.messageContent:hover {
+    transition: .5s ease;
+    border: 3px solid #03F7EB;
+    background-color: black;
+    border-radius: 50px;
+    padding: 10px 0;
+    color: #03F7EB;
+    font-size: 20px;
+}
+
+.stateMess{
+    color: white;
 }
