@@ -33,5 +33,25 @@ Cerulean Blue #3454D1 */
 }
 
 .firstRow {
-    margin-top: 50px;
+    margin-top: 50px;}
+
+.generalInfoCard {
+    padding-top: 150px;
+    color: white;
+    background-color: red;
+}
+
+.pageUsername {
+    color: #03F7EB;
+    position: sticky;
+    top: 80px;
+    background-color: #191516;
+    width: 100%;
+    z-index: 9;
+    font-size: 100px;
+}
+
+.pageUsername h1 {
+    font-size: 80px;
+    /* text-align: center; */
 }

@@ -10,6 +10,8 @@ import { AuthContext } from '../../../context/auth.context'
 import { useContext } from 'react'
 import EventList from '../../../components/EventList/EventList'
 import GeneralList from '../../../components/GeneralList/GeneralList'
+import ScenaNav from './../../../components/Navbar/ScenaNav'
+
 
 
 
@@ -76,6 +78,7 @@ const ArtistDetailsPage = () => {
 
     return (
         <>
+            <ScenaNav />
             {!artist
                 ?
                 <Loader />

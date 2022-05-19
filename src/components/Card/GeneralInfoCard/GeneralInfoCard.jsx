@@ -1,11 +1,11 @@
-import { Card, Image, Row, Col, Modal, Button } from 'react-bootstrap'
+import { Card, Image, Row, Col, Modal, Button, Container } from 'react-bootstrap'
 import TinyEventCard from '../../EventCard/TinyEventCard/TinyEventCard'
 import NewMessageForm from '../../Forms/NewMessageForm/NewMessageForm'
 import { AuthContext } from "../../../context/auth.context"
 import { useContext, useState } from "react"
 import { MessageContext } from '../../../context/message.context'
 import TinyCard from '../TinyCard/TinyCard'
-import "../GeneralInfoCard/GeneralInfoCard.css"
+import './GeneralInfoCard.css'
 
 const CommonCard = ({ _id, image, username, networks, avatar, images, description, title, likedArtists, likedEvents, likedVenues, role }) => {
 
@@ -35,10 +35,11 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
     }
     return (
         <>
-            <Row>
+            <Row className='pageUsername'>
                 <Col>
-                    {username && <Card.Title className="pageUsername">{username}</Card.Title>}
+                    {username && <h1>{username}</h1>}
                 </Col>
+
             </Row>
             <Row className="firstRow">
                 <Col md={{ span: 4, offset: 1 }}>

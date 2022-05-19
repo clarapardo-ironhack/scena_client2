@@ -10,6 +10,8 @@ import { AuthContext } from '../../../context/auth.context'
 import { useContext } from 'react'
 import GeneralList from '../../../components/GeneralList/GeneralList'
 import { Link } from 'react-router-dom'
+import ScenaNav from './../../../components/Navbar/ScenaNav'
+
 
 const EventDetailsPage = () => {
 
@@ -73,9 +75,10 @@ const EventDetailsPage = () => {
 
 
 
-    return (
-        <Container className="eventCard">
-            <Card className="bg-white text-black eventCard2">
+    return (<>
+        <ScenaNav />
+        <Container>
+            <Card className="bg-white text-black">
                 {!event
                     ?
                     <Loader />
@@ -103,7 +106,7 @@ const EventDetailsPage = () => {
                 }
             </Card>
         </Container>
-    )
+    </>)
 }
 
 export default EventDetailsPage

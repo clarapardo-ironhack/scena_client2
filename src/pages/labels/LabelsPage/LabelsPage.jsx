@@ -3,6 +3,8 @@ import labelService from '../../../services/label.service'
 import { useEffect, useState } from "react"
 import GeneralList from '../../../components/GeneralList/GeneralList'
 import SearchBar from '../../../components/SearchBar/SearchBar'
+import ScenaNav from './../../../components/Navbar/ScenaNav'
+
 
 const LabelPage = () => {
 
@@ -31,7 +33,7 @@ const LabelPage = () => {
     }
 
     return (
-        <>
+        <><ScenaNav />
             <Container>
                 <SearchBar handler={inputHandler} task='sellos discográficos y agencias de management' />
                 {isLoaded && <GeneralList infoType={infoType} input={inputText} />}

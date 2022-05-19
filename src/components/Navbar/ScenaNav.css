@@ -1,5 +1,6 @@
 .scenaNav {
     position: fixed;
+    z-index: 10;
 }
 
 .logo-navbar img {

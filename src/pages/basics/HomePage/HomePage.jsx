@@ -99,12 +99,12 @@ const HomePage = () => {
                 <div  >
 
                     <Row className='mainTitle'>
-                        <Col className='quienEres' onMouseOver={() => { showTheForms() }} >
+                        <Col className='quienEres' sm={showForms ? { span: 4, offset: 4 } : { span: 4, offset: 1 }} onMouseOver={() => { showTheForms() }} >
                             {textChange
                                 ?
-                                <h1>¿QUIÉN ERES?</h1>
+                                <h1>¿quién eres?</h1>
                                 :
-                                <h1>VEN AQUÍ</h1>
+                                <h1>hola, ven aquí</h1>
                             }
                         </Col>
                     </Row>
@@ -119,27 +119,37 @@ const HomePage = () => {
                 </div>
                 :
                 <>
-                    <h1>¿Y QUÉ VIENE A BUSCAR?</h1>
+                    <Row>
+                        <Col className='quienEres searchFor'>
+                            <h1>¿y qué vienes a buscar?</h1>
+                        </Col>
+                    </Row>
+
                     <Row >
                         <Col sm={{ span: 4, offset: 2 }}>
-                            <div className="homeSelections" >
-                                fan
-                            </div>
+                            <Link to={'/artists'} className="homeSelections">
+                                <div  >
+                                    Artistas
+                                </div></Link>
                         </Col>
                         <Col sm={{ span: 4 }}>
-                            <div className="homeSelections" >
-                                local
-                            </div>
+                            <Link to={'/venues'} className="homeSelections">
+                                <div  >
+                                    Salas de concierto
+                                </div></Link>
                         </Col>
                         <Col sm={{ span: 4, offset: 2 }}>
-                            <div className="homeSelections" >
-                                artista
-                            </div>
+                            <Link to={'/labels'} className="homeSelections">
+                                <div  >
+                                    Sellos discográficos
+                                </div></Link>
                         </Col>
                         <Col sm={{ span: 4 }}>
-                            <div className="homeSelections" >
-                                sello
-                            </div>
+                            <Link to={'/events'} className="homeSelections" >
+                                <div >
+                                    Eventos
+                                </div></Link>
+
                         </Col>
                     </Row>
                 </>}
