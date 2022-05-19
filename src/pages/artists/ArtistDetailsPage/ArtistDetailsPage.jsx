@@ -74,8 +74,6 @@ const ArtistDetailsPage = () => {
 
     }
 
-    console.log(eventsAttended)
-
     return (
         <>
             {!artist
@@ -84,21 +82,19 @@ const ArtistDetailsPage = () => {
                 :
                 <Container>
                     {isLoaded && <BigCard {...artist} />}
+
+                    {isLoggedIn
+                        ?
+                        !isPresent
+                            ?
+                            <Button className="fumadita" onClick={addArtist}>💙 Me gusta 💙 </Button>
+                            :
+                            <Button className="fumadita" onClick={deleteArtist}> ☠ Ya no mola ☠ </Button>
+                        :
+                        <p>logueate payaso</p>
+                    }
                     <EventList infoType={eventsAttended} />
                 </Container>
-            }
-            {
-                isLoggedIn
-                    ?
-                    !isPresent
-                        ?
-                        <Button onClick={addArtist}>💙 Me gusta 💙 </Button>
-                        :
-                        <Button onClick={deleteArtist}> ☠ Ya no mola ☠ </Button>
-
-                    :
-                    <p>logueate payaso</p>
-
             }
 
         </>

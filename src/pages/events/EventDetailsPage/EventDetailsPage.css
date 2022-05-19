@@ -1,0 +1,10 @@
+.likeButton {
+    width: 60px;
+    height: 60px;
+    border: 1px;
+    background-color: red;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 17px;
+    user-select: none;
+}
