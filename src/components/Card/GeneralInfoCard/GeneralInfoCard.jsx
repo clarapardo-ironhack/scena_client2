@@ -35,57 +35,69 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
     return (
         <>
             <Row>
+                <Col md={{ span: 4, offset: 1 }}>
+                    {
 
-                {
+                        avatar
+                            ?
+                            <Col md={3}>
+                                <Image className="profileImg" src={avatar} alt="Profile Picture" />
+                            </Col>
+                            :
+                            <Col md={3}>
+                                <Image className="profileImg" src={image} alt="Profile Picture" />
+                            </Col>
 
-                    avatar
-                        ?
-                        <Col md={3}>
-                            <Image className="profileImg" src={avatar} alt="Profile Picture" />
-                        </Col>
-                        :
-                        <Col md={3}>
-                            <Image className="profileImg" src={image} alt="Profile Picture" />
-                        </Col>
+                    }
 
-                }
-                <Col md={9}>
+                </Col>
+                <Col md={{ span: 6 }}>
                     {username && <Card.Title>{username}</Card.Title>}
                     {title && <Card.Title>{title}</Card.Title>}
                     {description && <Card.Text>{description}</Card.Text>}
-                    <Card.Text>
-                        {
-                            networks
-                            &&
-                            <div className="networksLinks">
-                                {networks.instagram && <a target="_blank" rel="noreferrer" href={instagramURL}>Instagram </a>}
-                                {networks.spotify && <a target="_blank" rel="noreferrer" href={networks.spotify}>Spotify </a>}
-                                {networks.soundcloud && <a target="_blank" rel="noreferrer" href={networks.soundcloud}>SoundCloud </a>}
-                                {networks.twitter && <a target="_blank" rel="noreferrer" href={twitterURL}>Twitter </a>}
-                                {networks.bandcamp && <a target="_blank" rel="noreferrer" href={networks.bandcamp}> BandCamp </a>}
 
-                            </div>
-                        }
-                    </Card.Text>
                 </Col>
-            </Row>
-            <Row>
-                <Col>
+                <Card.Text>
                     {
-                        images
+                        networks
                         &&
-                        Object.entries(images).map(([key, value]) => {
-                            return (
-                                <img key={key} className="otherImages" src={value} alt="Other Profile photos" />
-                            )
-                        })
+                        <div className="networksLinks">
+                            {networks.instagram && <a target="_blank" rel="noreferrer" href={instagramURL}>Instagram </a>}
+                            {networks.spotify && <a target="_blank" rel="noreferrer" href={networks.spotify}>Spotify </a>}
+                            {networks.soundcloud && <a target="_blank" rel="noreferrer" href={networks.soundcloud}>SoundCloud </a>}
+                            {networks.twitter && <a target="_blank" rel="noreferrer" href={twitterURL}>Twitter </a>}
+                            {networks.bandcamp && <a target="_blank" rel="noreferrer" href={networks.bandcamp}> BandCamp </a>}
+
+                        </div>
                     }
-                </Col>
+                </Card.Text>
+
+                {isLoggedIn && (user.role !== 'Fan') && !title && <Button onClick={openModal}>Mandar mensaje a {username}</Button>}
+
             </Row>
+
+            <>
+                {
+                    images
+                    &&
+                    <Row>
+                        {
+                            Object.entries(images).map(([key, value]) => {
+                                return (
+                                    <img key={key} className="otherImages" src={value} alt="Other Profile photos" />
+                                )
+                            })
+                        }
+                    </Row>
+                }
+            </>
             {
+
                 likedArtists?.length
                 &&
-                <Col>
+                user._id === _id
+                &&
+                <>
                     {
                         likedArtists.map((artist, index) => {
 
@@ -94,13 +106,15 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                             )
                         })
                     }
-                </Col>
+                </>
             }
 
             {
                 likedVenues?.length
                 &&
-                <Col>
+                user._id === _id
+                &&
+                <>
                     {
                         likedVenues.map((venue, index) => {
                             return (
@@ -108,13 +122,15 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                             )
                         })
                     }
-                </Col>
+                </>
             }
 
             {
                 likedEvents?.length
                 &&
-                <Col>
+                user._id === _id
+                &&
+                <>
                     {
                         likedEvents.map((event, index) => {
                             return (
@@ -122,10 +138,9 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                             )
                         })
                     }
-                </Col>
+                </>
             }
 
-            {isLoggedIn && (user.role !== 'Fan') && <Button onClick={openModal}>Mandar mensaje a {username}</Button>}
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>

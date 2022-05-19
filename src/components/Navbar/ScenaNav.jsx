@@ -102,13 +102,11 @@ const ScenaNav = () => {
             </Navbar >
 
             <Modal className="loginModal" show={showLoginModal} onHide={() => setShowLoginModal(false)}>
-                <Modal.Header closeButton className="modal-header-li-si"></Modal.Header>
-                <LoginPage fireFinalActions={fireFinalActionsLogin}/>
+                <LoginPage fireFinalActions={fireFinalActionsLogin} />
             </Modal>
 
             <Modal className="registerModal" show={showRegisterModal} onHide={() => setShowRegisterModal(false)}>
-                <Modal.Header closeButton></Modal.Header>
-                <SignupPage fireFinalActions={fireFinalActionsRegister} />
+                <SignupPage className='prueba' fireFinalActions={fireFinalActionsRegister} />
             </Modal>
         </div>
     )

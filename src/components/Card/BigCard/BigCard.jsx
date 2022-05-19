@@ -13,17 +13,13 @@ const BigCard = ({ _id, image, images, avatar, styles, username, networks,
     const packGeneral = { _id, image, images, avatar, username, networks, description, role, title, likedVenues, likedEvents, likedArtists }
     const packArtist = { styles, label }
     const packVenue = { address, capacity }
-    const packEvent = { mainArtist, supportingArtists }
     return (
 
-        <Container>
-            <Card className="bg-white text-black">
-                <GeneralInfoCard {...packGeneral} />
-                {role === 'Artist' && <ArtistSpecifics {...packArtist} />}
-                {role === 'Venue' && <VenueSpecifics {...packVenue} />}
-                {title && <EventSpecifics {...packEvent} />}
-            </Card>
-        </Container >
+        <>
+            <GeneralInfoCard {...packGeneral} />
+            {role === 'Artist' && <ArtistSpecifics {...packArtist} />}
+            {role === 'Venue' && <VenueSpecifics {...packVenue} />}
+        </>
     )
 }
 

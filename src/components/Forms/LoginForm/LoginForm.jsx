@@ -42,7 +42,7 @@ const LoginForm = ({ role, fireFinalActions }) => {
 
     return (
         <Container>
-            <h1>{role}</h1>
+            <h1 className="login-title">Hola de nuevo!</h1>
             <hr />
 
             <Form onSubmit={handleSubmit}>

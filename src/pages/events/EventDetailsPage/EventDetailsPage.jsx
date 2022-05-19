@@ -3,12 +3,11 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import BigCard from '../../../components/Card/BigCard/BigCard'
 import Loader from '../../../components/Loader/Loader'
-import { Button, Container } from 'react-bootstrap'
+import { Button, Container, Card } from 'react-bootstrap'
 import eventsService from '../../../services/events.service'
 import authService from '../../../services/auth.service'
 import { AuthContext } from '../../../context/auth.context'
 import { useContext } from 'react'
-import TinyCard from '../../../components/Card/TinyCard/TinyCard'
 import GeneralList from '../../../components/GeneralList/GeneralList'
 import { Link } from 'react-router-dom'
 
@@ -72,38 +71,38 @@ const EventDetailsPage = () => {
         })
     }
 
-    console.log(event.creator?._id)
-    console.log(user._id)
 
 
     return (
-        <>
-            {!event
-                ?
-                <Loader />
-                :
-                <Container>
-                    {isLoaded && <BigCard {...event} />}
-                    {artistLoaded && <GeneralList infoType={attendingArtists} />}
-                </Container>
-            }
-            {isLoggedIn
-                ?
-                !isPresent
+        <Container>
+            <Card className="bg-white text-black">
+                {!event
                     ?
-                    <Button onClick={addEvent}>💙 Me gusta 💙 </Button>
+                    <Loader />
                     :
-                    <Button onClick={deleteEvent}> ☠ Ya no mola ☠ </Button>
-                :
-                <p>logueate payaso</p>
-            }
-            {isLoggedIn && (user._id === event.creator?._id)
-                ?
-                <Link to={`/event/${event._id}/edit`}><Button>Editar el evento</Button></Link>
-                :
-                null
-            }
-        </>
+                    <>
+                        {isLoaded && <BigCard {...event} />}
+                        {isLoggedIn
+                            ?
+                            !isPresent
+                                ?
+                                <div className="likeButton" onClick={addEvent}>💙</div>
+                                :
+                                <div className="likeButton" onClick={deleteEvent}>☠</div>
+                            :
+                            <p>Logueate para guardarlo en favoritos</p>
+                        }
+                        {artistLoaded && <GeneralList infoType={attendingArtists} />}
+                    </>
+                }
+                {isLoggedIn && (user._id === event.creator?._id)
+                    ?
+                    <Link to={`/event/${event._id}/edit`}><Button>Editar el evento</Button></Link>
+                    :
+                    null
+                }
+            </Card>
+        </Container>
     )
 }
 
