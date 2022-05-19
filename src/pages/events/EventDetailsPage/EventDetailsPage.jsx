@@ -74,8 +74,8 @@ const EventDetailsPage = () => {
 
 
     return (
-        <Container>
-            <Card className="bg-white text-black">
+        <Container className="eventCard">
+            <Card className="bg-white text-black eventCard2">
                 {!event
                     ?
                     <Loader />
@@ -86,9 +86,9 @@ const EventDetailsPage = () => {
                             ?
                             !isPresent
                                 ?
-                                <div className="likeButton" onClick={addEvent}>💙</div>
+                                <div className="likeButton" onClick={addEvent}>❤️</div>
                                 :
-                                <div className="likeButton" onClick={deleteEvent}>☠</div>
+                                <div className="likeButton" onClick={deleteEvent}>👎</div>
                             :
                             <p>Logueate para guardarlo en favoritos</p>
                         }
@@ -97,7 +97,7 @@ const EventDetailsPage = () => {
                 }
                 {isLoggedIn && (user._id === event.creator?._id)
                     ?
-                    <Link to={`/event/${event._id}/edit`}><Button>Editar el evento</Button></Link>
+                    <Link to={`/event/${event._id}/edit`}><Button>Editar</Button></Link>
                     :
                     null
                 }

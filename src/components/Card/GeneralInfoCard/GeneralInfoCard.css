@@ -1,0 +1,37 @@
+/* Beau Blue #C9DAEA
+Fluorescent Blue #03F7EB
+Jungle Green #00B295
+Eerie Black #191516
+Cerulean Blue #3454D1 */
+* {
+    text-align: center;
+    align-items: center;
+}
+
+.card {
+    background-color: #191516 !important;
+    color:white !important;
+    font-family: Montserrat;
+}
+
+.profileImg {
+    width: 355px;
+    height: 400px;
+    position: relative;
+    left: -60px;
+    z-index: 1;
+    box-shadow: 7px 7px #3454D1, 6px 6px #3454D1, 5px 5px #3454D1, 4px 4px #3454D1, 3px 3px #3454D1, 2px 2px #3454D1, 1px 1px #3454D1;
+}
+
+.poster {
+    width: 355px;
+    height: 400px;
+    position: relative;
+    left: -60px;
+    z-index: 1;
+    box-shadow: 7px 7px #3454D1, 6px 6px #3454D1, 5px 5px #3454D1, 4px 4px #3454D1, 3px 3px #3454D1, 2px 2px #3454D1, 1px 1px #3454D1;
+}
+
+.firstRow {
+    margin-top: 50px;
+}

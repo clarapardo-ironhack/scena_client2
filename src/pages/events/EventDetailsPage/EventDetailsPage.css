@@ -1,10 +1,56 @@
+/* Beau Blue #C9DAEA
+Fluorescent Blue #03F7EB
+Jungle Green #00B295
+Eerie Black #191516
+Cerulean Blue #3454D1 */
+.eventCard{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+}
+
 .likeButton {
     width: 60px;
     height: 60px;
     border: 1px;
-    background-color: red;
+    background-color: #3454D1;
     border-radius: 50%;
     text-align: center;
     padding-top: 17px;
     user-select: none;
+    position:absolute;
+    left:380px;
+    top:300px;
+    z-index: 2;
+}
+
+.likeButton:hover {
+    animation-name: likeButton-transform;
+    animation-duration: .25s;
+    animation-fill-mode: forwards;
+}
+
+.likeButton:active {
+    animation-name: btn2-onClick;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes likeButton-transform {
+    100% {
+        background-color: #ff2e4c;
+        color: white;
+        transform: scale(1.1);
+        font-size: 22px;
+    }
+}
+
+@keyframes likeButton-onClick {
+    0% {
+        background-color: #F87060;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
