@@ -1,8 +1,36 @@
 .scenaNav {
     position: fixed;
+    width: 100vw;
     z-index: 10;
 }
 
 .logo-navbar img {
-    width: 100%
+    width: 100%;
+    color: aquamarine
+}
+
+.nav-link {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    color: white
+}
+
+.navbar-nav a {
+    width: auto;
+    margin-right: 20px
+}
+
+.dropdown-menu {
+    border-radius: 20px !important;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px) brightness(125%);
+}
+
+.dropdown-menu a :hover {
+   color: white !important
+}
+
+.dropdown-scena {
+    width: 150px
 }

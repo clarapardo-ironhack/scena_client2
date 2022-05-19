@@ -57,51 +57,52 @@ const ScenaNav = () => {
     }
 
     return (
-        <div>
-            < Navbar bg="light" expand="lg" className='scenaNav'>
-                <Container>
-                    <NavLink to="/" className="nav-link logo-navbar">
-                        <img src="./../../../img/logosSinFondo.png" alt="scena mini logo" />
-                    </NavLink>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
+        <>
 
-                            <NavDropdown title="Artist" id="basic-nav-dropdown">
-                                <Link className="nav-link" to="/artists">Artists List</Link>
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <NavLink to="/favorites" className="nav-link logo-navbar">
+                    <img src="./../../../img/logosSinFondo.png" alt="scena mini logo" />
+                </NavLink>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+
+                    <Nav className="me-auto">
+                        <NavLink className="nav-link" to="/artists">artistas</NavLink>
+                        <NavLink className="nav-link" to="/venues">locales</NavLink>
+                        <NavLink className="nav-link" to="/labels">sellos discográficos</NavLink>
+                        {user.role === 'Artist' || user.role === 'Venue' || user.role === 'Label'
+                            ?
+                            <NavDropdown title="eventos" id="collasible-nav-dropdown">
+                                <Link className="nav-link" to="/events">lista de eventos</Link>
+                                <Link className="nav-link" to="/event/create">crear evento</Link>
                             </NavDropdown>
-                            <NavDropdown title="Venue" id="basic-nav-dropdown">
-                                <Link className="nav-link" to="/venues">Venues List</Link>
-                            </NavDropdown>
-                            <NavDropdown title="Label" id="basic-nav-dropdown">
-                                <Link className="nav-link" to="/labels">Labels List</Link>
-                            </NavDropdown>
-                            <NavDropdown title="Event" id="basic-nav-dropdown">
-                                <Link className="nav-link" to="/events">Events List</Link>
-                                <Link className="nav-link" to="/event/create">Create an event</Link>
+                            :
+                            <NavLink className="nav-link" to="/events">eventos</NavLink >
+                        }
+                    </Nav>
+
+                    {user
+                        ?
+                        <>
+                            <NavDropdown title={user.username} id="collasible-nav-dropdown">
+                                <NavLink className="nav-link dropdown-scena" to="/favorites">Mi perfil</NavLink>
+                                <NavLink className="nav-link dropdown-scena" to="/my-profile">Editar perfil</NavLink>
+                                <div className="nav-link dropdown-scena" onClick={logOutUser}>Cerrar sesión</div>
                             </NavDropdown>
 
+                            <NavLink className="nav-link" to="/my-messages">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="aquamarine" className="bi bi-envelope-fill" viewBox="0 0 16 16" >
+                                    <path d="M.05 3.555A2 2 0 012 2h12a2 2 0 011.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 002 14h12a2 2 0 001.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"></path>
+                                </svg>
+                            </NavLink>
 
-                            {isLoggedIn
-                                ?
-                                <>
-                                    <NavLink to="########" className="nav-link justify-content-end">Hola {user.username} :)</NavLink>
-                                    <div className="nav-link" onClick={logOutUser}>Cerrar sesión</div>
-                                    <NavLink className="nav-link" to="/my-profile">Editar perfil</NavLink>
-                                    <NavLink className="nav-link" to="/favorites">Mis favoritos</NavLink>
-                                    <NavLink className="nav-link" to="/my-messages">Mis mensajes</NavLink>
-                                </>
-                                :
-                                <>
-                                    <Button className="nav-link" onClick={() => setShowLoginModal(true)}>Iniciar sesión</Button>
-                                    <Button className="nav-link" onClick={() => setShowRegisterModal(true)}>Registro</Button>
-                                </>
-                            }
+                        </>
+                        :
+                        <Link className="nav-link" to="/events">Events</Link>
+                    }
 
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar >
+                </Navbar.Collapse>
+            </Navbar>
 
             <Modal className="loginModal" show={showLoginModal} onHide={() => setShowLoginModal(false)}>
                 <LoginPage fireFinalActions={fireFinalActionsLogin} />
@@ -110,7 +111,8 @@ const ScenaNav = () => {
             <Modal className="registerModal" show={showRegisterModal} onHide={() => setShowRegisterModal(false)}>
                 <SignupPage className='prueba' fireFinalActions={fireFinalActionsRegister} />
             </Modal>
-        </div>
+        </>
+
     )
 }
 
