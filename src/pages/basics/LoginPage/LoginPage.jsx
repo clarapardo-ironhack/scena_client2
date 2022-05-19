@@ -4,8 +4,6 @@ import { Button, Col, Row } from 'react-bootstrap'
 import { useState } from 'react'
 
 
-
-
 const LoginPage = ({fireFinalActions}) => {
 
     const [showButtons, setShowButtons] = useState(true)
@@ -18,8 +16,7 @@ const LoginPage = ({fireFinalActions}) => {
 
     return (
         <div className="loginPage">
-            <h1 className="login-bigTitle">¿?</h1>
-
+           
             {showButtons
                 ?
                 <Row > 

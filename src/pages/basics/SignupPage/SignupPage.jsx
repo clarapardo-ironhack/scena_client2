@@ -18,10 +18,9 @@ const SignupPage = ({ fireFinalActions}) => {
         setShowForm(role)
         setShowButtons(false)
     }
-
+ 
     return (
         <div className="registerPage">
-            <h1 className="login-bigTitle">¿?</h1>
 
             {showButtons
                 ?

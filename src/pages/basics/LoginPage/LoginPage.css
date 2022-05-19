@@ -4,15 +4,21 @@ Jungle Green #00B295
 Eerie Black #191516
 Cerulean Blue #3454D1 */
 
-/* .loginModal .modal-dialog{
-    width: 800px;
-} */
+.modal-content {
+    border-radius: 50px !important;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px) brightness(125%);
+    border: 0px;
+}
+
+
 
 .loginPage {
-    background-color: #1b2123;
+    background-color: rgba(255, 255, 255, 0);
     text-align: center;
-    padding-bottom: 50px;
-    margin: 0px
+    padding-bottom: 40px;
+    margin: 0px;
+    padding-top: 50px;
 }
 
 .login-bigTitle {
@@ -23,7 +29,7 @@ Cerulean Blue #3454D1 */
 }
 
 .one-option-user {
-    background-image: url('./../../../../public/concierto.jpg');
+    background-color: #BB9F06;
     margin-bottom: 20px;
     height: 75px;
     border-radius: 20px;
@@ -47,5 +53,9 @@ Cerulean Blue #3454D1 */
 }
 
 .modal-header-li-si {
-    background-color: #C9DAEA;
+    background-color: white;
+}
+
+.prueba {
+    border-radius: 20px;
 }
