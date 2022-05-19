@@ -1,3 +1,4 @@
+import './GeneralList.css'
 import { Row, Col } from "react-bootstrap"
 import filterMachine from "../../utils/filterMachine"
 import TinyCard from "../Card/TinyCard/TinyCard"
@@ -13,11 +14,11 @@ const GeneralList = ({ infoType, input }) => {
             ?
             infoType.length
                 ?
-                <Row>
+                <Row className="CardContainerRow" >
                     {
                         filteredData?.map(elem => {
                             return (
-                                <Col md={{ span: 4 }} key={elem._id}>
+                                <Col md={{ span: 4 }} key={elem._id} className="CardContainerCol">
                                     <TinyCard {...elem} />
                                 </Col>
                             )
