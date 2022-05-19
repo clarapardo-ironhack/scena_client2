@@ -26,8 +26,8 @@ const GenreSearchList = ({ infoType, input, artistsList }) => {
         return returnable
     })
 
-    return (
-        filteredData?.length
+    return (<>
+        {filteredData?.length
             ?
             <>
                 <Row>
@@ -50,8 +50,8 @@ const GenreSearchList = ({ infoType, input, artistsList }) => {
                 </Row>
             </>
             :
-            <Loader />
-    )
+            <Loader />}
+    </>)
 }
 
 

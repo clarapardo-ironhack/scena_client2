@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import venuesService from "../../../services/venue.service"
 import GeneralList from "../../../components/GeneralList/GeneralList"
 import SearchBar from '../../../components/SearchBar/SearchBar'
+import ScenaNav from './../../../components/Navbar/ScenaNav'
+
 
 const VenuesPage = () => {
 
@@ -32,7 +34,7 @@ const VenuesPage = () => {
     }
 
     return (
-        <>
+        <><ScenaNav />
             <Container>
                 <SearchBar handler={inputHandler} task='eventos' />
                 {isLoaded && <GeneralList infoType={infoType} input={inputText} />}

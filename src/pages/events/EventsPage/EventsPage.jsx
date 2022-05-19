@@ -3,6 +3,7 @@ import eventsService from '../../../services/events.service'
 import { useEffect, useState } from "react"
 import EventList from '../../../components/EventList/EventList'
 import SearchBar from '../../../components/SearchBar/SearchBar'
+import ScenaNav from './../../../components/Navbar/ScenaNav'
 
 
 const EventPage = () => {
@@ -34,7 +35,7 @@ const EventPage = () => {
     }
 
     return (
-        <>
+        <><ScenaNav />
             <Container>
                 <SearchBar handler={inputHandler} input task='eventos' />
                 {isLoaded && <EventList infoType={infoType} input={inputText} />}

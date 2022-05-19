@@ -8,6 +8,8 @@ import Loader from '../../../components/Loader/Loader'
 import { Button, Container } from 'react-bootstrap'
 import { AuthContext } from '../../../context/auth.context'
 import { useContext } from 'react'
+import ScenaNav from './../../../components/Navbar/ScenaNav'
+
 
 const VenueDetailsPage = () => {
 
@@ -65,7 +67,7 @@ const VenueDetailsPage = () => {
 
 
     return (
-        <>
+        <><ScenaNav />
             {
                 !venue
                     ?

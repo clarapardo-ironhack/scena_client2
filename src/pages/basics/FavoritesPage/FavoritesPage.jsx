@@ -9,6 +9,8 @@ import { useContext } from 'react'
 import fansService from '../../../services/fan.service'
 import artistsService from '../../../services/artist.service'
 import venuesService from '../../../services/venue.service'
+import ScenaNav from './../../../components/Navbar/ScenaNav'
+
 
 const FavoritesPage = () => {
 
@@ -63,11 +65,12 @@ const FavoritesPage = () => {
     }
 
 
-    return (
+    return (<>
+        <ScenaNav />
         <Container>
             {isLoaded && <BigCard {...infoType} />}
         </Container>
-    )
+    </>)
 }
 
 export default FavoritesPage

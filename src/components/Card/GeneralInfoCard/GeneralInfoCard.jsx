@@ -1,10 +1,11 @@
-import { Card, Image, Row, Col, Modal, Button } from 'react-bootstrap'
+import { Card, Image, Row, Col, Modal, Button, Container } from 'react-bootstrap'
 import TinyEventCard from '../../EventCard/TinyEventCard/TinyEventCard'
 import NewMessageForm from '../../Forms/NewMessageForm/NewMessageForm'
 import { AuthContext } from "../../../context/auth.context"
 import { useContext, useState } from "react"
 import { MessageContext } from '../../../context/message.context'
 import TinyCard from '../TinyCard/TinyCard'
+import './GeneralInfoCard.css'
 
 const CommonCard = ({ _id, image, username, networks, avatar, images, description, title, likedArtists, likedEvents, likedVenues, role }) => {
 
@@ -33,124 +34,134 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
         twitterURL = ""
     }
     return (
-        <>
-            <Row>
-                <Col md={{ span: 4, offset: 1 }}>
-                    {
 
-                        avatar
-                            ?
-                            <Col md={3}>
-                                <Image className="profileImg" src={avatar} alt="Profile Picture" />
-                            </Col>
-                            :
-                            <Col md={3}>
-                                <Image className="profileImg" src={image} alt="Profile Picture" />
-                            </Col>
-
-                    }
-
+        <Container >
+            <Row className='pageUsername'>
+                <Col>
+                    {username && <h1>{username}</h1>}
                 </Col>
-                <Col md={{ span: 6 }}>
-                    {username && <Card.Title>{username}</Card.Title>}
-                    {title && <Card.Title>{title}</Card.Title>}
-                    {description && <Card.Text>{description}</Card.Text>}
-
-                </Col>
-                <Card.Text>
-                    {
-                        networks
-                        &&
-                        <div className="networksLinks">
-                            {networks.instagram && <a target="_blank" rel="noreferrer" href={instagramURL}>Instagram </a>}
-                            {networks.spotify && <a target="_blank" rel="noreferrer" href={networks.spotify}>Spotify </a>}
-                            {networks.soundcloud && <a target="_blank" rel="noreferrer" href={networks.soundcloud}>SoundCloud </a>}
-                            {networks.twitter && <a target="_blank" rel="noreferrer" href={twitterURL}>Twitter </a>}
-                            {networks.bandcamp && <a target="_blank" rel="noreferrer" href={networks.bandcamp}> BandCamp </a>}
-
-                        </div>
-                    }
-                </Card.Text>
-
-                {isLoggedIn && (user.role !== 'Fan') && !title && <Button onClick={openModal}>Mandar mensaje a {username}</Button>}
 
             </Row>
-
-            <>
-                {
-                    images
-                    &&
-                    <Row>
+            <Container className='generalInfoCard'>
+                <Row>
+                    <Col md={{ span: 4, offset: 1 }}>
                         {
-                            Object.entries(images).map(([key, value]) => {
+
+                            avatar
+                                ?
+
+                                <Image className="profileImg" src={avatar} alt="Profile Picture" />
+
+                                :
+
+                                <Image className="profileImg" src={image} alt="Profile Picture" />
+
+
+                        }
+
+                    </Col>
+                    <Col md={{ span: 6 }}>
+                        {title && <Card.Title>{title}</Card.Title>}
+                        {description && <Card.Text>{description}</Card.Text>}
+
+                    </Col>
+                    <Card.Text>
+                        {
+                            networks
+                            &&
+                            <div className="networksLinks">
+                                {networks.instagram && <a target="_blank" rel="noreferrer" href={instagramURL}>Instagram </a>}
+                                {networks.spotify && <a target="_blank" rel="noreferrer" href={networks.spotify}>Spotify </a>}
+                                {networks.soundcloud && <a target="_blank" rel="noreferrer" href={networks.soundcloud}>SoundCloud </a>}
+                                {networks.twitter && <a target="_blank" rel="noreferrer" href={twitterURL}>Twitter </a>}
+                                {networks.bandcamp && <a target="_blank" rel="noreferrer" href={networks.bandcamp}> BandCamp </a>}
+
+                            </div>
+                        }
+                    </Card.Text>
+
+                    {isLoggedIn && (user.role !== 'Fan') && !title && <Button onClick={openModal}>Mandar mensaje a {username}</Button>}
+
+                </Row>
+
+                <>
+                    {
+                        images
+                        &&
+                        <Row>
+                            {
+                                Object.entries(images).map(([key, value]) => {
+                                    return (
+                                        <img key={key} className="otherImages" src={value} alt="Other Profile photos" />
+                                    )
+                                })
+                            }
+                        </Row>
+                    }
+                </>
+                {
+
+                    likedArtists?.length
+                    &&
+                    user._id === _id
+                    &&
+                    <>
+                        {
+                            likedArtists.map((artist, index) => {
+
                                 return (
-                                    <img key={key} className="otherImages" src={value} alt="Other Profile photos" />
+                                    <TinyCard alterRole={role} {...artist} />
                                 )
                             })
                         }
-                    </Row>
+                    </>
                 }
-            </>
-            {
 
-                likedArtists?.length
-                &&
-                user._id === _id
-                &&
-                <>
-                    {
-                        likedArtists.map((artist, index) => {
+                {
+                    likedVenues?.length
+                    &&
+                    user._id === _id
+                    &&
+                    <>
+                        {
+                            likedVenues.map((venue, index) => {
+                                return (
+                                    <TinyCard alterRole={role} {...venue} />
+                                )
+                            })
+                        }
+                    </>
+                }
 
-                            return (
-                                <TinyCard alterRole={role} {...artist} />
-                            )
-                        })
-                    }
-                </>
-            }
-
-            {
-                likedVenues?.length
-                &&
-                user._id === _id
-                &&
-                <>
-                    {
-                        likedVenues.map((venue, index) => {
-                            return (
-                                <TinyCard alterRole={role} {...venue} />
-                            )
-                        })
-                    }
-                </>
-            }
-
-            {
-                likedEvents?.length
-                &&
-                user._id === _id
-                &&
-                <>
-                    {
-                        likedEvents.map((event, index) => {
-                            return (
-                                <TinyEventCard {...event} />
-                            )
-                        })
-                    }
-                </>
-            }
+                {
+                    likedEvents?.length
+                    &&
+                    user._id === _id
+                    &&
+                    <>
+                        {
+                            likedEvents.map((event, index) => {
+                                return (
+                                    <TinyEventCard {...event} />
+                                )
+                            })
+                        }
+                    </>
+                }
 
 
-            <Modal show={showModal} onHide={closeModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Mensaje para {username}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <NewMessageForm fireFinalActions={fireFinalActions} destinationId={_id} username={username} answer={false} />
-                </Modal.Body>
-            </Modal>
-        </>
+                <Modal show={showModal} onHide={closeModal}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Mensaje para {username}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <NewMessageForm fireFinalActions={fireFinalActions} destinationId={_id} username={username} answer={false} />
+                    </Modal.Body>
+                </Modal>
+            </Container >
+        </Container>
+
+
     )
 }
 export default CommonCard
