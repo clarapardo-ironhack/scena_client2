@@ -9,6 +9,15 @@ Cerulean Blue #3454D1 */
     width: 350px;
     margin: 50px 50px;
     background-color: rgba(0, 0, 0, 0);
+    transition: 1s ease;
+}
+
+.tinyCard:hover {
+    transition: 1s ease;
+    height: 380px;
+    width: 380px;
+    margin: 30px 30px;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .tinyCardLink {
