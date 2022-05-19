@@ -33,8 +33,7 @@ Cerulean Blue #3454D1 */
     background-color: #191516;
     border: 2px solid #03F7EB;
     color: #03F7EB;
-    width: 300px;
-    height: 60px;
+    width: 400px;
     font-size: 14pt;
 }
 
@@ -44,6 +43,6 @@ Cerulean Blue #3454D1 */
 }
 
 .searchBar:hover::placeholder {
-    /* transition: .3s ease; */
+    transition: .3s ease;
     color: #03F7EB
 }

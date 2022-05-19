@@ -5,6 +5,8 @@ import BigCard from '../../../components/Card/BigCard/BigCard'
 import './LabelDetailsPage.css'
 import Loader from '../../../components/Loader/Loader'
 import { Container } from 'react-bootstrap'
+import ScenaNav from './../../../components/Navbar/ScenaNav'
+
 
 const LabelDetailsPage = () => {
 
@@ -29,7 +31,7 @@ const LabelDetailsPage = () => {
 
     }
 
-    return (
+    return (<><ScenaNav />
         !label
             ?
             <Loader />
@@ -37,7 +39,7 @@ const LabelDetailsPage = () => {
             <Container>
                 {isLoaded && <BigCard {...label} />}
             </Container>
-    )
+    </>)
 }
 
 export default LabelDetailsPage

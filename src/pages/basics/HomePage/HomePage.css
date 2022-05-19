@@ -113,17 +113,26 @@ Cerulean Blue #3454D1 */
     background-color: #03F7EB;
 }
 
-.signupBtn:hover{
-        filter: none;
-        border-radius: 60px;
-        transition: 0.5s ease;
-        font-size: 35px;
-        color: #191516;
-        height: 200px;
-        background-color: #03F7EB;
-    }
+.signupBtn:hover {
+    filter: none;
+    border-radius: 60px;
+    transition: 0.5s ease;
+    font-size: 35px;
+    color: #191516;
+    height: 200px;
+    background-color: #03F7EB;
+}
 
 .homeSelections {
+    text-decoration: none;
+}
+
+.searchFor {
+    margin-top: 190px;
+}
+
+
+.homeSelections div {
     background-color: #BB9F06;
     margin-bottom: 20px;
     height: 75px;
@@ -132,17 +141,18 @@ Cerulean Blue #3454D1 */
     display: flex;
     justify-content: center;
     align-items: center;
-    filter: grayscale(100%);
-    -webkit-filter: grayscale(100%);
-    -webkit-transition: all 0.5s ease;
+    background-color: #03F7EB;
+    border: 10px solid #191516;
+    color: #191516;
+    opacity: .7;
+    transition: 1s ease;
 }
 
-.homeSelections:hover {
-    filter: grayscale(0%);
-    filter: gray;
-    -webkit-filter: grayscale(0%);
-    filter: none;
-    transition: 0.5s ease;
+.homeSelections div:hover {
+    transition: 1s ease;
     font-size: 35px;
-    color: white
+    color: white;
+    background-color: #191516;
+    border: 2px solid #03F7EB;
+    color: #03F7EB;
 }

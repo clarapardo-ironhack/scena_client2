@@ -1,10 +1,11 @@
-import { Card, Image, Row, Col, Modal, Button } from 'react-bootstrap'
+import { Card, Image, Row, Col, Modal, Button, Container } from 'react-bootstrap'
 import TinyEventCard from '../../EventCard/TinyEventCard/TinyEventCard'
 import NewMessageForm from '../../Forms/NewMessageForm/NewMessageForm'
 import { AuthContext } from "../../../context/auth.context"
 import { useContext, useState } from "react"
 import { MessageContext } from '../../../context/message.context'
 import TinyCard from '../TinyCard/TinyCard'
+import './GeneralInfoCard.css'
 
 const CommonCard = ({ _id, image, username, networks, avatar, images, description, title, likedArtists, likedEvents, likedVenues, role }) => {
 
@@ -34,7 +35,13 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
     }
     return (
         <>
-            <Row>
+            <Row className='pageUsername'>
+                <Col>
+                    {username && <h1>{username}</h1>}
+                </Col>
+
+            </Row>
+            <Row className="firstRow">
                 <Col md={{ span: 4, offset: 1 }}>
                     {
 
@@ -42,19 +49,19 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                             ?
                             <Col md={3}>
                                 <Image className="profileImg" src={avatar} alt="Profile Picture" />
+
                             </Col>
                             :
                             <Col md={3}>
-                                <Image className="profileImg" src={image} alt="Profile Picture" />
+                                <Image className="poster" src={image} alt="Profile Picture" />
                             </Col>
 
                     }
-
                 </Col>
                 <Col md={{ span: 6 }}>
-                    {username && <Card.Title>{username}</Card.Title>}
-                    {title && <Card.Title>{title}</Card.Title>}
-                    {description && <Card.Text>{description}</Card.Text>}
+
+                    {title && <Card.Title className="pageUsername">{title}</Card.Title>}
+                    {description && <Card.Text className="description">{description}</Card.Text>}
 
                 </Col>
                 <Card.Text>

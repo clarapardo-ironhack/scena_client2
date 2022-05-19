@@ -6,6 +6,7 @@ import artistsService from "../../../services/artist.service"
 import SearchBar from '../../../components/SearchBar/SearchBar'
 import GenreSearchList from '../GenreSearchList/GenreSearchList'
 import stylesList from '../../../utils/stylesList'
+import ScenaNav from './../../../components/Navbar/ScenaNav'
 
 
 const ArtistPage = () => {
@@ -48,8 +49,8 @@ const ArtistPage = () => {
             .catch(err => console.log(err))
     }
     return (
-        <>
-            <Container>
+        <><ScenaNav />
+            <Container className='artistsPage'>
                 {artistSearch && <Button onClick={genreButtonHandler}>GÉNEROS</Button>}
                 {genreSearch && <Button onClick={artistsButtonHandler}>ARTISTAS</Button>}
                 <SearchBar handler={inputHandler} task={artistSearch ? 'artistas' : 'géneros'} />
