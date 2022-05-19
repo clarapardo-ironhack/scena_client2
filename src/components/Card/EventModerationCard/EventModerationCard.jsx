@@ -20,7 +20,7 @@ const EventModerationCard = ({ event, setState, state, role }) => {
 
     //     })
     //     .catch(err => console.log(err))
-
+    //Test
     const approveEvent = () => {
         if (role === 'Artist') {
 
