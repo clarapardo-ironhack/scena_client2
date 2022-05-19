@@ -63,7 +63,23 @@ const LoginForm = ({ role, fireFinalActions }) => {
                     </Col>
                 </Form.Group>
 
-                <Button variant="dark" type="submit">Iniciar sesión</Button>
+                <button className="login-register-button">
+                    <p>Acceder</p>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        className="h-6 w-6"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        ></path>
+                    </svg>
+                </button>
             </Form>
         </Container>
     )
