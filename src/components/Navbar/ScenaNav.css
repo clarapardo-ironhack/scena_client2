@@ -2,6 +2,7 @@
     position: fixed;
     width: 100vw;
     z-index: 10;
+    margin-bottom: 0;
 }
 
 .logo-navbar img {
@@ -33,4 +34,8 @@
 
 .dropdown-scena {
     width: 150px
+}
+
+.btn-primary {
+border-color: transparent;
 }

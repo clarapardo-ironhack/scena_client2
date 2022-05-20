@@ -1,0 +1,93 @@
+ .registerPage {
+     background-color: #C9DAEA;
+     text-align: center;
+     padding-bottom: 50px;
+     margin: 0px
+ }
+
+ .registerPage {
+     background-color: rgba(255, 255, 255, 0);
+     text-align: center;
+     padding-bottom: 40px;
+     margin: 0px;
+     padding-top: 50px;
+ }
+
+ .register-bigTitle {
+     color: #00B295;
+     font-size: 2.5rem;
+     margin-top: 20px;
+     margin-bottom: 40px;
+ }
+
+
+ .edit-button {
+     padding: 0;
+     margin: 0;
+     margin-top: 20px;
+     margin-bottom: 20px;
+     border: none;
+     background: none;
+ }
+
+ .edit-button {
+     --primary-color: #3454D1;
+     --hovered-color: #00B295;
+     position: relative;
+     display: flex;
+     font-weight: 600;
+     font-size: 20px;
+     gap: 0.5rem;
+     align-items: center;
+     justify-content: end;
+ }
+
+ .edit-button p {
+     margin: 0;
+     position: relative;
+     font-size: 20px;
+     color: var(--primary-color)
+ }
+
+ .edit-button::after {
+     position: absolute;
+     content: "";
+     width: 0;
+     left: 0;
+     bottom: -7px;
+     background: var(--hovered-color);
+     height: 2px;
+     transition: 0.3s ease-out;
+ }
+
+ .edit-button p::before {
+     position: absolute;
+     box-sizing: border-box;
+     content: "Guardar cambios";
+     width: 0%;
+     inset: 0;
+     color: var(--hovered-color);
+     overflow: hidden;
+     transition: 0.3s ease-out;
+ }
+
+ .edit-button:hover::after {
+     width: 100%;
+ }
+
+ .edit-button:hover p::before {
+     width: 100%;
+ }
+
+ .edit-button:hover svg {
+     transform: translateX(4px);
+     color: var(--hovered-color)
+ }
+
+ .edit-button svg {
+     color: var(--primary-color);
+     transition: 0.2s;
+     position: relative;
+     width: 15px;
+     transition-delay: 0.2s;
+ }

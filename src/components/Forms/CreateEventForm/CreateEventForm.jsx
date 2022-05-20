@@ -14,7 +14,8 @@ import SearchBar from '../../SearchBar/SearchBar'
 import filterMachine from '../../../utils/filterMachine'
 
 
-const CreateEventForm = ({ edit }) => {
+
+const CreateEventForm = ({ edit, fireFinalActions }) => {
 
     const { user } = useContext(AuthContext)
 
@@ -22,7 +23,7 @@ const CreateEventForm = ({ edit }) => {
     const [allArtist, setAllArtist] = useState([])
     const [allArtistBackUp, setAllArtistBackUp] = useState([])
     const [allVenues, setAllVenues] = useState([])
-    
+
     const [newEventData, setNewEventData] = useState({
         title: '',
         date: '',
@@ -92,7 +93,10 @@ const CreateEventForm = ({ edit }) => {
 
         eventsService
             .createEvent(newEventData)
-            .then(res => navigate('/'))
+            .then(res => {
+                fireFinalActions()
+                navigate('/favorites')
+            })
             .catch(err => console.log(err))
     }
 
@@ -133,76 +137,91 @@ const CreateEventForm = ({ edit }) => {
 
     return (
         <Container>
-            <h1>CREAR EVENTO</h1>
+            <h1 className="create-event-title">Añade un evento</h1>
             <hr />
 
             <Form onSubmit={handleSubmit}>
 
-                <FloatingLabel controlId="title" label="Nombre del evento" className="mb-3">
-                    <Form.Control type="text" placeholder="Nombre del evento" name="title" value={title} onChange={handleInputChange} />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="description" label="Descripción del evento" className="mb-3">
-                    <Form.Control as="textarea" style={{ height: '150px' }} placeholder="Descripción del evento" name="description" value={description} onChange={handleInputChange} />
-                </FloatingLabel>
 
                 <Form.Group as={Row}>
                     <Col sm={{ span: 6 }}>
+
+                        <FloatingLabel controlId="title" label="Nombre del evento" className="mb-3">
+                            <Form.Control type="text" placeholder="Nombre del evento" name="title" value={title} onChange={handleInputChange} />
+                        </FloatingLabel>
+
+                        <FloatingLabel controlId="date" label="Fecha y hora" className="mb-3">
+                            <Form.Control type="datetime-local" placeholder="Fecha y hora" name="date" value={date} onChange={handleInputChange} />
+                        </FloatingLabel>
+
+                    </Col>
+
+
+                    <Col sm={{ span: 6 }}>
+                        <div className="event-cartel" style={{ backgroundImage: `url('${image}')`, backgroundSize: 'cover' }}></div>
+                        <Form.Group className="mb-3" controlId="iamge">
+                            <Form.Control type="file" onChange={handleImageUpload} />
+                        </Form.Group>
+                    </Col>
+
+                    <FloatingLabel controlId="description" label="Descripción del evento" className="mb-3">
+                        <Form.Control as="textarea" style={{ height: '150px' }} placeholder="Descripción del evento" name="description" value={description} onChange={handleInputChange} />
+                    </FloatingLabel>
+
+                    <div className='centerAll'>
                         <SearchBar handler={inputHandler} task={'artista principal'} />
 
                         <FloatingLabel controlId="mainArtist" label={filteredMain.length ? "Main artist" : ''}>
                             {filteredMain.length
                                 ?
-                                <Form.Select aria-label="mainArtist" onClick={handleInputChange} onChange={handleInputChange} value={mainArtist} name="mainArtist">
+                                <Form.Select className="aire" aria-label="mainArtist" onClick={handleInputChange} onChange={handleInputChange} value={mainArtist} name="mainArtist">
                                     {filteredMain.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
                                 </Form.Select>
                                 :
                                 <h2>No hay resultados</h2>}
                         </FloatingLabel>
+                    </div>
 
-                        <SearchBar handler={suppInputHandler} task={'otros artistas'} />
-                        <FloatingLabel controlId="supportingArtists" label={filteredSupporting.length ? "Supporting artists" : ''}>
+                    <div className='centerAll'>
+                        <SearchBar className="miniSearchBar" handler={suppInputHandler} task={'otros artistas'} />
+                        <FloatingLabel className="aire" controlId="supportingArtists" label={filteredSupporting.length ? "Supporting artists" : ''}>
                             {filteredSupporting.length
                                 ?
                                 <Form.Select multiple={true} aria-label="supportingArtists" onChange={handleInputChange} value={supportingArtists} name="supportingArtists">
                                     {filteredSupporting.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
                                 </Form.Select>
                                 :
-                                <></>}
+                                null
+                            }
                         </FloatingLabel>
+                    </div>
 
-                    </Col>
-
-                    <Col sm={{ span: 6 }}>
-                        <Form.Group className="mb-3" controlId="iamge">
-                            <Form.Label>Cartel</Form.Label>
-                            <Form.Control type="file" onChange={handleImageUpload} />
-                        </Form.Group>
-
-                        <FloatingLabel controlId="date" label="Fecha y hora" className="mb-3">
-                            <Form.Control type="datetime-local" placeholder="Fecha y hora" name="date" value={date} onChange={handleInputChange} />
-                        </FloatingLabel>
-
+                    <div className='centerAll'>
                         <SearchBar handler={venuesInputHandler} task={'salas de concierto'} />
                         <FloatingLabel controlId="venue" label={filteredVenues.length ? "Lugar del evento" : ''}>
                             {filteredVenues.length
                                 ?
-                                <Form.Select aria-label="venue" onChange={handleInputChange} value={venue} name="venue">
+                                <Form.Select className="aire" aria-label="venue" onChange={handleInputChange} value={venue} name="venue">
                                     {filteredVenues.map((elm) => <option value={elm._id} key={elm._id}> {elm.username}</option>)}
                                     <option></option>
                                 </Form.Select>
                                 :
                                 <h2>No hay resultados</h2>}
                         </FloatingLabel>
-                    </Col>
+                    </div>
+
                 </Form.Group>
 
                 {loadingPoster
                     ?
                     <Loader />
                     :
-                    <Button variant="dark" type="submit">Crear</Button>}
-
+                    <button className="createEvent-button aire">
+                        <p>Crear</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="4" className="h-6 w-6" viewBox="0 0 24 24" >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" ></path>
+                        </svg>
+                    </button>}
             </Form>
         </Container >
     )

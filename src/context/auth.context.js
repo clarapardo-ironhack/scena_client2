@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react'
 import { useEffect } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 import authService from '../services/auth.service'
 import messagesService from '../services/messages.service'
 
@@ -13,6 +14,7 @@ function AuthProviderWrapper(props) {
     const [user, setUser] = useState(null)
     const [unansweredMessages, setUnansweredMessages] = useState(0)
 
+    const navigate = useNavigate()
 
 
     const storeToken = (token) => {
@@ -66,6 +68,7 @@ function AuthProviderWrapper(props) {
         setIsLoggedIn(false)
         setIsLoading(false)
         setUser(null)
+        navigate('/')
     }
 
     useEffect(() => {

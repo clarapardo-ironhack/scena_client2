@@ -61,8 +61,7 @@ const HomePage = () => {
     const fireFinalActionsLogin = () => {
         setShowLoginModal(false)
         setShowNavbar(true)
-            showMessage('Bienvenidx de nuevo!', '¿qué tal lo has pasado este tiempo?')
-     
+        showMessage('Bienvenidx de nuevo!', '¿qué tal lo has pasado este tiempo?')
 
     }
 
@@ -166,11 +165,11 @@ const HomePage = () => {
 
 
         <Modal className="loginModal" show={showLoginModal} onHide={() => setShowLoginModal(false)}>
-            <LoginPage fireFinalActions={fireFinalActionsLogin} />
+            <LoginPage fireFinalActions={() => fireFinalActionsLogin()} />
         </Modal>
 
         <Modal className="registerModal" show={showRegisterModal} onHide={() => setShowRegisterModal(false)}>
-            <SignupPage className='prueba' fireFinalActions={fireFinalActionsRegister} />
+            <SignupPage className='prueba' fireFinalActions={() => fireFinalActionsRegister()} />
         </Modal>
     </div >
     )

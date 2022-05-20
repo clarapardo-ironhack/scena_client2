@@ -15,7 +15,7 @@ const LoginPage = ({fireFinalActions}) => {
     }
 
     return (
-        <div className="loginPage">
+        <div className="loginPage"> 
            
             {showButtons
                 ?

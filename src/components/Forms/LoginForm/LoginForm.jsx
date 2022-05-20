@@ -27,7 +27,7 @@ const LoginForm = ({ role, fireFinalActions }) => {
                 storeToken(data.authToken)
                 authenticateUser()
                 fireFinalActions()
-                navigate('/favorites')
+                // navigate('/')
             })
             .catch(err => console.log(err))
     }

@@ -9,21 +9,18 @@ import { Container } from 'react-bootstrap'
 import ScenaNav from './../../../components/Navbar/ScenaNav'
 
 
-const ProfileEditPage = () => {
+const ProfileEditPage = ({ fireFinalActions }) => {
 
     const { user, logOutUser, isLoggedIn } = useContext(AuthContext)
 
     return (
-        <><ScenaNav />
-            <h1>profaileditpeich</h1>
+        <>
             <Container>
-                <h1>Edita tu perfil</h1>
-                <hr />
 
-                {user.role === 'Fan' && <FanSignupForm edit={user._id} />}
-                {user.role === 'Label' && <LabelSignupForm edit={user._id} />}
-                {user.role === 'Venue' && <VenueSignupForm edit={user._id} />}
-                {user.role === 'Artist' && <ArtistSignupForm edit={user._id} />}
+                {user.role === 'Fan' && <FanSignupForm edit={user._id} fireFinalActions={fireFinalActions}/>}
+                {user.role === 'Label' && <LabelSignupForm edit={user._id} fireFinalActions={fireFinalActions}/>}
+                {user.role === 'Venue' && <VenueSignupForm edit={user._id} fireFinalActions={fireFinalActions}/>}
+                {user.role === 'Artist' && <ArtistSignupForm edit={user._id} fireFinalActions={fireFinalActions}/>}
 
             </Container>
         </>
