@@ -152,7 +152,7 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Mensaje para {username}</Modal.Title>
+                    <Modal.Title style={{color: "white"}}>Mensaje para {username}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <NewMessageForm fireFinalActions={fireFinalActions} destinationId={_id} username={username} answer={false} />
