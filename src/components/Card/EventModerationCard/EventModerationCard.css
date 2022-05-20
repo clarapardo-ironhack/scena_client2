@@ -1,0 +1,72 @@
+/* Beau Blue #C9DAEA
+Fluorescent Blue #03F7EB
+Jungle Green #00B295
+Eerie Black #191516
+Cerulean Blue #3454D1 */
+
+.eventModerationCard {
+    border: 6px solid #3454D1;
+    border-radius: 60px;
+    margin: 40px;
+    padding: 40px;
+    color: #03F7EB;
+    display: flex;
+    justify-content: center;
+}
+
+.eventModerationCard h5 {
+   color: #3454D1;
+}
+
+.eventModerationCard h5 b {
+    color: #03F7EB;
+}
+
+.approveButton {
+    width: 100px;
+    height: 60px;
+    border: 1px solid #03F7EB;
+    background-color: black;
+    border-radius:  50px;
+    text-align: center;
+    padding-top: 17px;
+    transition: .5s ease;
+    color: #03F7EB;
+    margin-bottom: 10px;
+}
+
+.approveButton:hover {
+    transition: .5s ease;
+    width: 120px;
+    height: 70px;
+    border: 5px solid black;
+    background-color: rgb(15, 144, 47);
+    border-radius: 50px;
+    text-align: center;
+    padding-top: 17px;
+    color: black;
+    font-weight: bolder;
+}
+
+.denyButton {
+    width: 100px;
+    height: 60px;
+    border: 1px solid #03F7EB;
+    background-color: black;
+    border-radius: 50px;
+    text-align: center;
+    padding-top: 17px;
+    transition: .5s ease;
+    color: #03F7EB
+}
+
+.denyButton:hover {
+    transition: .5s ease;
+    width: 120px;
+    height: 70px;
+    border: 5px solid black;
+    background-color: rgb(156, 20, 20);
+    border-radius: 50px;
+    text-align: center;
+    padding-top: 17px;
+}

@@ -5,6 +5,7 @@ import { Navigate, useNavigate } from "react-router-dom"
 import eventsService from "../../../services/events.service"
 import venuesService from "../../../services/venue.service"
 const { getFullDate, getFullTime } = require("./../../../utils/dateFormatter")
+import './EventModerationCard.css'
 
 
 const EventModerationCard = ({ event, setState, state, role }) => {
@@ -60,24 +61,27 @@ const EventModerationCard = ({ event, setState, state, role }) => {
 
 
     return (
-        <Container>
+        <div className="eventModerationCard">
 
             <Col sm={{ span: 9 }}>
-                <h5>{event.title}</h5>
-                <h6>Creado por: {event.creator.username}</h6>
+                <h3>{event.title}</h3>
+                <h5>Creado por: <b>{event.creator.username}</b></h5>
                 <hr />
                 <Row>
-                    <h6>Fecha: {fullDate} ~ {fullTime} h</h6>
-                    <h6>Sala: {event.venue.username}</h6>
+                    <h5>Fecha: {fullDate} ~ {fullTime} h</h5>
+                    <h5>Sala: {event.venue.username}</h5>
                 </Row>
             </Col>
 
-            <Col sm={{ span: 3 }}>
-                <Button variant="dark" onClick={approveEvent} >Aprobar</Button>
-                <Button variant="dark" onClick={denyEvent} >Rechazar</Button>
-            </Col>
+            <Row className="btnRow" >
+               
+                    <div className="approveButton" variant="dark" onClick={approveEvent} >Aprobar</div>
+                
+                    <div className="denyButton" variant="dark" onClick={denyEvent} >Rechazar</div>
+               
+            </Row>
 
-        </Container>
+        </div>
     )
 }
 

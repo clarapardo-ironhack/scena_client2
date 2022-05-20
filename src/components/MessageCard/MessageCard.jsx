@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { Button, Card, Modal } from "react-bootstrap"
+import { Button, Card, Modal, Row } from "react-bootstrap"
 import { MessageContext } from "../../context/message.context"
 import messagesService from "../../services/messages.service"
 import NewMessageForm from "../Forms/NewMessageForm/NewMessageForm"
@@ -23,8 +23,7 @@ const MessageCard = ({ message, messageInfoCall, isLoading, setIsLoading }) => {
     const fireFinalActions = () => {
         closeModal()
         setAnswered(true)
-        // messageInfoCall()
-        showMessage('HOLA', 'mensaje enviado!')
+        showMessage('Mensaje enviado', 'esperamos que tu mensaje no haya sido muy turras :)')
     }
 
     useEffect((() => {
@@ -67,27 +66,30 @@ const MessageCard = ({ message, messageInfoCall, isLoading, setIsLoading }) => {
         <>
             <div className="messageCard">
                 <Card.Body>
-                    {message.originArtist && <h3>Mensaje de <b>{message.originArtist.username}</b></h3>}
-                    {message.originVenue && <h3>Mensaje de <b>{message.originVenue.username}</b></h3>}
-                    {message.originLabel && <h3>Mensaje de <b>{message.originLabel.username}</b></h3>}
-                    <p>{message.textContent}</p>
+                    {message.originArtist && <h4> <b>{message.originArtist.username}</b> te envió un mensaje:</h4>}
+                    {message.originVenue && <h4> <b>{message.originVenue.username}</b> te envió un mensaje:</h4>}
+                    {message.originLabel && <h4> <b>{message.originLabel.username}</b> te envió un mensaje:</h4>}
+                    <p className="messageContent">{message.textContent}</p>
                     {answered
                         ?
-                        <b>'Mensaje contestado'</b>
+                        <b className="stateMess">-Mensaje contestado-</b>
                         :
-                        <b>'Mensaje sin contestar'</b>}
+                        <b className="stateMess" >-Mensaje sin contestar-</b>}
                 </Card.Body>
 
-                <Button onClick={openModal}>Mandar mensaje a {usernameMess}</Button>
+                {/* <Button onClick={openModal}>Mandar mensaje a {usernameMess}</Button> */}
 
-                <Button onClick={deleteMessage} disabled={isLoading}>Eliminar mensaje</Button>
+                <Row className="btnRow">
+                    <div className="answerButton" onClick={openModal}>📫</div>
+                    <div onClick={deleteMessage} disabled={isLoading} className='deleteMessage'>🗑️</div>
+                </Row>
             </div>
 
 
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Mensaje para {usernameMess}</Modal.Title>
+                    <Modal.Title className="modalTitleMessage">Mensaje para {usernameMess}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <NewMessageForm fireFinalActions={fireFinalActions} destinationId={destinationMess} username={usernameMess} answer={message} setAnswered={setAnswered} />

@@ -4,26 +4,15 @@ Jungle Green #00B295
 Eerie Black #191516
 Cerulean Blue #3454D1 */
 
-.chatSection {
+.petitionSection {
     margin: 0 30px;
 }
 
-.chatSection h1 {
+.petitionSection h1 {
     color: #03F7EB;
     border: 2px solid #03F7EB;
     border-radius: 60px;
     padding: 10px;
+    margin-bottom: 180px;
 }
 
-.chatSection h2 {
-    color: #03F7EB;
-    border: 1px solid #03F7EB;
-    margin: 70px 100px 30px;
-    padding: 20px 0;
-    
-}
-
-.chatSection a {
-    text-decoration: none;
-    color: #03F7EB
-}
