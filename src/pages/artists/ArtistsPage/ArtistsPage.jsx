@@ -51,8 +51,8 @@ const ArtistPage = () => {
     return (
         <><ScenaNav />
             <Container className='artistsPage'>
-                {artistSearch && <Button onClick={genreButtonHandler}>GÉNEROS</Button>}
-                {genreSearch && <Button onClick={artistsButtonHandler}>ARTISTAS</Button>}
+                {artistSearch && <div className='genreButtons' onClick={genreButtonHandler}>GÉNEROS</div>}
+                {genreSearch && <div className="genreButtons" onClick={artistsButtonHandler}>ARTISTAS</div>}
                 <SearchBar handler={inputHandler} task={artistSearch ? 'artistas' : 'géneros'} />
                 {isLoaded && artistSearch && <GeneralList infoType={infoType} input={inputText} />}
                 {genreSearch && <GenreSearchList infoType={stylesList} input={inputText} artistsList={infoType} />}
