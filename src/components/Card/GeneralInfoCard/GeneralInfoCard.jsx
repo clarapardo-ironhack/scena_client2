@@ -47,12 +47,12 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                 <Col md={{ span: 4, offset: 1 }}>
                     {
 
-                        
-                            <Col md={3}>
-                              { images && <Slider images={images} />}
-                          
-                            {  image &&  <Image className="poster" src={image}/>}
-                            </Col>
+
+                        <Col md={3}>
+                            {images && <Slider images={images} />}
+
+                            {image && <Image className="poster" src={image} />}
+                        </Col>
 
                     }
                 </Col>
@@ -101,7 +101,7 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
             <Row>
                 {
 
-                    likedArtists?.length
+                    likedArtists
                     &&
                     user._id === _id
                     &&
@@ -118,7 +118,7 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                 }
 
                 {
-                    likedVenues?.length
+                    likedVenues
                     &&
                     user._id === _id
                     &&
@@ -134,7 +134,7 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                 }
 
                 {
-                    likedEvents?.length
+                    likedEvents
                     &&
                     user._id === _id
                     &&
