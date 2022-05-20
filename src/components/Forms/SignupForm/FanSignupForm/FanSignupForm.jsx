@@ -92,7 +92,7 @@ const FanSignupForm = ({ edit, fireFinalActions }) => {
 
     return (
         <Container>
-            <h1 className="login-title">FAN ¿?</h1>
+            <h1 className="login-title">fan</h1>
             <hr />
 
             <Form onSubmit={handleSubmit}>

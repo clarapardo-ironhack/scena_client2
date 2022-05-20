@@ -156,7 +156,7 @@ const ArtistSignupForm = ({ edit, fireFinalActions }) => {
 
     return (
         <Container>
-            <h1 className="login-title">ARTISTA ¿?</h1>
+            <h1 className="login-title">artista</h1>
             <hr />
 
             <Form onSubmit={handleSubmit}>
