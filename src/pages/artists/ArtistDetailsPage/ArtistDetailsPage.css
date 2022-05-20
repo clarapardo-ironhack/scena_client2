@@ -1,6 +1,6 @@
 .likeGeneral {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     border: 1px solid white;
     background-color: black;
     border-radius: 50%;
@@ -8,10 +8,15 @@
     padding-top: 17px;
     user-select: none;
     position: absolute;
-    left: 490px;
-    top: 480px;
+    left: 1053px;
+    top: 320px;
     z-index: 2;
 }
+
+.nextEvents {
+    margin-top: 40px;
+}
+
 
 .likeGeneral:hover {
     animation-name: likeGeneral-transform;

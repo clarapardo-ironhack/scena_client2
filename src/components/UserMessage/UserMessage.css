@@ -1,0 +1,25 @@
+/* Beau Blue #C9DAEA
+Fluorescent Blue #03F7EB
+Jungle Green #00B295
+Eerie Black #191516
+Cerulean Blue #3454D1 */
+
+.theToast {
+
+    background-color: #191516;
+    position: fixed;
+
+}
+
+.toastTitle {
+    background-color: #03F7EB;
+    color: #191516;
+    padding-left: 150px;
+    border-radius: 100px;
+}
+
+.toastBody {
+    background-color: #191516;
+    color: #03F7EB;
+    border-radius: 100px;
+}

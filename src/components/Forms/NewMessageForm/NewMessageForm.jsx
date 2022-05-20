@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import { AuthContext } from "../../../context/auth.context"
 import messagesService from "../../../services/messages.service"
+import './NewMessageForm.css'
 
 const NewMessageForm = ({ destinationId, username, answer, fireFinalActions, setAnswered }) => {
 
@@ -55,9 +56,8 @@ const NewMessageForm = ({ destinationId, username, answer, fireFinalActions, set
     return (
         <>
             <Form onSubmit={handleSubmit}>
-                <Form.Label>Enviar mensaje a {username}</Form.Label>
-
                 <Form.Control
+                    className="messFormText"
                     as="textarea"
                     style={{ height: '200px' }}
                     placeholder="Escribe aquí tu mensaje..."
@@ -65,9 +65,9 @@ const NewMessageForm = ({ destinationId, username, answer, fireFinalActions, set
                     onChange={handleInputChange} />
                 <Form.Text className="text-muted">
                     No pongas mierdas                    </Form.Text>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
+                <button className="sendAnswer"  type="submit">
+                    <div className="answerButton" >📫</div>
+                </button>
             </Form>
         </>
     )

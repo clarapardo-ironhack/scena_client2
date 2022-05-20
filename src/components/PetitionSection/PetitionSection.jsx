@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import artistsService from '../../services/artist.service'
 import venuesService from '../../services/venue.service'
 import EventModerationCard from '../Card/EventModerationCard/EventModerationCard'
+import './PetitionSection.css'
 
 
 const PetitionSection = () => {
@@ -59,13 +60,13 @@ const PetitionSection = () => {
 
 
     return (
-        <>
-            <h1>MIS MENSAJES</h1>
+        <div className='petitionSection'>
+            <h1>EVENTOS PENDIENTES</h1>
 
             {toBeApproved.map(element => {
                 return <EventModerationCard event={element} role={user.role} setState={setIsTrue} state={isTrue} />
             })}
-        </>
+        </div>
     )
 }
 

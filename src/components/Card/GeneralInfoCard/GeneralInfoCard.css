@@ -8,19 +8,32 @@ Cerulean Blue #3454D1 */
     align-items: center;
 }
 
+span a {
+    margin-left: 40px;
+}
+
+span {
+    list-style: none;
+    color: white;
+    margin-left: 15px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 .card {
     background-color: #191516 !important;
-    color:white !important;
+    color: white !important;
     font-family: Montserrat;
 }
 
 .profileImg {
-    width: 355px;
-    height: 400px;
+    width: 210px;
+    height: 250px;
     position: relative;
-    left: -60px;
     z-index: 1;
     box-shadow: 7px 7px #3454D1, 6px 6px #3454D1, 5px 5px #3454D1, 4px 4px #3454D1, 3px 3px #3454D1, 2px 2px #3454D1, 1px 1px #3454D1;
+    margin-bottom: 40px
 }
 
 .poster {
@@ -33,7 +46,8 @@ Cerulean Blue #3454D1 */
 }
 
 .firstRow {
-    margin-top: 50px;}
+    margin-top: 50px;
+}
 
 .generalInfoCard {
     padding-top: 150px;
@@ -55,9 +69,10 @@ Cerulean Blue #3454D1 */
     font-size: 80px;
     /* text-align: center; */
 }
+
 .messageButton {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     border: 1px solid white;
     background-color: black;
     border-radius: 50%;
@@ -65,8 +80,8 @@ Cerulean Blue #3454D1 */
     padding-top: 17px;
     user-select: none;
     position: absolute;
-    left: 490px;
-    top: 400px;
+    left: 1053px;
+    top: 250px;
     z-index: 2;
 }
 

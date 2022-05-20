@@ -1,23 +1,22 @@
 import { useContext } from 'react'
 import { Toast, ToastContainer } from 'react-bootstrap'
 import { MessageContext } from '../../context/message.context'
+import './UserMessage.css'
 
 const UserMessage = () => {
 
     const { show, setShow, messageInfo } = useContext(MessageContext)
 
+    // autohide delay = { 3000}
+
     return (
-        <ToastContainer className="p-3" position={'bottom-end'}>
-            <Toast show={show} autohide delay={3000} onClose={() => setShow(false)} >
-                <Toast.Header>
-                    <img
-                        src="holder.js/20x20?text=%20"
-                        className="rounded me-2"
-                        alt=""
-                    />
+        <ToastContainer className="p-5"  position={'bottom-start'}>
+            <Toast className='theToast' autohide delay={3000} show={show}  onClose={() => setShow(false)} >
+                <Toast.Header className='toastTitle'>
+                    
                     <strong className="me-auto">{messageInfo.title}</strong>
                 </Toast.Header>
-                <Toast.Body>{messageInfo.description}</Toast.Body>
+                <Toast.Body className='toastBody'>{messageInfo.description}</Toast.Body>
             </Toast>
         </ToastContainer>
     )

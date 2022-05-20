@@ -7,11 +7,13 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import ScenaNav from './../../../components/Navbar/ScenaNav'
 import LoginPage from '../LoginPage/LoginPage'
 import SignupPage from '../SignupPage/SignupPage'
+import { MessageContext } from "../../../context/message.context"
+
 
 
 const HomePage = () => {
 
-    const navigate = useNavigate()
+    const { showMessage } = useContext(MessageContext)
 
     const { user, logOutUser, isLoggedIn } = useContext(AuthContext)
 
@@ -54,18 +56,20 @@ const HomePage = () => {
     const [showRegisterModal, setShowRegisterModal] = useState(false)
     const [showForms, setShowForms] = useState(false)
     const [textChange, setTextChange] = useState(false)
+    const [prueba, setprueba] = useState(true)
 
     const fireFinalActionsLogin = () => {
         setShowLoginModal(false)
         setShowNavbar(true)
-        showMessage('HOLA', 'mensaje enviado!')
-        useNavigate
+            showMessage('Bienvenidx de nuevo!', '¿qué tal lo has pasado este tiempo?')
+     
+
     }
 
     const fireFinalActionsRegister = () => {
         setShowRegisterModal(false)
         setShowNavbar(true)
-        showMessage('HOLA', 'mensaje enviado!')
+        showMessage('Bienvenidx a SCENA', 'navega y diviértete')
     }
 
     useEffect((() => {
@@ -82,7 +86,11 @@ const HomePage = () => {
         }, 1000);
     }
 
-    // onClick = {() => setShowNavbar(true)}
+
+    // AQUI EMPEZAMOS A FUMAR
+
+
+
 
 
     return (<div className='homePage'>
@@ -102,7 +110,7 @@ const HomePage = () => {
                         <Col className='quienEres' sm={showForms ? { span: 4, offset: 4 } : { span: 4, offset: 1 }} onMouseOver={() => { showTheForms() }} >
                             {textChange
                                 ?
-                                <h1>¿quién eres?</h1>
+                                <h1 >¿quién eres?</h1>
                                 :
                                 <h1>hola, ven aquí</h1>
                             }
@@ -121,7 +129,7 @@ const HomePage = () => {
                 <>
                     <Row>
                         <Col className='quienEres searchFor'>
-                            <h1>¿y qué vienes a buscar?</h1>
+                            <h1 >¿y qué vienes a buscar?</h1>
                         </Col>
                     </Row>
 

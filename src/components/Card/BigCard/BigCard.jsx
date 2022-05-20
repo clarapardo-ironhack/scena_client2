@@ -10,14 +10,13 @@ const BigCard = ({ _id, image, images, avatar, styles, username, networks,
     label, description, likedVenues, likedEvents, likedArtists, role, address,
     capacity, title, mainArtist, supportingArtists }) => {
 
-    const packGeneral = { _id, image, images, avatar, username, networks, description, role, title, likedVenues, likedEvents, likedArtists }
+    const packGeneral = { _id, image, images, avatar, username, networks, description, role, title, likedVenues, likedEvents, likedArtists,styles,label }
     const packArtist = { styles, label }
     const packVenue = { address, capacity }
     return (
 
         <>
             <GeneralInfoCard {...packGeneral} />
-            {role === 'Artist' && <ArtistSpecifics {...packArtist} />}
             {role === 'Venue' && <VenueSpecifics {...packVenue} />}
         </>
     )
