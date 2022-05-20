@@ -23,8 +23,7 @@ const MessageCard = ({ message, messageInfoCall, isLoading, setIsLoading }) => {
     const fireFinalActions = () => {
         closeModal()
         setAnswered(true)
-        // messageInfoCall()
-        showMessage('HOLA', 'mensaje enviado!')
+        showMessage('Mensaje enviado', 'esperamos que tu mensaje no haya sido muy turras :)')
     }
 
     useEffect((() => {
@@ -90,7 +89,7 @@ const MessageCard = ({ message, messageInfoCall, isLoading, setIsLoading }) => {
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Mensaje para {usernameMess}</Modal.Title>
+                    <Modal.Title className="modalTitleMessage">Mensaje para {usernameMess}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <NewMessageForm fireFinalActions={fireFinalActions} destinationId={destinationMess} username={usernameMess} answer={message} setAnswered={setAnswered} />

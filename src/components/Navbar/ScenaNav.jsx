@@ -59,7 +59,7 @@ const ScenaNav = () => {
     return (
         <>
 
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect className='scenaNav' expand="lg" bg="dark" variant="dark">
                 <NavLink to="/favorites" className="nav-link logo-navbar">
                     <img src="./../../../img/logosSinFondo.png" alt="scena mini logo" />
                 </NavLink>
@@ -70,7 +70,7 @@ const ScenaNav = () => {
                         <NavLink className="nav-link" to="/artists">artistas</NavLink>
                         <NavLink className="nav-link" to="/venues">locales</NavLink>
                         <NavLink className="nav-link" to="/labels">sellos discográficos</NavLink>
-                        {user.role === 'Artist' || user.role === 'Venue' || user.role === 'Label'
+                        {user?.role === 'Artist' || user?.role === 'Venue' || user?.role === 'Label'
                             ?
                             <NavDropdown title="eventos" id="collasible-nav-dropdown">
                                 <Link className="nav-link" to="/events">lista de eventos</Link>

@@ -1,0 +1,16 @@
+.sendAnswer{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    margin-top: 10px;
+}
+
+.messFormText{
+    background-color: aquamarine;
+    transition: .8 ease;
+}
+
+.messFormText:hover {
+        transition: .8 ease;
+    background-color: black;
+    color:aquamarine
+}
