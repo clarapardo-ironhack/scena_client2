@@ -47,14 +47,11 @@ const CommonCard = ({ _id, image, username, networks, avatar, images, descriptio
                 <Col md={{ span: 4, offset: 1 }}>
                     {
 
-                        images
-                            ?
+                        
                             <Col md={3}>
-                                <Slider images={images} />
-                            </Col>
-                            :
-                            <Col md={3}>
-                                <Image className="poster" src={image} alt="Profile Picture" />
+                              { images && <Slider images={images} />}
+                          
+                            {  image &&  <Image className="poster" src={image}/>}
                             </Col>
 
                     }

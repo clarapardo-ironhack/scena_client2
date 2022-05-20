@@ -28,8 +28,8 @@ span {
 }
 
 .profileImg {
-    width: auto;
-    height: 200px;
+    width: 210px;
+    height: 250px;
     position: relative;
     z-index: 1;
     box-shadow: 7px 7px #3454D1, 6px 6px #3454D1, 5px 5px #3454D1, 4px 4px #3454D1, 3px 3px #3454D1, 2px 2px #3454D1, 1px 1px #3454D1;
